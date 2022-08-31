@@ -12,15 +12,13 @@ import Singup from "../pages/Singup";
 const RoutesApplication = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/landingPage" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Singup />} />
-      <Route element={<ProtectedRoutes />}>
-        <Route path="/devDashboard" element={<DevDashboard />} />
-        <Route path="/devInbox" element={<DevInbox />} />
-        <Route path="/recruiterDashboard" element={<RecruiterDashboard />} />
-        <Route path="/recruiterInbox" element={<RecruiterInbox />} />
-      </Route>
+      <Route path="/devDashboard" element={<DevDashboard />} />
+      <Route path="/devInbox" element={<DevInbox />} />
+      <Route path="/recruiterDashboard" element={<RecruiterDashboard />} />
+      <Route path="/recruiterInbox" element={<RecruiterInbox />} />
       <Route path="*" element={<Navigate replace to="/login" />} />
     </Routes>
   );
