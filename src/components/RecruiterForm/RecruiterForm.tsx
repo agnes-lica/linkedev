@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../Context/RecruiterContext";
+import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
 
-interface IRegisterDev {
+interface IRegisterRecruiter {
   name: string;
   email: string;
   password: string;
@@ -16,13 +16,11 @@ interface IRegisterDev {
   stacks?: string[];
   bio?: string;
 }
-const DevForm = () => {
+const RecruiterForm = () => {
   const { handleRegister } = useContext(RecruiterContext);
 
-  const formRecruiter = yup.object().shape({
-    level: yup.string().required("escolha um dos níveis"),
-    stacks: yup.string().required("adicione suas tecnologias"),
-    bio: yup.string().required("bio obrigatória"),
+  const formDev = yup.object().shape({
+    empresa: yup.string().required("o campo empresa é obrigatório"),
     social: yup.string().url().required("campo social obrigatório"),
     avatar_URL: yup.string().url().required("campo obrigatório"),
   });
@@ -31,38 +29,21 @@ const DevForm = () => {
     register,
     handleSubmit,
     //formState: { errors },
-  } = useForm<IRegisterDev>({
-    resolver: yupResolver(formRecruiter),
+  } = useForm<IRegisterRecruiter>({
+    resolver: yupResolver(formDev),
   });
 
   return (
     <div>
       <form onSubmit={handleSubmit(handleRegister)}>
-
-        <label htmlFor="level">Nível</label>
-        <select id="level" {...register("level")}>
-          <option value="junior">Nível Junior</option>
-          <option value="pleno">Nível Pleno</option>
-          <option value="senior">Nível Sênior</option>
-        </select>
-
-        <label htmlFor="stacks">Tecnologias</label>
+        <label htmlFor="empresa">Empresa</label>
         <input
           type="text"
-          id="stacks"
-          placeholder="Digite suas tecnologias"
-          {...register("stacks")}
+          id="empresa"
+          placeholder="Digite o nome da sua empresa"
+          {...register("empresa")}
         />
-        {/* <p>{errors.name?.message}</p> */}
-
-
-        <label htmlFor="bio">Bio</label>
-        <input
-          type="text"
-          id="bio"
-          placeholder="Digite sua bio"
-          {...register("bio")}
-        />
+        {/* <p>{errors.empresa?.message}</p> */}
 
         <label htmlFor="social">Link Social</label>
         <input
@@ -86,4 +67,4 @@ const DevForm = () => {
   );
 };
 
-export default DevForm;
+export default RecruiterForm;
