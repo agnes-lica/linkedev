@@ -2,9 +2,8 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../../Context/RecruiterContext";
-import DevForm from "../../Components/DevForm";
-import RecruiterForm from "../../Components/RecruiterForm";
+import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+
 
 interface IRegister {
   name: string;

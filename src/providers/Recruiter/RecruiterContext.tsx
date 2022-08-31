@@ -2,7 +2,7 @@ import { useState, ReactNode, createContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import api from "../../Services/api";
+import api from "../../services/api";
 
 interface IRecruiterProps {
   user: IRecruiter[] | [] | string;
