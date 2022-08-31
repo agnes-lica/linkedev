@@ -1,14 +1,18 @@
-import { Routes, Route } from "react-router-dom";
-import RegisterRecuiter from "../Pages/CadastroRecruiter";
-import Login from "../Pages/Login";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LandingPage from "../pages/LandingPage";
+import DevDashboard from "../pages/DevDashboard";
+import RecruiterDashboard from "../pages/RecruiterDashboard";
 
-function RoutesMain() {
+
+const RoutesApplication = () => {
   return (
     <Routes>
-      <Route path="/" element={<RegisterRecuiter />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/devDashboard" element={<DevDashboard />} />
+      <Route path="/recruiterDashboard" element={<RecruiterDashboard />} />
+      <Route path="*" element={<Navigate replace to="/login" />} />
     </Routes>
   );
-}
+};
 
-export default RoutesMain;
+export default RoutesApplication;
