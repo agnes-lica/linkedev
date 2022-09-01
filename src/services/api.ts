@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://BASE_URL",
+  baseURL: "https://linkedev.herokuapp.com",
   timeout: 5000,
 });
 

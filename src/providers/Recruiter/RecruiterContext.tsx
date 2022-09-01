@@ -32,14 +32,14 @@ export interface IHandleRegister {
   name: string;
   email: string;
   password: string;
-  empresa?: string;
+  company?: string;
   social?: string;
   avatar_URL?: string;
   recruiter?: boolean;
-  role?: string;
   level?: string;
   stacks?: string[];
   bio?: string;
+  title?: string;
 }
 
 export interface IHandleLogin {
@@ -59,8 +59,10 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
   const navigate = useNavigate();
 
   const handleRegister = (data: IHandleRegister) => {
+    console.log(data);
+    console.log("Oi");
     api
-      .post("register", data)
+      .post("/register", data)
       .then((response) => {
         console.log(response.data);
         toast.success("Cadastro realizado com sucesso!");
