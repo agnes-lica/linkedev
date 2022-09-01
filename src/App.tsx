@@ -1,9 +1,14 @@
 import React from "react";
-import "./App.css";
-import RoutesMain from "./Routes";
+import Global from "./styles/Global";
+import RoutesApplication from "./routes";
 
 function App() {
-  return <RoutesMain />;
+  return (
+    <>
+      <Global />
+      <RoutesApplication />
+    </>
+  );
 }
 
 export default App;
