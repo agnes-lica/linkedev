@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,6 +18,7 @@ interface IRegisterDev {
 }
 const DevForm = () => {
   const { handleRegister } = useContext(RecruiterContext);
+  const [stacks, setStacks] = useState(null);
 
   const formRecruiter = yup.object().shape({
     level: yup.string().required("escolha um dos níveis"),
@@ -38,7 +39,6 @@ const DevForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(handleRegister)}>
-
         <label htmlFor="level">Nível</label>
         <select id="level" {...register("level")}>
           <option value="junior">Nível Junior</option>
@@ -51,10 +51,10 @@ const DevForm = () => {
           type="text"
           id="stacks"
           placeholder="Digite suas tecnologias"
+          // onChange={(event) => setStacks(event.target.value)}
           {...register("stacks")}
         />
         {/* <p>{errors.name?.message}</p> */}
-
 
         <label htmlFor="bio">Bio</label>
         <input
@@ -66,7 +66,7 @@ const DevForm = () => {
 
         <label htmlFor="social">Link Social</label>
         <input
-          value="text"
+          type="text"
           id="social"
           placeholder="Coloque aqui o link do seu social"
           {...register("social")}

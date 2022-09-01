@@ -3,12 +3,14 @@ import { useState, ReactNode, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../Services/api";
+import { getLinkeDev } from "../../Services/LinkeDev";
 
 interface IRecruiterProps {
   user: IRecruiter[] | [] | string;
-  setUser: (user: IRecruiter[] | []) => void;
+  setUser: (user: IRecruiter[] | [] | string) => void;
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
+  loading: boolean;
 }
 
 export interface IRecruiter {
@@ -23,6 +25,7 @@ export interface IRecruiter {
   level: string;
   stacks: string[];
   bio: string;
+  typeUser: string;
 }
 
 export interface IHandleRegister {
@@ -39,7 +42,7 @@ export interface IHandleRegister {
   bio?: string;
 }
 
-interface IHandleLogin {
+export interface IHandleLogin {
   email: string;
   password: string;
 }
@@ -52,6 +55,7 @@ export const RecruiterContext = createContext<IRecruiterProps>(
 );
 const RecruiterProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IRecruiter[] | string>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const handleRegister = (data: IHandleRegister) => {
@@ -60,7 +64,7 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
       .then((response) => {
         console.log(response.data);
         toast.success("Cadastro realizado com sucesso!");
-        navigate("login", { replace: true });
+        navigate("/login", { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -79,8 +83,12 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
               Authorization: `Bearer ${token}`,
             },
           });
-          setUser(data)
-        } catch (error) {}
+          setUser(data);
+        } catch (err) {
+          console.log(err);
+          localStorage.removeItem("@linkeDev: Recruitertoken");
+        }
+        setLoading(false);
       }
     }
     autoLogin();
@@ -88,16 +96,16 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
 
   const handleLogin = (data: IHandleLogin) => {
     api
-      .post("login", data)
+      .post("/login", data)
       .then((response) => {
         console.log(response.data);
         window.localStorage.setItem(
           "@linkeDev: Recruitertoken ",
-          response.data.token
+          response.data.accessToken
         );
-        setUser(response.data.recruiter);
+        setUser(response.data.user);
         toast.success("login realizado com sucesso");
-        setTimeout(() => navigate("dashboard", { replace: true }));
+        setTimeout(() => navigate("/dashboard", { replace: true }), 3000);
       })
       .catch((err) => {
         console.log(err);
@@ -105,9 +113,21 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
       });
   };
 
+  // useEffect(() => {
+  //   getLinkeDev().then((response) => {
+  //     setUser(response);
+  //   });
+  // }, []);
+
   return (
     <RecruiterContext.Provider
-      value={{ user, setUser, handleRegister, handleLogin }}
+      value={{
+        user,
+        setUser,
+        loading,
+        handleRegister,
+        handleLogin,
+      }}
     >
       {children}
     </RecruiterContext.Provider>

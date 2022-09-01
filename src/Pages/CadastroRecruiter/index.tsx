@@ -11,11 +11,14 @@ interface IRegister {
   email: string;
   password: string;
   verPassword: string;
-  role: string;
-  recruiter: boolean;
+  // role: string;
+  // recruiter: boolean;
 }
+
+
+
 const RegisterRecruiter = () => {
-  const { handleRegister, user, setUser } = useContext(RecruiterContext);
+  const { handleRegister, user } = useContext(RecruiterContext);
 
   const formularioCadastro = yup.object().shape({
     name: yup.string().required("nome obrigatório"),
@@ -86,8 +89,8 @@ const RegisterRecruiter = () => {
           <option value="dev">Desenvolvedor</option>
           <option value="recruiter">Tech Recruiter</option>
         </select>
-        <button type="submit">Cadastrar</button>
       </form>
+      {user == "dev" ? <RecruiterForm /> : <DevForm />}
     </div>
   );
 };
