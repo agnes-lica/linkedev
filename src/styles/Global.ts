@@ -8,6 +8,7 @@ const Global = createGlobalStyle`
   --primary-focus-color: #5B2E76;
   --primary-2-color: #3E1E51;
   --primary-2-focus-color: #BF90DC;
+  --primary-new: #45205C;
 
 
   //gray scale
@@ -46,7 +47,6 @@ const Global = createGlobalStyle`
     background: var(--gray-color-4);
     color: var(--gray-color-0);
     -webkit-font-smoothing: antialiased;
-
     overflow-x: hidden;
   }
 
@@ -81,6 +81,8 @@ const Global = createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover{
     background: var(--primary-focus-color);
   }
+
+
 `;
 
 export default Global;
