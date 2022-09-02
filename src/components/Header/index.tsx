@@ -18,7 +18,7 @@ function Header(){
                 <Dropdown />
                 
                 <div className="button">                  
-                    <Button content={"Logout"} buttonFunction={logout} />
+                    <Button buttonFunction={logout}>Logout</Button>
                 </div>
             </div>
         </Container>
