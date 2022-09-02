@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import RecruiterProvider from "./providers/Recruiter/RecruiterContext";
 import { ToastContainer } from "react-toastify";
 
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
