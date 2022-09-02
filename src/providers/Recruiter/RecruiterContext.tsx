@@ -17,15 +17,14 @@ export interface IRecruiter {
   name: string;
   email: string;
   password: string;
-  empresa: string;
+  company: string;
   social: string;
   avatar_URL: string;
-  recruiter: boolean;
-  role: string;
+  is_recruiter: boolean;
   level: string;
   stacks: string[];
   bio: string;
-  typeUser: string;
+  title: string;
 }
 
 export interface IHandleRegister {
@@ -35,7 +34,7 @@ export interface IHandleRegister {
   company?: string;
   social?: string;
   avatar_URL?: string;
-  recruiter?: boolean;
+  is_recruiter?: boolean;
   level?: string;
   stacks?: string[];
   bio?: string;
@@ -59,8 +58,6 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
   const navigate = useNavigate();
 
   const handleRegister = (data: IHandleRegister) => {
-    console.log(data);
-    console.log("Oi");
     api
       .post("/register", data)
       .then((response) => {
@@ -100,26 +97,29 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
     api
       .post("/login", data)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.localStorage.setItem(
           "@linkeDev: Recruitertoken ",
           response.data.accessToken
         );
         setUser(response.data.user);
-        toast.success("login realizado com sucesso");
-        setTimeout(() => navigate("/dashboard", { replace: true }), 3000);
+
+        if (response.data.user.company !== undefined) {
+          toast.success("login realizado com sucesso");
+          setTimeout(
+            () => navigate("/recruiterDashboard", { replace: true }),
+            3000
+          );
+        } else {
+          toast.success("login realizado com sucesso");
+          setTimeout(() => navigate("/devDashboard", { replace: true }), 3000);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         toast.error("email ou senha inválido");
       });
   };
-
-  // useEffect(() => {
-  //   getLinkeDev().then((response) => {
-  //     setUser(response);
-  //   });
-  // }, []);
 
   return (
     <RecruiterContext.Provider

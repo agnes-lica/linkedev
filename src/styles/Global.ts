@@ -16,14 +16,13 @@ const Global = createGlobalStyle`
   --gray-color-1:#9C95A0;
   --gray-color-2:#29262C;
   --gray-color-3:#131213;
+  --gray-color-new: #FBFAFA;
 
+  --black: #000000;
+  
   //feedback palette
   --sucess-color:#48AD18;
   --negative-color:#FA5640;
-
-  --font-family-1: 'Roboto', sans-serif;
-  --font-family-2: 'Montserrat', sans-serif;
-
 
   font-size: 60%;
 }

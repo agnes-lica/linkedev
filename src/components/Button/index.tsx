@@ -1,15 +1,16 @@
+import { ReactNode } from "react";
 import { Container } from "./style";
 
 interface ButtonProps{
-    content: any;
+    children: ReactNode;
     buttonFunction: () => void;
 }
 
-function Button({content, buttonFunction}: ButtonProps){
+function Button({children, buttonFunction}: ButtonProps){
 
     return( 
         <Container onClick={buttonFunction}>
-            {content}
+            {children}
         </Container>
     )
 
