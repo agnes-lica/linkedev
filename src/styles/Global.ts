@@ -36,7 +36,6 @@ const Global = createGlobalStyle`
     }
   }
 
-
   *{
     margin:0px;
     padding: 0px;
@@ -47,7 +46,6 @@ const Global = createGlobalStyle`
   }
 
   body, html{
-
     width: 100vw;
     height: 100vh;
   }
@@ -111,6 +109,8 @@ const Global = createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover{
     background: var(--primary-focus-color);
   }
+
+
 `;
 
 export default Global;
