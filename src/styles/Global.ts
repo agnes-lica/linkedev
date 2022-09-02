@@ -8,6 +8,7 @@ const Global = createGlobalStyle`
   --primary-focus-color: #5B2E76;
   --primary-2-color: #3E1E51;
   --primary-2-focus-color: #BF90DC;
+  --primary-3-color: #45205C;
 
 
   //gray scale
@@ -20,24 +21,33 @@ const Global = createGlobalStyle`
   --sucess-color:#48AD18;
   --negative-color:#FA5640;
 
+  --font-family-1: 'Roboto', sans-serif;
+  --font-family-2: 'Montserrat', sans-serif;
+
+
   font-size: 60%;
 }
 
 @media (min-width: 700px) {
     :root {
       font-size: 62.5%;
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-family-1);
+
     }
   }
+
 
   *{
     margin:0px;
     padding: 0px;
     outline: 0px;
     box-sizing: border-box;
+
+    width: 100%;
   }
 
   body, html{
+
     width: 100vw;
     height: 100vh;
   }
@@ -47,11 +57,14 @@ const Global = createGlobalStyle`
     color: var(--gray-color-0);
     -webkit-font-smoothing: antialiased;
 
+    display: flex;
+    justify-content: center;
+
     overflow-x: hidden;
   }
 
   border-style, input, button, textarea {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-1);
     font-size: 1.6rem;
   }
 
@@ -61,6 +74,23 @@ const Global = createGlobalStyle`
 
   button{
     cursor: pointer;
+
+    background-color: var(--primary-3-color);
+
+    color: var(--gray-color-0);
+    font-weight: 600;
+    font-family: var(--font-family-1);
+    font-size:18px;
+
+    width: 15rem;
+    height: 6rem;
+
+    border-radius: 8px;
+    border: none;
+  }
+
+  button:hover{
+    background-color: var(--primary-focus-color);
   }
 
   ::-webkit-scrollbar{
