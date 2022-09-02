@@ -7,4 +7,5 @@ export const Container = styled.button`
     background-color: var(--primary-new);
     color: var(--gray-color-0);
     font-weight: 500;
+    box-shadow: var(--box-shadow)
 `

@@ -21,6 +21,8 @@ const Global = createGlobalStyle`
   --sucess-color:#48AD18;
   --negative-color:#FA5640;
 
+  --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   font-size: 60%;
 }
 

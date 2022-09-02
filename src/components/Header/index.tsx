@@ -3,6 +3,7 @@ import logo from "../../assets/Logolight.svg"
 import Button from "../Button";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
+import Dropdown from "../Dropdown";
 
 
 function Header(){
@@ -11,10 +12,14 @@ function Header(){
     
     return(
         <Container>
-            <div>
+            <div className="container">
                 <img src={logo} alt="Logotipo linkedev" />
-
-                <Button content={"Logout"} buttonFunction={logout} />
+                
+                <Dropdown />
+                
+                <div className="button">                  
+                    <Button content={"Logout"} buttonFunction={logout} />
+                </div>
             </div>
         </Container>
     )
