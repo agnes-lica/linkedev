@@ -117,6 +117,7 @@ const RecruiterForm = () => {
               placeholder="Coloque aqui o link do seu social"
               {...register("social")}
             />
+            <p>{errors.social?.message}</p>
 
             <label htmlFor="avatar">Link para avatar</label>
             <input

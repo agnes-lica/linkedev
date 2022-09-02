@@ -111,7 +111,7 @@ const DevForm = () => {
             <input
               type="text"
               id="title"
-              placeholder="Digite suas tecnologias"
+              placeholder="Ex: Desenvolvedor Frontend"
               {...register("title")}
             />
             <p>{errors.title?.message}</p>
