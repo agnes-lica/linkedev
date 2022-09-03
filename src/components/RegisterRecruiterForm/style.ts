@@ -1,13 +1,32 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface Props {
+  page: boolean;
+}
+
+export const Container = styled.div<Props>`
   width: 100vw;
   height: 100%;
   background-color: #000;
+  display: ${(props) => {
+    if (props.page) return "block";
+    else return "none";
+  }};
 
   .buttonBack {
-    display: none;
+    color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    background-color: #000;
+    text-align: center;
+
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
   }
+
   .divRegister {
     display: flex;
     flex-direction: column;
@@ -42,7 +61,10 @@ export const Container = styled.div`
 
   @media (min-width: 900px) {
     height: 100vh;
-    display: flex;
+    display: ${(props) => {
+      if (props.page) return "flex";
+      else return "none";
+    }};
     flex-direction: column;
     justify-content: flex-end;
 

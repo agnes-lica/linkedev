@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
 import { Container, Form, Header } from "./style";
-import { Link } from "react-router-dom";
+import RegisterDevRecPage from "../../components/RegisterDevRecPage";
 
 interface IRegister {
   name: string;
@@ -14,6 +14,8 @@ interface IRegister {
 
 const Login = () => {
   const { handleLogin } = useContext(RecruiterContext);
+  const [backDev, setBackDev] = useState(false);
+  const [page, setPage] = useState(true);
 
   const formularioCadastro = yup.object().shape({
     email: yup.string().email("e-mail inválido").required("e-mail obrigatório"),
@@ -32,49 +34,64 @@ const Login = () => {
   });
 
   return (
-    <Container>
-      <Link to="/" className="buttonBack">
-        sair
-      </Link>
-      <Header>
-        <img className="logoLinke" src="./logoLinke.png" alt="LinkeDev" />
-      </Header>
-      <div className="div">
-        <div className="divImgDesktop">
-          <img className="logoLinke2" src="./logoLinke.png" alt="LinkeDev" />
-          <h3>A maior plataforma de contratações tech!</h3>
-          <img className="imgLogin" src="./logoLogin.svg" alt="Logo Login" />
-        </div>
-
-        <div className="divLogin">
-          <h2>Login</h2>
-
-          <Form onSubmit={handleSubmit(handleLogin)}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              placeholder="exemplo@email.com"
-              {...register("email")}
+    <>
+      <Container page={page}>
+        <Header>
+          <img className="logoLinke" src="./logoLinke.svg" alt="LinkeDev" />
+        </Header>
+        <div className="div">
+          <div className="divImgDesktop">
+            <img className="logoLinke2" src="./logoLinke.svg" alt="LinkeDev" />
+            <h3>A maior plataforma de contratações tech!</h3>
+            <img
+              className="imgLogin"
+              src="./newLogoLinke.svg"
+              alt="Logo Login"
             />
-            <p>{errors.email?.message}</p>
+          </div>
 
-            <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Digite sua senha"
-              {...register("password")}
-            />
-            <p>{errors.password?.message}</p>
+          <div className="divLogin">
+            <h2>Login</h2>
 
-            <button className="buttonLogin" type="submit">
-              Entrar
-            </button>
-          </Form>
+            <Form onSubmit={handleSubmit(handleLogin)}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                id="email"
+                placeholder="exemplo@email.com"
+                {...register("email")}
+              />
+              <p>{errors.email?.message}</p>
+
+              <label htmlFor="password">Senha</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Digite sua senha"
+                {...register("password")}
+              />
+              <p>{errors.password?.message}</p>
+
+              <div className="back">
+                <button
+                  className="buttonBack"
+                  onClick={() => {
+                    setBackDev(true);
+                    setPage(false);
+                  }}
+                >
+                  voltar
+                </button>
+                <button className="buttonLogin" type="submit">
+                  Entrar
+                </button>
+              </div>
+            </Form>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+      {backDev && <RegisterDevRecPage />}
+    </>
   );
 };
 

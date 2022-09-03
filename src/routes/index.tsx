@@ -3,6 +3,9 @@ import LandingPage from "../pages/LandingPage";
 import DevDashboard from "../pages/DevDashboard";
 import RecruiterDashboard from "../pages/RecruiterDashboard";
 import Login from "../pages/login";
+import RecruiterForm from "../components/RegisterRecruiterForm";
+import RegisterDevRecPage from "../components/RegisterDevRecPage";
+import DevForm from "../components/RegisterDevForm";
 
 const RoutesApplication = () => {
   return (
