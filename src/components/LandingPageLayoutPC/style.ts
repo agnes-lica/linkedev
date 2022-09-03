@@ -15,6 +15,8 @@ export const Container = styled.section`
   flex-direction: column;
   justify-content: space-between;
 
+  font-family: "roboto", sans-serif;
+
   .headerLanding {
     padding-top: 13rem;
 
