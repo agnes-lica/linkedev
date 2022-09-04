@@ -7,7 +7,8 @@ interface Props {
 export const Container = styled.div<Props>`
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--gray-color-3);
+  background-color: var(--gray-color-0);
+  color: var(--gray-color-3);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -101,7 +102,7 @@ export const Div = styled.div`
     flex-direction: column;
     position: relative;
     top: 120px;
-    color: #000;
+    color: var(--gray-color-3);
     text-align: center;
     gap: 40px;
     z-index: 4;
@@ -143,7 +144,6 @@ export const Div = styled.div`
       text-align: start;
       gap: 50px;
       margin-bottom: 100px;
-      color: var(--gray-color-1);
     }
 
     h2 {

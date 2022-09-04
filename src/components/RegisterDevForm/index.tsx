@@ -61,13 +61,21 @@ const DevForm = () => {
     <>
       <Container page={page}>
         <Header>
-          <img className="logoLinke" src="./logoLinke.svg" alt="LinkeDev" />
+          <img className="logoLinke" src="./LogoPC_light.svg" alt="LinkeDev" />
         </Header>
         <div className="div">
           <div className="divImgDesktop">
-            <img className="logoLinke2" src="./logoLinke.svg" alt="LinkeDev" />
+            <img
+              className="logoLinke2"
+              src="./LogoPC_light.svg"
+              alt="LinkeDev"
+            />
             <h3>A maior plataforma de contratações tech!</h3>
-            <img className="imgLogin" src="./newLogoLinke.svg" alt="Logo Login" />
+            <img
+              className="imgLogin"
+              src="./newLogoLinke.svg"
+              alt="Logo Login"
+            />
           </div>
 
           <div className="divRegister">
@@ -121,7 +129,7 @@ const DevForm = () => {
 
               <label htmlFor="level">Nível</label>
               <select id="level" {...register("level")}>
-                <option value="item">---selecione um item---</option>
+                <option value="item">---selecione um nível---</option>
                 <option value="junior">Nível Junior</option>
                 <option value="pleno">Nível Pleno</option>
                 <option value="senior">Nível Sênior</option>

@@ -6,8 +6,9 @@ interface Props {
 
 export const Container = styled.div<Props>`
   width: 100vw;
-  min-height: 100%;
-  background-color: var(--gray-color-3);
+  min-height: 100vh;
+  background-color: var(--gray-color-0);
+  color: var(--gray-color-3);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -30,6 +31,13 @@ export const Container = styled.div<Props>`
     font-weight: 500;
   }
 
+  .buttonBack:hover {
+    overflow: hidden;
+    background-color: var(--gray-color-0);
+    color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-3);
+  }
+
   .divRegister {
     display: flex;
     flex-direction: column;
@@ -46,7 +54,6 @@ export const Container = styled.div<Props>`
     padding: 10px;
     background-color: var(--primary-2-color);
     border-radius: 10px 10px 0px 0px;
-    margin-bottom: 10px;
     margin-top: 20px;
     color: var(--gray-color-0);
     font-size: 14px;
@@ -85,8 +92,8 @@ export const Container = styled.div<Props>`
 
     .logoLinke2 {
       display: flex;
-      width: 300px;
-      height: 80px;
+      width: 350px;
+      height: 120px;
       margin-left: 20px;
     }
 
@@ -120,12 +127,6 @@ export const Container = styled.div<Props>`
       justify-content: space-evenly;
     }
 
-    .logoLinke2 {
-      width: 300px;
-      height: 80px;
-      margin-left: 40px;
-    }
-
     .imgLogin {
       display: flex;
       width: 640px;
@@ -137,7 +138,6 @@ export const Container = styled.div<Props>`
     }
 
     h2 {
-      margin-bottom: 0px;
       width: 300px;
       height: 38px;
       font-size: 14px;
@@ -151,7 +151,7 @@ export const Header = styled.header`
   justify-content: center;
 
   .logoLinke {
-    width: 200px;
+    width: 250px;
     margin-top: 20px;
   }
 
@@ -167,7 +167,7 @@ export const Form = styled.form`
   width: 280px;
 
   label {
-    color: var(--gray-color-0);
+    color: var(--gray-color-3);
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 4px;
@@ -184,7 +184,7 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: var(--gray-color-0);
+    background-color: #d0cbd3;
 
     box-sizing: border-box;
     border: 1px solid var(--gray-color-0);
@@ -210,7 +210,7 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: var(--gray-color-0);
+    background-color: #d0cbd3;
 
     border: 1px solid var(--gray-color-0);
     border-radius: 4px;

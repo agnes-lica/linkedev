@@ -10,13 +10,13 @@ const RegisterDevRecPage = () => {
     <>
       <Container page={page}>
         <Header>
-          <img className="logoLinke" src="./logoLinke.svg" alt="LinkeDev" />
+          <img className="logoLinke" src="./LogoPC_light.svg" alt="LinkeDev" />
         </Header>
         <div className="div">
           <div className="divImgDesktop">
             <img
               className="logoLinke2"
-              src="./LogoPC_Dark.svg"
+              src="./LogoPC_light.svg"
               alt="LinkeDev"
             />
             <h3>A maior plataforma de contratações tech!</h3>
