@@ -29,12 +29,13 @@ export const Container = styled.aside`
             }
 
             span{
-                font-size: 1.5rem;
+                font-size: 16px;
             }
 
             h1{
+                font-family: var(--font-family-2);
                 margin-top: 10px;
-                font-size: 1.8rem;
+                font-size: 19px;
                 font-weight: 700;
             }
         }
@@ -46,7 +47,7 @@ export const Container = styled.aside`
             gap: 10px;
 
             p {
-                font-size: 1.5rem;
+                font-size: 16px;
                 line-height: 19px;
                 display: flex;
                 align-items: center;
@@ -57,14 +58,15 @@ export const Container = styled.aside`
         button{
             width: 100%;
             border-radius: 8px;
-            padding: 1.3rem 0;
-            border: 1px solid var(--primary-new);
+            padding: 15px 0;
+            border: 1px solid var(--primary-3-color);
             color: var(--primary-new);
             background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+
         }
     }
 
