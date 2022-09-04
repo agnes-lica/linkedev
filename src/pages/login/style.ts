@@ -6,8 +6,8 @@ interface Props {
 
 export const Container = styled.div<Props>`
   width: 100vw;
-  height: 100%;
-  background-color: #000;
+  min-height: 100vh;
+  background-color: var(--gray-color-3);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -18,9 +18,9 @@ export const Container = styled.div<Props>`
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #f8f9fa;
-    background-color: #000;
-    border: 1px solid #f8f9fa;
+    color: var(--gray-color-0);
+    background-color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-0);
     text-align: center;
 
     width: 120px;
@@ -31,7 +31,6 @@ export const Container = styled.div<Props>`
     font-weight: 500;
   }
 
-  
   .divLogin {
     display: flex;
     flex-direction: column;
@@ -46,11 +45,11 @@ export const Container = styled.div<Props>`
     width: 280px;
     height: 36px;
     padding: 10px;
-    background-color: #45205c;
+    background-color: var(--primary-2-color);
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 10px;
     margin-top: 20px;
-    color: #f8f9fa;
+    color: var(--gray-color-0);
     font-size: 14px;
     font-weight: 700;
     text-align: center;
@@ -63,15 +62,12 @@ export const Container = styled.div<Props>`
   .logoLinke2 {
     display: none;
   }
-  @media (min-width: 200px) {
-    height: 100vh;
-  }
+
   @media (min-width: 900px) {
-    height: 100vh;
     display: ${(props) => {
-    if (props.page) return "flex";
-    else return "none";
-  }};
+      if (props.page) return "flex";
+      else return "none";
+    }};
     flex-direction: column;
     justify-content: flex-end;
 
@@ -131,8 +127,6 @@ export const Container = styled.div<Props>`
 
     h3 {
       visibility: visible;
-      font-size: 18px;
-      font-weight: 600;
       margin-bottom: 10px;
       margin-left: 40px;
     }
@@ -175,10 +169,9 @@ export const Form = styled.form`
   flex-direction: column;
   margin-bottom: 20px;
   width: 280px;
-  /* height: 26px; */
 
   label {
-    color: #f8f9fa;
+    color: var(--gray-color-0);
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 4px;
@@ -195,10 +188,10 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: #f8f9fa;
+    background-color: var(--gray-color-0);
 
     box-sizing: border-box;
-    border: 1px solid #f8f9fa;
+    border: 1px solid var(--gray-color-0);
     border-radius: 4px;
 
     font-style: normal;
@@ -221,9 +214,9 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: #f8f9fa;
+    background-color: var(--gray-color-0);
 
-    border: 1px solid #f8f9fa;
+    border: 1px solid var(--gray-color-0);
     border-radius: 4px;
 
     font-family: "Inter";
@@ -252,17 +245,17 @@ export const Form = styled.form`
     width: 120px;
     height: 40px;
     margin-top: 10px;
-    background: #45205c;
+    background: var(--primary-2-color);
     border: none;
-    color: #f8f9fa;
+    color: var(--gray-color-0);
     border-radius: 8px;
-    border: 1px solid #45205c;
+    border: 1px solid var(--primary-2-color);
     font-size: 16px;
     font-weight: 500;
   }
 
-  .buttonLogin:hover{
-    background-color: #A54BDC;
+  .buttonLogin:hover {
+    background-color: var(--primary-2-focus-color);
   }
 
   @media (min-width: 900px) {

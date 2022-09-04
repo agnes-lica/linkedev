@@ -6,8 +6,8 @@ interface Props {
 
 export const Container = styled.div<Props>`
   width: 100vw;
-  height: 100vh;
-  background-color: #000;
+  min-height: 100vh;
+  background-color: var(--gray-color-3);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -15,7 +15,6 @@ export const Container = styled.div<Props>`
 
   h3 {
     font-size: 22px;
-    font-weight: 500;
     text-align: center;
     padding: 10px;
     margin-top: 40px;
@@ -109,7 +108,6 @@ export const Div = styled.div`
   }
   h2 {
     font-size: 16px;
-    font-weight: 500;
   }
 
   h4 {
@@ -126,7 +124,7 @@ export const Div = styled.div`
   span:hover {
     cursor: pointer;
     margin: 2px;
-    text-decoration: underline #45205c;
+    text-decoration: underline var(--primary-2-color);
     overflow: hidden;
   }
   /* ===================================================== */
@@ -145,12 +143,11 @@ export const Div = styled.div`
       text-align: start;
       gap: 50px;
       margin-bottom: 100px;
-      color: #9c95a0;
+      color: var(--gray-color-1);
     }
 
     h2 {
       font-size: 22px;
-      font-weight: 500;
     }
 
     h4 {
@@ -167,7 +164,7 @@ export const Div = styled.div`
     span:hover {
       cursor: pointer;
       margin: 4px;
-      text-decoration: underline #45205c;
+      text-decoration: underline var(--primary-2-color);
       overflow: hidden;
     }
   }

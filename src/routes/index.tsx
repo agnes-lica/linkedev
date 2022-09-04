@@ -11,6 +11,10 @@ const RoutesApplication = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/register" element={<RecruiterForm />} />
+      <Route path="/register2" element={<DevForm />} />
+      <Route path="/teste" element={<RegisterDevRecPage />} />
+
       <Route path="/devDashboard" element={<DevDashboard />} />
       <Route path="/recruiterDashboard" element={<RecruiterDashboard />} />
       <Route path="/login" element={<Login />} />
