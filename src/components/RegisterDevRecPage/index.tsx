@@ -60,8 +60,8 @@ const RegisterDevRecPage = () => {
       </Container>
       {/* {value == "dev" ? <DevForm /> : <RecruiterForm />} */}
 
-      {value == "dev" && <DevForm />}
-      {value == "recruiter" && <RecruiterForm />}
+      {value === "dev" && <DevForm />}
+      {value === "recruiter" && <RecruiterForm />}
     </>
   );
 };
