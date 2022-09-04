@@ -2,6 +2,8 @@ import { useState } from "react";
 import DevForm from "../RegisterDevForm";
 import RecruiterForm from "../RegisterRecruiterForm";
 import { Container, Div, Header } from "./style";
+
+
 const RegisterDevRecPage = () => {
   const [value, setValue] = useState("");
   const [page, setPage] = useState(true);
