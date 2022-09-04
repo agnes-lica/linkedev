@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import RecruiterProvider from "./providers/Recruiter/RecruiterContext";
+import { Providers } from "./providers";
 import { ToastContainer } from "react-toastify";
 
 
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <RecruiterProvider>
+      <Providers>
         <ToastContainer
           position="top-center"
           autoClose={3000}
@@ -25,7 +25,7 @@ root.render(
           pauseOnHover
         />
         <App />
-      </RecruiterProvider>
+      </Providers>
     </BrowserRouter>
   </React.StrictMode>
 );
