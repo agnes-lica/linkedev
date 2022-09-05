@@ -101,6 +101,7 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
+    align-items: center;
     top: 120px;
     color: var(--gray-color-3);
     text-align: center;
@@ -128,6 +129,28 @@ export const Div = styled.div`
     text-decoration: underline var(--primary-2-color);
     overflow: hidden;
   }
+
+  .buttonBack {
+    text-decoration: none;
+    color: var(--gray-color-0);
+    background-color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-0);
+
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .buttonBack:hover {
+    overflow: hidden;
+    background-color: var(--gray-color-0);
+    color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-3);
+  }
+
   /* ===================================================== */
 
   @media (min-width: 800px) {

@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
 import { Container, Form, Header } from "./style";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 interface IRegister {
   name: string;
@@ -32,17 +32,21 @@ const Login = () => {
     resolver: yupResolver(formularioCadastro),
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
       <Container page={page}>
         <Header>
-          <img className="logoLinke" src="./logoLinke.svg" alt="LinkeDev" />
+          <img className="logoLinke" src="./LogoPC_light.svg" alt="LinkeDev" />
         </Header>
         <div className="div">
           <div className="divImgDesktop">
-            <img className="logoLinke2" src="./logoLinke.svg" alt="LinkeDev" />
+            <img
+              className="logoLinke2"
+              src="./LogoPC_light.svg"
+              alt="LinkeDev"
+            />
             <h3>A maior plataforma de contratações tech!</h3>
             <img
               className="imgLogin"
@@ -74,10 +78,7 @@ const Login = () => {
               <p>{errors.password?.message}</p>
 
               <div className="back">
-                <button
-                  className="buttonBack"
-                  onClick={() => navigate("/")}
-                >
+                <button className="buttonBack" onClick={() => navigate("/")}>
                   voltar
                 </button>
                 <button className="buttonLogin" type="submit">
@@ -86,7 +87,6 @@ const Login = () => {
               </div>
             </Form>
           </div>
-          
         </div>
       </Container>
     </>

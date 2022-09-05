@@ -15,9 +15,6 @@ export const Container = styled.div<Props>`
   }};
 
   .buttonBack {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-decoration: none;
     color: var(--gray-color-0);
     background-color: var(--gray-color-3);
