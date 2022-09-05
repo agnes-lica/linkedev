@@ -51,7 +51,7 @@ const Global = createGlobalStyle`
 
   body{
     background: var(--gray-color-4);
-    color: var(--gray-color-0);
+    color: var(--gray-color-3);
     -webkit-font-smoothing: antialiased;
 
     display: flex;
