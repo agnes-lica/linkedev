@@ -53,18 +53,33 @@ export const Container = styled.aside`
         gap: 8px;
       }
     }
+  }
 
-    button {
-      width: 100%;
-      border-radius: 8px;
-      padding: 15px 0;
-      border: 1px solid var(--primary-3-color);
-      color: var(--primary-new);
-      background: transparent;
+  div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      font-size: 16px;
+      line-height: 19px;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
     }
+  }
+
+  button {
+    width: 100%;
+    border-radius: 8px;
+    padding: 15px 0;
+    border: 1px solid var(--primary-3-color);
+    color: var(--primary-new);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 `;

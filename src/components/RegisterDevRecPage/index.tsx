@@ -1,32 +1,68 @@
 import { useState } from "react";
 import DevForm from "../RegisterDevForm";
 import RecruiterForm from "../RegisterRecruiterForm";
-import { Container } from "./style";
+import { Container, Div, Header } from "./style";
 const RegisterDevRecPage = () => {
   const [value, setValue] = useState("");
-  return (
-    <Container>
-      <div className="div">
-        <img
-          className="divImgPage"
-          src="./newLogoLinke.svg"
-          alt="Logo LinkeDev"
-        ></img>
-        <div className="divTeste">
-          <img className="logoLinke2" src="./logoLinke.png" alt="LinkeDev" />
-          <h2>A maior plataforma de contratações tech!</h2>
+  const [page, setPage] = useState(true);
 
-          <h3>Esse é o primeiro passo para uma grande experiência</h3>
-          <h4>
-            Você é um <button onClick={() => {setValue("dev")}}>Dev</button> ou
-            <button onClick={() => setValue("recruiter")}>Recruiter</button> ?
-          </h4>
-          {value == "dev" && <DevForm /> }
-          {value == "recruiter" && <RecruiterForm />}
+  return (
+    <>
+      <Container page={page}>
+        <Header>
+          <img className="logoLinke" src="./logoLinke.svg" alt="LinkeDev" />
+        </Header>
+        <div className="div">
+          <div className="divImgDesktop">
+            <img
+              className="logoLinke2"
+              src="./LogoPC_Dark.svg"
+              alt="LinkeDev"
+            />
+            <h3>A maior plataforma de contratações tech!</h3>
+            <img
+              className="imgLogin"
+              src="./newLogoLinke.svg"
+              alt="Logo Page"
+            />
+          </div>
+
+          <Div>
+            <div className="text">
+              <h2>Esse é o primeiro passo para uma grande experiência</h2>
+              <h4>
+                Você é um
+                <span
+                  onClick={() => {
+                    setValue("dev");
+                    setPage(false);
+                  }}
+                >
+                  Dev
+                </span>
+                ou
+                <span
+                  onClick={() => {
+                    setValue("recruiter");
+                    setPage(false);
+                  }}
+                >
+                  Recruiter
+                </span>
+                ?
+              </h4>
+            </div>
+          </Div>
         </div>
-      </div>
-      <img className="vector" src="./vector.svg" />
-    </Container>
+        <div className="teste">
+          <img className="vector" src="./vector.svg" />
+        </div>
+      </Container>
+      {/* {value == "dev" ? <DevForm /> : <RecruiterForm />} */}
+
+      {value === "dev" && <DevForm />}
+      {value === "recruiter" && <RecruiterForm />}
+    </>
   );
 };
 export default RegisterDevRecPage;

@@ -1,13 +1,32 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface Props {
+  page: boolean;
+}
+
+export const Container = styled.div<Props>`
   width: 100vw;
-  height: 100%;
+  min-height: 100vh;
   background-color: #000;
+  display: ${(props) => {
+    if (props.page) return "block";
+    else return "none";
+  }};
 
   .buttonBack {
-    display: none;
+    color: var(--gray-color-0);
+    border: 1px solid var(--gray-color-0);
+    background-color: var(--gray-color-3);
+    text-align: center;
+
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
   }
+
   .divRegister {
     display: flex;
     flex-direction: column;
@@ -22,11 +41,11 @@ export const Container = styled.div`
     width: 280px;
     height: 36px;
     padding: 10px;
-    background-color: #bf90dc;
+    background-color: var(--primary-2-color);
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 10px;
     margin-top: 20px;
-    color: #000;
+    color: var(--gray-color-0);
     font-size: 14px;
     font-weight: 700;
     text-align: center;
@@ -42,26 +61,12 @@ export const Container = styled.div`
 
   @media (min-width: 900px) {
     height: 100vh;
-    display: flex;
+    display: ${(props) => {
+      if (props.page) return "flex";
+      else return "none";
+    }};
     flex-direction: column;
     justify-content: flex-end;
-
-    .buttonBack {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      color: #f8f9fa;
-      border: 1px solid #f8f9fa;
-      text-align: center;
-
-      width: 120px;
-      height: 40px;
-      margin-top: 10px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 500;
-    }
 
     .div {
       display: flex;
@@ -87,7 +92,7 @@ export const Container = styled.div`
       visibility: visible;
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 100px;
+      margin-bottom: 60px;
       margin-left: 20px;
     }
 
@@ -99,23 +104,13 @@ export const Container = styled.div`
 
     .divRegister {
       margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
   }
 
   @media (min-width: 1100px) {
-    .buttonBack {
-      color: #f8f9fa;
-      border: 1px solid #f8f9fa;
-      text-align: center;
-
-      width: 120px;
-      height: 40px;
-      margin-top: 10px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 500;
-    }
-
     .div {
       display: flex;
       flex-direction: row;
@@ -177,7 +172,7 @@ export const Form = styled.form`
   width: 280px;
 
   label {
-    color: #f8f9fa;
+    color: var(--gray-color-0);
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 4px;
@@ -194,10 +189,10 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: #f8f9fa;
+    background-color: var(--gray-color-0);
 
     box-sizing: border-box;
-    border: 1px solid #f8f9fa;
+    border: 1px solid var(--gray-color-0);
     border-radius: 4px;
 
     font-style: normal;
@@ -220,9 +215,9 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: #f8f9fa;
+    background-color: var(--gray-color-0);
 
-    border: 1px solid #f8f9fa;
+    border: 1px solid var(--gray-color-0);
     border-radius: 4px;
 
     font-family: "Inter";
@@ -252,25 +247,14 @@ export const Form = styled.form`
     height: 40px;
     margin-right: 2px;
     margin-top: 10px;
-    background: #bf90dc;
+    background: var(--primary-2-color);
+    color: var(--gray-color-0);
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
   }
 
   @media (min-width: 900px) {
-    .buttonRgister {
-      width: 80px;
-      height: 10px;
-      margin-left: 100px;
-      margin-top: 0px;
-      background: #bf90dc;
-
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      border: solid red;
-    }
   }
 
   @media (min-width: 1100px) {

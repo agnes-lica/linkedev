@@ -14,6 +14,8 @@ export const Container = styled.header`
             
         img{
             height: 50px;
+            width: 205px;
+            margin-top: 8px;
         }
 
         .button{
