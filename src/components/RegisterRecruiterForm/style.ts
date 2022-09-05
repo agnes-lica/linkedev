@@ -24,7 +24,7 @@ export const Container = styled.div<Props>`
     margin-top: 10px;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .buttonBack:hover {
@@ -253,14 +253,11 @@ export const Form = styled.form`
     height: 40px;
     margin-right: 2px;
     margin-top: 10px;
-    background: var(--primary-2-color);
-    color: var(--gray-color-0);
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 500;
   }
   .buttonRegister:hover {
-    background-color: var(--primary-2-focus-color);
+    background-color: var(--primary-focus-color);
   }
 
   @media (min-width: 900px) {
@@ -269,10 +266,6 @@ export const Form = styled.form`
   @media (min-width: 1100px) {
     margin-bottom: 10px;
     width: 300px;
-
-    label {
-      font-size: 10px;
-    }
 
     input {
       width: 300px;

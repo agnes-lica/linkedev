@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
 import { Container, Form, Header } from "./style";
-import RegisterDevRecPage from "../../components/RegisterDevRecPage";
+import { useNavigate } from "react-router-dom"
 
 interface IRegister {
   name: string;
@@ -14,7 +14,6 @@ interface IRegister {
 
 const Login = () => {
   const { handleLogin } = useContext(RecruiterContext);
-  const [backDev, setBackDev] = useState(false);
   const [page, setPage] = useState(true);
 
   const formularioCadastro = yup.object().shape({
@@ -32,6 +31,8 @@ const Login = () => {
   } = useForm<IRegister>({
     resolver: yupResolver(formularioCadastro),
   });
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -75,10 +76,7 @@ const Login = () => {
               <div className="back">
                 <button
                   className="buttonBack"
-                  onClick={() => {
-                    setBackDev(true);
-                    setPage(false);
-                  }}
+                  onClick={() => navigate("/")}
                 >
                   voltar
                 </button>
@@ -88,9 +86,9 @@ const Login = () => {
               </div>
             </Form>
           </div>
+          
         </div>
       </Container>
-      {backDev && <RegisterDevRecPage />}
     </>
   );
 };
