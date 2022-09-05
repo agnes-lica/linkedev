@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { useState, ReactNode, createContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -6,11 +7,11 @@ import api from "../../services/api";
 //import { getLinkeDev } from "../../Services/LinkeDev";
 
 interface IRecruiterProps {
-  user: IRecruiter[] | [] | string;
-  setUser: (user: IRecruiter[] | [] | string) => void;
+  user: IRecruiter | null;
+  setUser: React.Dispatch<React.SetStateAction<null| IRecruiter>>
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
-  loading: boolean;
+  // loading: boolean;
 }
 
 export interface IRecruiter {
@@ -53,9 +54,11 @@ export const RecruiterContext = createContext<IRecruiterProps>(
   {} as IRecruiterProps
 );
 const RecruiterProvider = ({ children }: IProviderChildren) => {
-  const [user, setUser] = useState<IRecruiter[] | string>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<IRecruiter | null>(null);
+  // const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
+  const token = window.localStorage.getItem("@linkeDev: UserToken");
+  const id = window.localStorage.getItem("@linkeDev: UserID")
 
   const handleRegister = (data: IHandleRegister) => {
     api
@@ -67,66 +70,67 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("ops! algo deu errado");
+        toast.error("Ops! Algo deu errado");
       });
   };
 
-  useEffect(() => {
-    async function autoLogin() {
-      const token = window.localStorage.getItem("@linkeDev: Recruitertoken");
-
-      if (token) {
-        try {
-          const { data } = await api.get("profile", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setUser(data);
-        } catch (err) {
-          console.log(err);
-          localStorage.removeItem("@linkeDev: Recruitertoken");
-        }
-        setLoading(false);
-      }
-    }
-    autoLogin();
-  }, []);
 
   const handleLogin = (data: IHandleLogin) => {
     api
       .post("/login", data)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
+        window.localStorage.clear()
         window.localStorage.setItem(
-          "@linkeDev: Recruitertoken ",
-          response.data.accessToken
+          "@linkeDev: UserToken", response.data.accessToken
+        );
+        window.localStorage.setItem(
+          "@linkeDev: UserID", response.data.user.id
         );
         setUser(response.data.user);
 
-        if (response.data.user.company !== undefined) {
-          toast.success("login realizado com sucesso");
-          setTimeout(
-            () => navigate("/recruiterDashboard", { replace: true }),
-            3000
-          );
-        } else {
-          toast.success("login realizado com sucesso");
-          setTimeout(() => navigate("/devDashboard", { replace: true }), 3000);
-        }
+        if (response.status === 200) {
+          toast.success("Login realizado com sucesso");
+          setTimeout(() => {
+            if(response.data.user.is_recruiter){
+              navigate("/recruiterDashboard", { replace: true })
+            }else{
+              navigate("/devDashboard", { replace: true })
+            }
+            }, 3000);
+        } 
       })
       .catch((err) => {
-        // console.log(err);
-        toast.error("email ou senha inválido");
+        console.log(err);
+        toast.error("Email ou senha inválido");
       });
   };
+
+  useEffect(() => {
+  async function autoLogin() {
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      await api.get(`/users/${id}`)
+      .then((res: AxiosResponse) => {
+          setUser(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+        navigate("/login")
+        toast.error("Você foi desconectado. Faça login novamente.")
+      })
+    }
+  }
+     autoLogin();
+
+  }, [token, id]);
 
   return (
     <RecruiterContext.Provider
       value={{
         user,
         setUser,
-        loading,
+        // loading,
         handleRegister,
         handleLogin,
       }}
