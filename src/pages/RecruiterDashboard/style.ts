@@ -13,14 +13,14 @@ export const Container = styled.section`
 
   .recruiterContainer {
     display: flex;
-    margin-top: 70px;
+    margin: 30px;
     justify-content: space-evenly;
   }
 
   .recruiterMain {
-    min-width: 800px;
+    min-width: 700px;
+    width: 65%;
     border: 1px solid lightgray;
-
     border-radius: 8px;
   }
 
@@ -86,5 +86,34 @@ export const Container = styled.section`
         cursor: pointer;
       }
     }
+  }
+
+  .recruiterMainList {
+    width: 100%;
+    padding: 40px 55px;
+  }
+
+  .card {
+    display: flex;
+    gap: 10px;
+  }
+
+  .pic {
+    img {
+      height: 80px;
+      border-radius: 50%;
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
   }
 `;

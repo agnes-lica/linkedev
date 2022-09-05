@@ -45,6 +45,30 @@ function RecruiterDashboard() {
               </section>
             </nav>
           </div>
+          <div className="recruiterMainList">
+            <div className="card">
+              <div className="pic">
+                <img
+                  src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="Foto do perfil"
+                />
+              </div>
+              <section className="content">
+                <div className="presentation">
+                  <span>Há 12 horas</span>
+                  <h2>Nome do desenvolvedor</h2>
+                  <p>Objetivo do dev</p>
+                  <p>Modelo de trabalho</p>
+                </div>
+                <div className="details">
+                  <span>São Paulo</span>
+                  <span>R$ 3.000,00</span>
+                  <span>2 anos</span>
+                  <span>Html, Css, JavaScript</span>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
