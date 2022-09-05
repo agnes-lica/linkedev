@@ -5,6 +5,7 @@ export const Container = styled.section`
   flex-direction: column;
 
   .title {
+    margin: 15px;
     font-family: var(--font-family-2);
     h2 {
       font-weight: 400;
@@ -13,15 +14,21 @@ export const Container = styled.section`
 
   .recruiterContainer {
     display: flex;
-    margin-top: 70px;
+    margin: 30px;
     justify-content: space-evenly;
   }
 
   .recruiterMain {
-    min-width: 800px;
-    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 
+    min-width: 700px;
+    width: 65%;
+    border: 1px solid lightgray;
     border-radius: 8px;
+
+    background-color: var(--gray-color-new);
   }
 
   .recruiterMainHeader {
@@ -86,5 +93,43 @@ export const Container = styled.section`
         cursor: pointer;
       }
     }
+  }
+
+  .recruiterMainList {
+    width: 100%;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    line-height: 25px;
+    padding: 0 55px;
+  }
+
+  .pic {
+    img {
+      height: 80px;
+      border-radius: 50%;
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .presentation {
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
   }
 `;
