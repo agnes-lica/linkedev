@@ -13,7 +13,7 @@ function LandingPageLayoutMobile() {
       </h2>
       <div>
         <button onClick={() => navigate("/login")}>Entrar</button>
-        <button onClick={() => navigate("/signup")}>Cadastrar</button>
+        <button onClick={() => navigate("/options")}>Cadastrar</button>
       </div>
     </Container>
   );

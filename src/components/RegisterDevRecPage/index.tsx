@@ -2,6 +2,8 @@ import { useState } from "react";
 import DevForm from "../RegisterDevForm";
 import RecruiterForm from "../RegisterRecruiterForm";
 import { Container, Div, Header } from "./style";
+
+
 const RegisterDevRecPage = () => {
   const [value, setValue] = useState("");
   const [page, setPage] = useState(true);
@@ -55,7 +57,7 @@ const RegisterDevRecPage = () => {
           </Div>
         </div>
         <div className="teste">
-          <img className="vector" src="./vector.svg" />
+          <img className="vector" src="./vector.svg" alt="Imagem de background mostra uma moça selecionando candidatos" />
         </div>
       </Container>
       {/* {value == "dev" ? <DevForm /> : <RecruiterForm />} */}
