@@ -14,6 +14,7 @@ export const Form = styled.form`
 	}
 
 	input {
+		width: 100%;
 		height: 55px;
 		border: 1px solid var(--primary-3-color);
 		border-radius: 4px;
@@ -31,5 +32,9 @@ export const Form = styled.form`
 
 	.submitButton {
 		width: 100%;
+	}
+
+	button {
+		border-radius: 4px;
 	}
 `;

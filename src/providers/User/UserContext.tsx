@@ -166,6 +166,8 @@ const UserProvider = ({ children }: IProviderChildren) => {
     autoLogin();
   }, [token, id, navigate]);
 
+  const today = new Date();
+  
   const addJob = (data: IJob) => {
 		api.post("/jobs", {
 			title: data.title,
@@ -174,14 +176,16 @@ const UserProvider = ({ children }: IProviderChildren) => {
 			salary: data.salary,
 			level: data.level,
 			stacks: tags,
-			type: data.type,
-			reputation: data.reputation,
-			candidates: data.candidates,
-			userId: data.userId,
-			date: data.date,
+      type: data.type,
+      // Server-side data:
+			reputation: 0,
+			candidates: [],
+			userId: id,
+			date: today.toLocaleDateString(),
 		})
 			.then((response) => {
-				toastSuccessAddTech();
+        toastSuccessAddTech();
+        console.log(response.data);
 			})
 			.catch((error) => {
 				toastErrorAddTech();

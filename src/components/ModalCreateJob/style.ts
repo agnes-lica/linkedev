@@ -26,6 +26,8 @@ export const Container = styled.div`
 	font-size: 14px;
 	color: var(--gray-color-3);
 	font-family: "Roboto", sans-serif;
+	top: 0;
+	left: 0;
 
 	@media (max-width: 400px) {
 		min-width: 90vw;

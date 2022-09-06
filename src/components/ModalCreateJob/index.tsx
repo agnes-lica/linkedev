@@ -1,9 +1,10 @@
-import FormAddJob from "../FormAddJob";
+
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/User/UserContext";
+import FormAddJob from "../FormAddJob";
 import { HeaderModal, Container } from "./style";
 
-export default function ModalCreateJon() {
+export default function ModalCreateJob() {
 	const [showModal, setShowModal] = useState(false);
 	const { setTags } = useContext(UserContext);
 	const handleModal = () => {
@@ -30,7 +31,7 @@ export default function ModalCreateJon() {
 	) : (
 		<>
 			{null}
-			<button onClick={handleModal}>Cadastrar Vaga</button>
+			<button className="openButton" onClick={handleModal}>Cadastrar Vaga</button>
 		</>
 	);
 }

@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import DevProfile from "../../components/DevProfile";
 import { DevContext } from "../../providers/Dev/DevContext";
+import ModalCreateJob from "../../components/ModalCreateJob";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);
@@ -39,7 +40,7 @@ function RecruiterDashboard() {
             <nav>
               <section className="buttons">
                 <Button buttonFunction={vacancies}>Minhas Vagas</Button>
-                <Button buttonFunction={subscriptions}>Inscrições</Button>
+                  <Button buttonFunction={subscriptions}>Inscrições</Button>
               </section>
               <section className="search">
                 <input placeholder="Nome, Tecnologia..." type="text" />

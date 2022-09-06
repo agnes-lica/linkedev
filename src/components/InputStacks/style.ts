@@ -8,7 +8,7 @@ export const Tags = styled.ul`
 	flex-wrap: wrap;
 	gap: 10px;
 	list-style: none;
-	font-size: 1.2rem;
+	font-size: 14px;
 	overflow: hidden;
 
 	& > div {
