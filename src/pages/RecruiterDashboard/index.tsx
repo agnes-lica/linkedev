@@ -1,21 +1,25 @@
 import Aside from "../../components/Aside";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
+import DevsList from "../../components/DevsList";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import { UserContext } from "../../providers/User/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
+  const [isVacancies, setIsVacancies] = useState(false);
+  const [isSubscriptions, setIsSubscriptions] = useState(false);
 
   const navigate = useNavigate();
 
   function vacancies() {
+    setIsVacancies(!isVacancies);
     navigate("/vacancies");
   }
   function subscriptions() {
@@ -52,27 +56,7 @@ function RecruiterDashboard() {
             </nav>
           </div>
           <div className="recruiterMainList">
-            {devList.map((dev) => (
-              <div key={dev.id} className="card">
-                <div className="pic">
-                  <img src={dev.avatar_URL} alt={dev.name} />
-                </div>
-                <section className="content">
-                  <div className="presentation">
-                    <span>Há 12 horas</span>
-                    <h2>{dev.name}</h2>
-                    <p>{dev.title}</p>
-                    <p>Modelo de trabalho</p>
-                  </div>
-                  <div className="details">
-                    <span>São Paulo</span>
-                    <span>R$ 3.000,00</span>
-                    <span>2 anos</span>
-                    <span>{dev.stacks}</span>
-                  </div>
-                </section>
-              </div>
-            ))}
+            <DevsList />
           </div>
         </div>
       </div>
