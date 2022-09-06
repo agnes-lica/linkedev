@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import userImg from "../../assets/user.png"
 export const GlobalContext = createContext({} as GlobalProviderData);
 
 interface GlobalProps {
@@ -9,6 +9,7 @@ interface GlobalProps {
 
 interface GlobalProviderData {
   logout: () => void;
+  handleImageError: (e: SyntheticEvent<HTMLImageElement>) => void;
 }
 
 function GlobalProvider({ children }: GlobalProps) {
@@ -20,8 +21,12 @@ function GlobalProvider({ children }: GlobalProps) {
     navigate("/");
   };
 
+  const handleImageError = (e: SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = userImg
+  };
+
   return (
-    <GlobalContext.Provider value={{ logout }}>
+    <GlobalContext.Provider value={{ logout, handleImageError }}>
       {children}
     </GlobalContext.Provider>
   );

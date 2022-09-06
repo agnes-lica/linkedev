@@ -8,10 +8,13 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { UserContext } from "../../providers/User/UserContext";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
+import DevProfile from "../../components/DevProfile";
+import { DevContext } from "../../providers/Dev/DevContext";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);
-  const { logout } = useContext(GlobalContext);
+  const { logout, handleImageError } = useContext(GlobalContext);
+  const { dev, getDev, modalDevProfile } =useContext(DevContext)
 
   const navigate = useNavigate();
 
@@ -22,7 +25,8 @@ function RecruiterDashboard() {
     navigate("/subscriptions");
   }
 
-  return user?.is_recruiter ? (
+  return (
+  <>{user?.is_recruiter && 
     <Container>
       <Header />
       <div className="recruiterContainer">
@@ -53,9 +57,9 @@ function RecruiterDashboard() {
           </div>
           <div className="recruiterMainList">
             {devList.map((dev) => (
-              <div key={dev.id} className="card">
+              <div key={dev.id} className="card" onClick={() => getDev(dev.id)}>
                 <div className="pic">
-                  <img src={dev.avatar_URL} alt={dev.name} />
+                  <img src={dev.avatar_url} onError={handleImageError} alt={dev.name} />
                 </div>
                 <section className="content">
                   <div className="presentation">
@@ -76,10 +80,13 @@ function RecruiterDashboard() {
           </div>
         </div>
       </div>
+      {modalDevProfile &&
+        <DevProfile dev={dev}/>
+      }
     </Container>
-  ) : (
-    <>{logout()}</>
-  );
+    }
+  </>)
+
 }
 
 export default RecruiterDashboard;
