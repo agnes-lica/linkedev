@@ -1,37 +1,48 @@
 import { Container } from "./style";
-import { MdWorkOutline, MdPlace, MdOutlineMail } from "react-icons/md"
-import { BiEditAlt } from "react-icons/bi"
+import { MdWorkOutline, MdPlace, MdOutlineMail } from "react-icons/md";
+import { BiEditAlt } from "react-icons/bi";
 import { useContext } from "react";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
-import userImg from "../../assets/user.png"
+import { UserContext } from "../../providers/User/UserContext";
+import userImg from "../../assets/user.png";
 
-function Aside(){
-    const style = { fontSize: "22px", color:"#BF90DC"}
+function Aside() {
+  const style = { fontSize: "22px", color: "#BF90DC" };
 
-    const { user } = useContext(RecruiterContext)
+  const { user } = useContext(UserContext);
 
-    return(        
-        <Container>
-            {user &&
-            <>
-            <header>
-                <img src={user.avatar_URL ? user.avatar_URL : userImg} alt="Foto de perfil do usuário" />
-                <span>{user.is_recruiter ? "Tech Recruiter" : user.title}</span>
-                <h1>{user.name}</h1>
-            </header>
+  return (
+    <Container>
+      {user && (
+        <>
+          <header>
+            <img
+              src={user.avatar_URL ? user.avatar_URL : userImg}
+              alt="Foto de perfil do usuário"
+            />
+            <span>{user.is_recruiter ? "Tech Recruiter" : user?.title}</span>
+            <h1>{user.name}</h1>
+          </header>
 
-            <div>
-                <p><MdWorkOutline style={style} /> {user.is_recruiter ? `Recruiter at ${user.company}` : user.title} </p>
-                <p><MdPlace style={style}  /> Localização</p>
-                <p><MdOutlineMail style={style} /> {user.social}</p>
-            </div>
+          <div>
+            <p>
+              <MdWorkOutline style={style} />{" "}
+              {user.is_recruiter ? `Recruiter at ${user.company}` : user.title}{" "}
+            </p>
+            <p>
+              <MdPlace style={style} /> Localização
+            </p>
+            <p>
+              <MdOutlineMail style={style} /> {user.social}
+            </p>
+          </div>
 
-            <button onClick={() => console.log("editar perfil")}><BiEditAlt size={22}/> Editar Perfil</button>
-            </>
-            }
-
-        </Container>
-    )
+          <button onClick={() => console.log("editar perfil")}>
+            <BiEditAlt size={22} /> Editar Perfil
+          </button>
+        </>
+      )}
+    </Container>
+  );
 }
 
 export default Aside;

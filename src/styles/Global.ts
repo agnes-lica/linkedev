@@ -65,6 +65,7 @@ button{
 
 button:hover{
     background-color: var(--primary-focus-color);
+    color: #FFFFFF;
 }
 
 ::-webkit-scrollbar{
