@@ -61,7 +61,7 @@ const RegisterDevRecPage = () => {
           </Div>
         </div>
         <div className="teste">
-          <img className="vector" src="./vector.svg" />
+          <img className="vector" src="./vector.svg" alt="Imagem de background mostra uma moça selecionando candidatos" />
         </div>
       </Container>
       {/* {value == "dev" ? <DevForm /> : <RecruiterForm />} */}

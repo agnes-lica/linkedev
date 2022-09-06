@@ -9,7 +9,7 @@ function LandingPageLayoutPC() {
     <Container>
       <section className="headerLanding">
         <div>
-          <img src="./logoLight.svg" alt="Logo LinkeDev" />
+          <img src="./logoLinke.svg" alt="Logo LinkeDev" />
           <h2>A maior plataforma de contratações tech!</h2>
         </div>
         <div>

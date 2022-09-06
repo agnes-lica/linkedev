@@ -8,7 +8,7 @@ function LandingPage() {
   window.addEventListener("resize", (event) => setwidth(window.innerWidth));
 
   return (
-    <>{width > 900 ? <LandingPageLayoutPC /> : <LandingPageLayoutMobile />}</>
+    <>{width > 960 ? <LandingPageLayoutPC /> : <LandingPageLayoutMobile />}</>
   );
 }
 
