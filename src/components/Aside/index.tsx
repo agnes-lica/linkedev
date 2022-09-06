@@ -3,12 +3,13 @@ import { MdWorkOutline, MdPlace, MdOutlineMail } from "react-icons/md";
 import { BiEditAlt } from "react-icons/bi";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User/UserContext";
-import userImg from "../../assets/user.png";
+import { GlobalContext } from "../../providers/Global/GlobalContext";
 
 function Aside() {
   const style = { fontSize: "22px", color: "#BF90DC" };
 
   const { user } = useContext(UserContext);
+  const { handleImageError } = useContext(GlobalContext)
 
   return (
     <Container>
@@ -16,7 +17,7 @@ function Aside() {
         <>
           <header>
             <img
-              src={user.avatar_URL ? user.avatar_URL : userImg}
+              src={user.avatar_url} onError={handleImageError}
               alt="Foto de perfil do usuário"
             />
             <span>{user.is_recruiter ? "Tech Recruiter" : user?.title}</span>

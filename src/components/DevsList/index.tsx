@@ -9,7 +9,7 @@ const DevsList = () => {
       {devList.map((dev) => (
         <div key={dev.id} className="card">
           <div className="pic">
-            <img src={dev.avatar_URL} alt={dev.name} />
+            <img src={dev.avatar_url} alt={dev.name} />
           </div>
           <section className="content">
             <div className="presentation">
