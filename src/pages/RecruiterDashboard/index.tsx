@@ -7,9 +7,11 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import { UserContext } from "../../providers/User/UserContext";
 import { useContext } from "react";
+import { GlobalContext } from "../../providers/Global/GlobalContext";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);
+  const { logout } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -76,7 +78,7 @@ function RecruiterDashboard() {
       </div>
     </Container>
   ) : (
-    <>{navigate("/login")}</>
+    <>{logout()}</>
   );
 }
 

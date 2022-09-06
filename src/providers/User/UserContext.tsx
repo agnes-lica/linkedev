@@ -113,7 +113,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
         .then((res: AxiosResponse) => {
           const devs = res.data.filter((dev: IUser) => !dev.is_recruiter);
           setDevList(devs);
-          console.log(devs);
         })
         .catch((err) => {
           console.log(err);
