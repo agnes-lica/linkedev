@@ -6,13 +6,19 @@ import { toast } from "react-toastify";
 import api from "../../services/api";
 //import { getLinkeDev } from "../../Services/LinkeDev";
 
+const toastSuccessAddTech = () => toast.success("Vaga cadastrada com sucesso!");
+const toastErrorAddTech = () => toast.error("Verifique os dados incorretos!");
+
 interface IUserProps {
-  user: IUser | null;
-  setUser: React.Dispatch<React.SetStateAction<null | IUser>>;
-  devList: IUser[];
-  handleRegister: (data: IHandleRegister) => void;
-  handleLogin: (data: IHandleLogin) => void;
-  loading: boolean;
+	user: IUser | null;
+	setUser: React.Dispatch<React.SetStateAction<null | IUser>>;
+	devList: IUser[];
+	handleRegister: (data: IHandleRegister) => void;
+	handleLogin: (data: IHandleLogin) => void;
+	loading: boolean;
+	addJob: (data: IJob) => void;
+	tags: string[];
+	setTags: (tags: string[]) => void;
 }
 
 export interface IUser {
@@ -52,6 +58,20 @@ interface IProviderChildren {
   children: ReactNode;
 }
 
+export interface IJob {
+	title: string;
+	description: string;
+	place: string;
+	salary: string;
+	level: string;
+	stacks: string[];
+	type: string;
+	reputation?: number;
+	candidates?: string[];
+	userId?: string;
+	date?: string;
+}
+
 export const UserContext = createContext<IUserProps>({} as IUserProps);
 const UserProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -61,6 +81,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const token = window.localStorage.getItem("@linkeDev: UserToken");
   const id = window.localStorage.getItem("@linkeDev: UserID");
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const [tags, setTags] = useState<string[]>([]);
 
   const handleRegister = (data: IHandleRegister) => {
     api
@@ -143,21 +164,55 @@ const UserProvider = ({ children }: IProviderChildren) => {
       }
     }
     autoLogin();
-  }, [token, id]);
+  }, [token, id, navigate]);
+
+  const today = new Date();
+  
+  const addJob = (data: IJob) => {
+		api.post("/jobs", {
+			title: data.title,
+			description: data.description,
+			place: data.place,
+			salary: data.salary,
+			level: data.level,
+			stacks: tags,
+      type: data.type,
+      // Server-side data:
+			reputation: 0,
+			candidates: [],
+			userId: id,
+			date: today.toLocaleDateString(),
+		})
+			.then((response) => {
+        toastSuccessAddTech();
+        console.log(response.data);
+			})
+			.catch((error) => {
+				toastErrorAddTech();
+				console.log(error);
+			})
+			.finally(() => {
+				setLoading(false);
+				setTags([]);
+			});
+  };
 
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        setUser,
-        devList,
-        loading,
-        handleRegister,
-        handleLogin,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
+		<UserContext.Provider
+			value={{
+				user,
+				setUser,
+				devList,
+				loading,
+				handleRegister,
+				handleLogin,
+				addJob,
+				tags,
+				setTags,
+			}}
+		>
+			{children}
+		</UserContext.Provider>
   );
 };
 
