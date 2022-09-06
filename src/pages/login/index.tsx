@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { UserContext } from "../../providers/User/UserContext";
 import { Container, Form, Header } from "./style";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ interface IRegister {
 }
 
 const Login = () => {
-  const { handleLogin } = useContext(RecruiterContext);
+  const { handleLogin } = useContext(UserContext);
   const [page, setPage] = useState(true);
 
   const formularioCadastro = yup.object().shape({

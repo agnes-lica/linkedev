@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { UserContext } from "../../providers/User/UserContext";
 import RecruiterForm from "../../components/RegisterRecruiterForm";
 import DevForm from "../../components/RegisterDevForm";
 import { Container, Form, Header } from "./style";
@@ -18,7 +18,7 @@ interface IRegister {
 }
 
 const RegisterRecruiter = () => {
-  const { handleRegister, user } = useContext(RecruiterContext);
+  const { handleRegister, user } = useContext(UserContext);
   const [selectform, setSelectForm] = useState("");
 
   const formularioCadastro = yup.object().shape({

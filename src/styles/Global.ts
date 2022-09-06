@@ -17,6 +17,7 @@ const Global = createGlobalStyle`
   --gray-color-2:#29262C;
   --gray-color-3:#131213;
   --gray-color-new: #FBFAFA;
+  --gray-color-light: #F6F5F6;
 
   --black: #000000;
   
@@ -41,7 +42,7 @@ const Global = createGlobalStyle`
 
 body{
     background: var(--gray-color-4);
-    color: var(--gray-color-0);
+    color: var(--gray-color-3);
     -webkit-font-smoothing: antialiased;
     font-family: var(--font-family-1);
     width: 100%;
@@ -64,6 +65,7 @@ button{
 
 button:hover{
     background-color: var(--primary-focus-color);
+    color: #FFFFFF;
 }
 
 ::-webkit-scrollbar{
