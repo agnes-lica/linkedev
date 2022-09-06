@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { UserContext } from "../../providers/User/UserContext";
 import { Container, Form, Header } from "./style";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 interface IRegister {
   name: string;
@@ -13,7 +13,7 @@ interface IRegister {
 }
 
 const Login = () => {
-  const { handleLogin } = useContext(RecruiterContext);
+  const { handleLogin } = useContext(UserContext);
   const [page, setPage] = useState(true);
 
   const formularioCadastro = yup.object().shape({
@@ -32,7 +32,7 @@ const Login = () => {
     resolver: yupResolver(formularioCadastro),
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -74,10 +74,7 @@ const Login = () => {
               <p>{errors.password?.message}</p>
 
               <div className="back">
-                <button
-                  className="buttonBack"
-                  onClick={() => navigate("/")}
-                >
+                <button className="buttonBack" onClick={() => navigate("/")}>
                   voltar
                 </button>
                 <button className="buttonLogin" type="submit">
@@ -86,7 +83,6 @@ const Login = () => {
               </div>
             </Form>
           </div>
-          
         </div>
       </Container>
     </>

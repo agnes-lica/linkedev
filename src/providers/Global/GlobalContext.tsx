@@ -1,5 +1,13 @@
-import { createContext, ReactNode, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
 
 export const GlobalContext = createContext({} as GlobalProviderData);
 
@@ -9,24 +17,16 @@ interface GlobalProps {
 
 interface GlobalProviderData {
   logout: () => void;
+  // setUsersList: React.Dispatch<SetStateAction<IUser[]>>;
+  // usersList: IUser[];
 }
 
 function GlobalProvider({ children }: GlobalProps) {
-  const [usersList, setUsersList] = useState([]);
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
     navigate("/");
-  };
-
-  const getUsersLists = () => {
-    const token = window.localStorage.getItem("@linkeDev: Recruitertoken");
-
-    if (token) {
-      try {
-      } catch (error) {}
-    }
   };
 
   return (

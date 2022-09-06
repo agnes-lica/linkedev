@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { UserContext } from "../../providers/User/UserContext";
 import { Container, Form, Header } from "./style";
 import RegisterDevRecPage from "../RegisterDevRecPage";
 
@@ -16,7 +16,7 @@ interface IRegisterRecruiter {
   avatar_URL: string;
 }
 const RecruiterForm = () => {
-  const { handleRegister } = useContext(RecruiterContext);
+  const { handleRegister } = useContext(UserContext);
   const [backDev, setBackDev] = useState(false);
   const [page, setPage] = useState(true);
 
