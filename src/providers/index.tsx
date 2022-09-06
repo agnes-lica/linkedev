@@ -1,18 +1,19 @@
 import { ReactNode } from "react";
 import GlobalProvider from "./Global/GlobalContext";
-import RecruiterProvider from "./Recruiter/RecruiterContext";
-
-
-interface ProviderProps{
-    children: ReactNode;
+import UserProvider from "./User/UserContext";
+import DevProvider from "./Dev/DevContext"
+interface ProviderProps {
+  children: ReactNode;
 }
 
-export function Providers( {children}: ProviderProps ){
-    return(
-        <GlobalProvider>
-            <RecruiterProvider>
-                {children}
-            </RecruiterProvider>
-        </GlobalProvider>
-    )
+export function Providers({ children }: ProviderProps) {
+  return (
+    <GlobalProvider>
+      <UserProvider>
+        <DevProvider>
+        {children}
+        </DevProvider>
+        </UserProvider>
+    </GlobalProvider>
+  );
 }

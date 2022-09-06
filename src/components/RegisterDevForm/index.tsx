@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { UserContext } from "../../providers/User/UserContext";
 import { Container, Form, Header } from "./style";
 import RegisterDevRecPage from "../RegisterDevRecPage";
 
@@ -19,7 +19,7 @@ interface IRegisterDev {
   avatar_URL?: string;
 }
 const DevForm = () => {
-  const { handleRegister } = useContext(RecruiterContext);
+  const { handleRegister } = useContext(UserContext);
   const [backDev, setBackDev] = useState(false);
   const [page, setPage] = useState(true);
 
@@ -67,7 +67,11 @@ const DevForm = () => {
           <div className="divImgDesktop">
             <img className="logoLinke2" src="./logoLinke.svg" alt="LinkeDev" />
             <h3>A maior plataforma de contratações tech!</h3>
-            <img className="imgLogin" src="./newLogoLinke.svg" alt="Logo Login" />
+            <img
+              className="imgLogin"
+              src="./newLogoLinke.svg"
+              alt="Logo Login"
+            />
           </div>
 
           <div className="divRegister">

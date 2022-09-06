@@ -15,7 +15,6 @@ function Dropdown(){
     useEffect(() => {
         open && 
             setTimeout(() => {
-                console.log('oi')
                 setOpen(false)
             }, 10000)
         
