@@ -97,6 +97,7 @@ export const Container = styled.section`
 
   .recruiterMainList {
     width: 100%;
+    padding: 40px 55px;
   }
 
   .card {
@@ -106,6 +107,7 @@ export const Container = styled.section`
 
     line-height: 25px;
     padding: 0 55px;
+    gap: 10px;
   }
 
   .pic {
