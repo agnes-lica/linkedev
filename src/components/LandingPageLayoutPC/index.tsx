@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import Header from "../Header";
+import ModalCreateJob from "../ModalCreateJob";
 
 import { Container } from "./style";
 

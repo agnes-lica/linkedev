@@ -3,7 +3,7 @@ import { Container } from "./style";
 
 interface ButtonProps{
     children: ReactNode;
-    buttonFunction: () => void;
+    buttonFunction?: () => void;
 }
 
 function Button({children, buttonFunction}: ButtonProps){

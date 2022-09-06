@@ -47,6 +47,7 @@ const Global = createGlobalStyle`
   body, html{
     width: 100vw;
     height: 100vh;
+    z-index: 0;
   }
 
   body{
