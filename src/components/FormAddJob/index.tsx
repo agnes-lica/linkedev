@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
-import { IJob, RecruiterContext } from "../../providers/Recruiter/UserContext";
+import { IJob, UserContext } from "../../providers/User/UserContext";
 import { Form } from "./styles";
 import InputStacks from "../InputStacks";
 
 function FormAddJob() {
-	const { addJob } = useContext(RecruiterContext);
+	const { addJob } = useContext(UserContext);
 
 	const schema = yup.object({
 		title: yup.string().required("O título é obrigatório"),

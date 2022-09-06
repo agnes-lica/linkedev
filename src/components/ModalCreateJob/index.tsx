@@ -1,11 +1,11 @@
 import FormAddJob from "../FormAddJob";
 import { useContext, useState } from "react";
-import { RecruiterContext } from "../../providers/Recruiter/UserContext";
+import { UserContext } from "../../providers/User/UserContext";
 import { HeaderModal, Container } from "./style";
 
 export default function ModalCreateJon() {
 	const [showModal, setShowModal] = useState(false);
-	const { setTags } = useContext(RecruiterContext);
+	const { setTags } = useContext(UserContext);
 	const handleModal = () => {
 		setShowModal(!showModal);
 		setTags([]);

@@ -164,7 +164,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
       }
     }
     autoLogin();
-  }, [token, id]);
+  }, [token, id, navigate]);
 
   const addJob = (data: IJob) => {
 		api.post("/jobs", {

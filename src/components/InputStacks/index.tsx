@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { RecruiterContext } from "../../providers/Recruiter/UserContext";
+import { UserContext } from "../../providers/User/UserContext";
 import { Tags } from "./style";
 
 function InputStacks() {
-	const { tags, setTags } = useContext(RecruiterContext);
+	const { tags, setTags } = useContext(UserContext);
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (["Enter", "Tab", ","].includes(event.key)) {
