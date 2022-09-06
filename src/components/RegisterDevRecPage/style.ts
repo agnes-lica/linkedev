@@ -34,7 +34,10 @@ export const Container = styled.div<Props>`
     width: 100%;
     min-height: 100%;
     position: relative;
-    bottom: 60px;
+    bottom: 174px;
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    background-size: 100vw;
   }
 
   /* ===================================================== */
@@ -102,7 +105,7 @@ export const Div = styled.div`
     flex-direction: column;
     position: relative;
     align-items: center;
-    top: 120px;
+    top: 80px;
     color: var(--gray-color-3);
     text-align: center;
     gap: 40px;

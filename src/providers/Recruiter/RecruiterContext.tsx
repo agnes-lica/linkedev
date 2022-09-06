@@ -12,7 +12,7 @@ export interface IRecruiterProps {
   setEditModalDev: (editModalDev: IEditDev | null) => void;
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
-  editProfileDev: (status: IEditDevForm | string) => void;
+  editProfileDev: (data: IEditDevForm | string) => void;
 
   // loading: boolean;
 }
@@ -29,33 +29,31 @@ export interface IRecruiter {
   stacks: string[];
   bio: string;
   title: string;
+  id: number;
+  resumo: string;
 }
 
 export interface IEditDev {
-  name: string;
-  email: string;
-  password: string;
-  level: string;
-  title: string;
-  stacks: string[];
-  bio: string;
-  social: string;
-  avatar_URL: string;
-
-  local: string;
-  empre_atual: string;
-  resumo: string;
-  id: number;
+  name?: string;
+  email?: string;
+  password?: string;
+  level?: string;
+  title?: string;
+  stacks?: string[];
+  bio?: string;
+  social?: string;
+  avatar_URL?: string;
+  resumo?: string;
 }
 
 export interface IEditDevForm {
   email: string;
-  password: string;
-  level: string;
+  password?: string;
+  level?: string;
   title: string;
   stacks: string[];
-  bio: string;
-  social: string;
+  bio?: string;
+  social?: string;
   avatar_URL: string;
 }
 
@@ -87,10 +85,11 @@ export const RecruiterContext = createContext<IRecruiterProps>(
 const RecruiterProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IRecruiter | null>(null);
   const [editModalDev, setEditModalDev] = useState<IEditDev | null>(null);
-  // const [loading, setLoading] = useState<boolean>(true);
+
   const navigate = useNavigate();
   const token = window.localStorage.getItem("@linkeDev: UserToken");
   const id = window.localStorage.getItem("@linkeDev: UserID");
+  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const handleRegister = (data: IHandleRegister) => {
     api
@@ -155,16 +154,13 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
     autoLogin();
   }, [token, id]);
 
-  const editProfileDev = (status: IEditDevForm | string) => {
-    const dev = { email: status };
+  const editProfileDev = (data: IEditDev | string) => {
+    console.log(data);
     api
-      .patch(`/users/${user?.social}`, dev, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .patch(`/users/${user?.id}`, data)
       .then((response) => {
-        setEditModalDev(null);
+        console.log(response);
+        // setEditModalDev(null);
         toast.success("perfil atualizado com sucesso!");
       })
       .catch((err) => {

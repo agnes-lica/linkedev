@@ -1,3 +1,4 @@
+import EditModalProfileDev from "../../components/EditModalPerfilDev";
 import { Container } from "./style";
 
 function DevDashboard() {
