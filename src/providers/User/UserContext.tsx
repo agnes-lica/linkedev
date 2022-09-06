@@ -15,14 +15,14 @@ interface IUserProps {
   loading: boolean;
 }
 
-interface IUser {
+export interface IUser {
   id: string;
   name: string;
   email: string;
   password: string;
   company?: string;
   social: string;
-  avatar_URL: string;
+  avatar_url: string;
   is_recruiter?: boolean;
   level?: string;
   stacks?: string[];
@@ -36,7 +36,7 @@ export interface IHandleRegister {
   password: string;
   company?: string;
   social?: string;
-  avatar_URL?: string;
+  avatar_url?: string;
   is_recruiter?: boolean;
   level?: string;
   stacks?: string[];

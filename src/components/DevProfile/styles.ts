@@ -29,7 +29,7 @@ export const Container = styled.div`
             flex-direction: column;
             gap: 20px;
             background-color: var(--primary-3-color);
-            height: 150px;
+            height: 100px;
             width: 100%;
 
             .buttonClose{
@@ -43,13 +43,13 @@ export const Container = styled.div`
             img{
                 border-radius: 50%;;
                 width: 120px;
-                margin-top: 30px;
+                height: 120px;
             }
 
         }
 
         .devDetails{
-            margin-top: 150px;
+            margin-top: 120px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -58,7 +58,7 @@ export const Container = styled.div`
             section{
                 width: 100%;
                 background: var(--gray-color-light);
-                padding: 20px;
+                padding: 15px;
                 border-radius: 8px;
                 display: flex;
                 flex-direction: column;
@@ -95,7 +95,7 @@ export const Container = styled.div`
         }
         
         .emailButton{  
-            margin: auto;
+            margin: 0 auto 10px auto;
             border-radius: 8px;
             background-color: var(--primary-3-color);
             padding: 15px 30px;
@@ -108,21 +108,25 @@ export const Container = styled.div`
 
 
     @media screen and (min-width: 768px) {
+        .devProfile header{
+            height: 150px;
+        }
+
         .devProfile header img{
             width: 180px;
-
+            height: 180px;
+            margin-top: 30px
         }
 
         .devProfile .devDetails{
                 flex-direction: row;
                 justify-content: space-between;
+                margin-top: 150px;
 
                 section{
-                    width: calc(50% - 20px);
+                    width: calc(50% - 15px);
                 }
             } 
-
-
     }
 
 `
