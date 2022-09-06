@@ -1,6 +1,6 @@
 import FormAddJob from "../FormAddJob";
 import { useContext, useState } from "react";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { RecruiterContext } from "../../providers/Recruiter/UserContext";
 import { HeaderModal, Container } from "./style";
 
 export default function ModalCreateJon() {
@@ -30,7 +30,7 @@ export default function ModalCreateJon() {
 	) : (
 		<>
 			{null}
-			{/* <button onClick={handleModal}>Cadastrar Vaga</button> */}
+			<button onClick={handleModal}>Cadastrar Vaga</button>
 		</>
 	);
 }

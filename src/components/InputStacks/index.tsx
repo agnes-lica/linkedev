@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { RecruiterContext } from "../../providers/Recruiter/UserContext";
 import { Tags } from "./style";
 
 function InputStacks() {

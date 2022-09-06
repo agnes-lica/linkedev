@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
-import { IJob, RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { IJob, RecruiterContext } from "../../providers/Recruiter/UserContext";
 import { Form } from "./styles";
 import InputStacks from "../InputStacks";
 
