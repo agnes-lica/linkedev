@@ -3,122 +3,86 @@ import styled from "styled-components";
 export const Container = styled.section`
   font-family: "roboto", sans-serif;
 
+  background-color: var(--gray-color-3);
+  height: 100vh;
+  width: 100vw;
+
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  height: 100vh;
-
-  overflow-y: hidden;
   img {
-    width: 60rem;
-
-    margin: auto;
-    padding: 3rem 5rem 3rem 5rem;
+    width: 60%;
   }
 
   h2 {
-    color: var(--gray-color-3);
-    font-weight: 700;
-    font-size: 24px;
+    max-width: 70%;
 
-    padding: 2rem 10rem;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--gray-color-1);
+    text-align: justify;
   }
-
   div {
-    background-image: url("./backgroundmobile.svg");
-    background-repeat: no-repeat;
-    background-size: 100vw;
-
-    height: 80vh;
-
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
-
-    padding-top: 5rem;
   }
 
-  @media (max-width: 693px) {
-    div {
-      display: flex;
-      flex-direction: column;
+  div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 
-      background-size: 100vw 70vh;
-    }
+    width: 100%;
+    height: 100%;
+
+    background-image: url("./vector.svg");
+    background-repeat: no-repeat;
+    background-size: 100vw;
   }
 
-  @media (max-width: 615px) {
+  button {
+    width: 7rem;
+    height: 3rem;
+
+    border: none;
+    border-radius: 8px;
+  }
+
+  button:hover {
+    background-color: var(--primary-color);
+  }
+
+  @media (max-width: 730px) {
     img {
-      width: 50rem;
+      width: 50%;
     }
 
     h2 {
-      padding-bottom: 0px;
+      font-size: 24px;
     }
+  }
 
-    div {
-      display: flex;
-      flex-direction: column;
+  @media (max-width: 471px) {
+    div:nth-child(1) {
+      margin: 2rem 0px;
 
-      background-size: 100vw 85vh;
+      img {
+        margin-bottom: 2rem;
+      }
 
-      padding: 0px;
-
-      button:nth-child(1) {
-        margin-top: 10rem;
+      h2 {
+        font-size: 20px;
       }
     }
   }
 
   @media (max-width: 550px) {
-    img {
-      width: 50rem;
-    }
-
-    h2 {
-      margin-top: 6rem;
-      padding-bottom: 0px;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-
-      background-size: 100vw 90vh;
-
-      padding: 0px;
-
-      button:nth-child(1) {
-        margin-top: 25rem;
-      }
-    }
   }
 
   @media (max-width: 475px) {
-    img {
-      width: 40rem;
-    }
-
-    h2 {
-      font-size: 20px;
-
-      margin-top: 6rem;
-      padding-bottom: 0px;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-
-      background-size: 100vw 90vh;
-
-      padding: 0px;
-
-      button:nth-child(1) {
-        margin-top: 25rem;
-      }
-    }
   }
 `;
