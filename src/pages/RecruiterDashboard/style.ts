@@ -106,7 +106,6 @@ export const Container = styled.section`
     gap: 10px;
 
     line-height: 25px;
-    padding: 0 55px;
     gap: 10px;
   }
 

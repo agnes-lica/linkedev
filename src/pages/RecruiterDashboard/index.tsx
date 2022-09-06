@@ -2,28 +2,28 @@ import Aside from "../../components/Aside";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import DevsList from "../../components/DevsList";
+import DevProfile from "../../components/DevProfile";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
+import { GlobalContext } from "../../providers/Global/GlobalContext";
+import { UserContext } from "../../providers/User/UserContext";
+import { DevContext } from "../../providers/Dev/DevContext";
+import { useContext, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
-import { UserContext } from "../../providers/User/UserContext";
-import { useContext, useState } from "react";
-import { GlobalContext } from "../../providers/Global/GlobalContext";
-import DevProfile from "../../components/DevProfile";
-import { DevContext } from "../../providers/Dev/DevContext";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);
-  const [isVacancies, setIsVacancies] = useState(false);
+  const [isJobs, setIsJobs] = useState(false);
   const [isSubscriptions, setIsSubscriptions] = useState(false);
   const { logout, handleImageError } = useContext(GlobalContext);
   const { dev, getDev, modalDevProfile } = useContext(DevContext);
 
   const navigate = useNavigate();
 
-  function vacancies() {
-    setIsVacancies(!isVacancies);
-    navigate("/vacancies");
+  function jobs() {
+    setIsJobs(!isJobs);
+    navigate("/jobs");
   }
   function subscriptions() {
     navigate("/subscriptions");
@@ -43,7 +43,7 @@ function RecruiterDashboard() {
                 </div>
                 <nav>
                   <section className="buttons">
-                    <Button buttonFunction={vacancies}>Minhas Vagas</Button>
+                    <Button buttonFunction={jobs}>Minhas Vagas</Button>
                     <Button buttonFunction={subscriptions}>Inscrições</Button>
                   </section>
                   <section className="search">

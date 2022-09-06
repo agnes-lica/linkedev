@@ -1,15 +1,21 @@
 import { useContext } from "react";
+import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { UserContext } from "../../providers/User/UserContext";
 
 const DevsList = () => {
   const { devList } = useContext(UserContext);
+  const { handleImageError } = useContext(GlobalContext);
 
   return (
     <>
       {devList.map((dev) => (
         <div key={dev.id} className="card">
           <div className="pic">
-            <img src={dev.avatar_url} alt={dev.name} />
+            <img
+              src={dev.avatar_url}
+              onError={handleImageError}
+              alt={dev.name}
+            />
           </div>
           <section className="content">
             <div className="presentation">
