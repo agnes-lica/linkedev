@@ -4,13 +4,16 @@ import { useState, ReactNode, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
-//import { getLinkeDev } from "../../Services/LinkeDev";
 
-interface IRecruiterProps {
+export interface IRecruiterProps {
   user: IRecruiter | null;
-  setUser: React.Dispatch<React.SetStateAction<null| IRecruiter>>
+  setUser: React.Dispatch<React.SetStateAction<null | IRecruiter>>;
+  editModalDev: IEditDev | null;
+  setEditModalDev: (editModalDev: IEditDev | null) => void;
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
+  editProfileDev: (status: IEditDevForm | string) => void;
+
   // loading: boolean;
 }
 
@@ -26,6 +29,34 @@ export interface IRecruiter {
   stacks: string[];
   bio: string;
   title: string;
+}
+
+export interface IEditDev {
+  name: string;
+  email: string;
+  password: string;
+  level: string;
+  title: string;
+  stacks: string[];
+  bio: string;
+  social: string;
+  avatar_URL: string;
+
+  local: string;
+  empre_atual: string;
+  resumo: string;
+  id: number;
+}
+
+export interface IEditDevForm {
+  email: string;
+  password: string;
+  level: string;
+  title: string;
+  stacks: string[];
+  bio: string;
+  social: string;
+  avatar_URL: string;
 }
 
 export interface IHandleRegister {
@@ -55,10 +86,11 @@ export const RecruiterContext = createContext<IRecruiterProps>(
 );
 const RecruiterProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IRecruiter | null>(null);
+  const [editModalDev, setEditModalDev] = useState<IEditDev | null>(null);
   // const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
   const token = window.localStorage.getItem("@linkeDev: UserToken");
-  const id = window.localStorage.getItem("@linkeDev: UserID")
+  const id = window.localStorage.getItem("@linkeDev: UserID");
 
   const handleRegister = (data: IHandleRegister) => {
     api
@@ -74,31 +106,29 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
       });
   };
 
-
   const handleLogin = (data: IHandleLogin) => {
     api
       .post("/login", data)
       .then((response) => {
         console.log(response.data);
-        window.localStorage.clear()
+        window.localStorage.clear();
         window.localStorage.setItem(
-          "@linkeDev: UserToken", response.data.accessToken
+          "@linkeDev: UserToken",
+          response.data.accessToken
         );
-        window.localStorage.setItem(
-          "@linkeDev: UserID", response.data.user.id
-        );
+        window.localStorage.setItem("@linkeDev: UserID", response.data.user.id);
         setUser(response.data.user);
 
         if (response.status === 200) {
           toast.success("Login realizado com sucesso");
           setTimeout(() => {
-            if(response.data.user.is_recruiter){
-              navigate("/recruiterDashboard", { replace: true })
-            }else{
-              navigate("/devDashboard", { replace: true })
+            if (response.data.user.is_recruiter) {
+              navigate("/recruiterDashboard", { replace: true });
+            } else {
+              navigate("/devDashboard", { replace: true });
             }
-            }, 3000);
-        } 
+          }, 3000);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -107,32 +137,54 @@ const RecruiterProvider = ({ children }: IProviderChildren) => {
   };
 
   useEffect(() => {
-  async function autoLogin() {
-    if (token) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      await api.get(`/users/${id}`)
-      .then((res: AxiosResponse) => {
-          setUser(res.data)
-      })
-      .catch(err => {
-        console.error(err)
-        navigate("/login")
-        toast.error("Você foi desconectado. Faça login novamente.")
-      })
+    async function autoLogin() {
+      if (token) {
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        await api
+          .get(`/users/${id}`)
+          .then((res: AxiosResponse) => {
+            setUser(res.data);
+          })
+          .catch((err) => {
+            console.error(err);
+            navigate("/login");
+            toast.error("Você foi desconectado. Faça login novamente.");
+          });
+      }
     }
-  }
-     autoLogin();
-
+    autoLogin();
   }, [token, id]);
+
+  const editProfileDev = (status: IEditDevForm | string) => {
+    const dev = { email: status };
+    api
+      .patch(`/users/${user?.social}`, dev, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setEditModalDev(null);
+        toast.success("perfil atualizado com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+
+        toast.error("Erro ao atualizar perfil!");
+      });
+  };
 
   return (
     <RecruiterContext.Provider
       value={{
         user,
         setUser,
+        editModalDev,
+        setEditModalDev,
         // loading,
         handleRegister,
         handleLogin,
+        editProfileDev,
       }}
     >
       {children}
