@@ -19,7 +19,7 @@ function DevDashboard() {
   return !user?.is_recruiter ? (
     <Container>
 
-      <h1 onClick={() => getJobModal("inserir id da vaga")}>Dev Dashboard</h1>
+      <h1 onClick={() => getJobModal("2")}>Dev Dashboard</h1>
 
 
       {modalJobDetail && 

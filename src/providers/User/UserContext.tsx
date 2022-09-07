@@ -16,6 +16,7 @@ interface IUserProps {
 	handleRegister: (data: IHandleRegister) => void;
 	handleLogin: (data: IHandleLogin) => void;
 	loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 	addJob: (data: IJob) => void;
 	tags: string[];
 	setTags: (tags: string[]) => void;
@@ -166,6 +167,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         await api
           .get(`/users/${id}`)
           .then((res: AxiosResponse) => {
+            delete res.data.password
             setUser(res.data);
           })
           .catch((err) => {
@@ -217,6 +219,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
 				setUser,
 				devList,
 				loading,
+        setLoading,
 				handleRegister,
 				handleLogin,
 				addJob,
