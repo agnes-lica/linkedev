@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import DevsList from "../../components/DevsList";
 import DevProfile from "../../components/DevProfile";
+import SubscriptionsList from "../../components/SubscriptionsList";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
@@ -11,22 +12,27 @@ import { DevContext } from "../../providers/Dev/DevContext";
 import { useContext, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
+import JobsList from "../../components/JobsList";
 
 function RecruiterDashboard() {
-  const { loading, user, devList } = useContext(UserContext);
-  const [isJobs, setIsJobs] = useState(false);
-  const [isSubscriptions, setIsSubscriptions] = useState(false);
+  const { loading, user, nav, setNav } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
   const { dev, getDev, modalDevProfile } = useContext(DevContext);
 
   const navigate = useNavigate();
 
+  const { getRecruiterSubsList, getRecruiterJobsList } =
+    useContext(UserContext);
+
   function jobs() {
-    setIsJobs(!isJobs);
-    navigate("/jobs");
+    getRecruiterJobsList();
+    setNav("jobsList");
+    // navigate("/jobs");
   }
   function subscriptions() {
-    navigate("/subscriptions");
+    getRecruiterSubsList();
+    setNav("subsList");
+    // navigate("/subscriptions");
   }
 
   return (
@@ -61,7 +67,11 @@ function RecruiterDashboard() {
                 </nav>
               </div>
               <div className="recruiterMainList">
-                <DevsList />
+                <ul>
+                  {nav === "jobsList" && <JobsList />}
+                  {nav === "subsList" && <SubscriptionsList />}
+                  {nav === "devsList" && <DevsList />}
+                </ul>
               </div>
             </div>
           </div>

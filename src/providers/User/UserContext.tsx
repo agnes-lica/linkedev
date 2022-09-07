@@ -1,8 +1,9 @@
 import { AxiosResponse } from "axios";
-import { useState, ReactNode, createContext, useEffect } from "react";
+import React, { useState, ReactNode, createContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import JobsList from "../../components/JobsList";
 import api from "../../services/api";
 //import { getLinkeDev } from "../../Services/LinkeDev";
 
@@ -10,9 +11,15 @@ interface IUserProps {
   user: IUser | null;
   setUser: React.Dispatch<React.SetStateAction<null | IUser>>;
   devList: IUser[];
+  loading: boolean;
+  jobList: IJob[];
+  nav: string;
+  setNav: React.Dispatch<React.SetStateAction<string>>;
+  recruiterSubs: IUser[];
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
-  loading: boolean;
+  getRecruiterSubsList: () => void;
+  getRecruiterJobsList: () => void;
 }
 
 export interface IUser {
@@ -28,6 +35,20 @@ export interface IUser {
   stacks?: string[];
   bio?: string;
   title?: string;
+}
+
+export interface IJob {
+  title: string;
+  description: string;
+  place: string;
+  salary: string;
+  level: string;
+  stacks: string[];
+  type: string;
+  reputation: string;
+  candidates: string[];
+  userId: string;
+  date: string;
 }
 
 export interface IHandleRegister {
@@ -56,7 +77,10 @@ export const UserContext = createContext<IUserProps>({} as IUserProps);
 const UserProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [devList, setDevList] = useState<IUser[]>([]);
+  const [jobList, setJobList] = useState<IJob[]>([]);
+  const [recruiterSubs, setRecruiterSubs] = useState<IUser[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [nav, setNav] = useState("devsList");
   const navigate = useNavigate();
   const token = window.localStorage.getItem("@linkeDev: UserToken");
   const id = window.localStorage.getItem("@linkeDev: UserID");
@@ -66,7 +90,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .post("/register", data)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         toast.success("Cadastro realizado com sucesso!");
         navigate("/login", { replace: true });
       })
@@ -80,7 +104,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .post("/login", data)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.localStorage.clear();
         window.localStorage.setItem(
           "@linkeDev: UserToken",
@@ -106,8 +130,30 @@ const UserProvider = ({ children }: IProviderChildren) => {
       });
   };
 
+  const getRecruiterSubsList = async () => {
+    await api.get("/jobs").then((res: AxiosResponse) => {
+      const recSubs = res.data.filter(
+        (job: IJob) => job.userId === user?.id && job
+      );
+      const candidates = recSubs[0].candidates;
+      setRecruiterSubs(candidates);
+      // console.log(jobList);
+    });
+  };
+
+  const getRecruiterJobsList = async () => {
+    await api.get("/jobs").then((res: AxiosResponse) => {
+      // console.log(res);
+      const recruiterJobs = res.data.filter(
+        (job: IJob) => job.userId === user?.id
+      );
+      setJobList(recruiterJobs);
+      // console.log(jobList);
+    });
+  };
+
   useEffect(() => {
-    const getUsersLists = async () => {
+    const getRecruiterDevsList = async () => {
       await api
         .get("/users")
         .then((res: AxiosResponse) => {
@@ -123,7 +169,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     };
 
     if (user) {
-      getUsersLists();
+      getRecruiterDevsList();
     }
   }, [user]);
 
@@ -143,6 +189,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
       }
     }
     autoLogin();
+    setNav("devsList");
   }, [token, id]);
 
   return (
@@ -151,9 +198,15 @@ const UserProvider = ({ children }: IProviderChildren) => {
         user,
         setUser,
         devList,
+        jobList,
         loading,
         handleRegister,
         handleLogin,
+        nav,
+        setNav,
+        recruiterSubs,
+        getRecruiterSubsList,
+        getRecruiterJobsList,
       }}
     >
       {children}

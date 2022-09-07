@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { UserContext } from "../../providers/User/UserContext";
+import { DevItem } from "./styles";
 
 const DevsList = () => {
   const { devList } = useContext(UserContext);
@@ -9,7 +10,7 @@ const DevsList = () => {
   return (
     <>
       {devList.map((dev) => (
-        <div key={dev.id} className="card">
+        <DevItem key={dev.id} className="card">
           <div className="pic">
             <img
               src={dev.avatar_url}
@@ -31,7 +32,7 @@ const DevsList = () => {
               <span>{dev.stacks}</span>
             </div>
           </section>
-        </div>
+        </DevItem>
       ))}
     </>
   );
