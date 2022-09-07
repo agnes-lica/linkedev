@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../../services/api";
 import { DevContext } from "../Dev/DevContext";
+import { IUser, UserContext } from "../User/UserContext";
 
 
 export const JobsContext = createContext({} as JobsProviderData);
@@ -10,11 +12,12 @@ interface JobsProps {
 }
 
 interface JobsProviderData{
-    getJob: (id: string) => void;
+    // getJobAndRecruiter: (id: string) => void;
     job: JobData | null;
     getJobModal: (id: string) => void;
     modalJobDetail: boolean;
     setModalJobDetail: React.Dispatch<React.SetStateAction<boolean>>;
+    jobApplication: (id: string) => void;
 }
 
 interface JobData {
@@ -26,9 +29,10 @@ interface JobData {
     stacks: string[];
     type: string;
     reputation: string;
-    candidates: string[];
+    candidates: IUser[];
     userId: string;
     date: string;
+    id: string;
 }
 
 function JobsProvider({ children }: JobsProps) {
@@ -37,22 +41,45 @@ function JobsProvider({ children }: JobsProps) {
     const [modalJobDetail, setModalJobDetail] = useState(false)
 
     const {getDev} = useContext(DevContext)
+    const {user} = useContext(UserContext)
 
-    const getJob = (id: string) => {
-        api.get(`jobs/${id}`)
+    const getJobAndRecruiter = async (id: string) => {
+        await api.get(`jobs/${id}`)
         .then(res => {
-            console.log(res)
             setJob(res.data)
+            return res
         })
+        .then((res) => {
+            getDev(res.data.userId)
+        })
+        .catch(err => console.error(err))
+
     }
 
     function getJobModal(id: string) {        
-        Promise.all([getJob(id), getDev(job?.userId!)])
+        getJobAndRecruiter(id)
         setModalJobDetail(true)
     }
 
+    async function jobApplication(id: string){
+        const repeated = job?.candidates.find((candidate) => candidate.id === user?.id)
+        if(repeated){
+            return toast.error("Você já se candidatou para essa vaga")
+        }
+        const data = {candidates: [...job?.candidates!, user]}
+        await api.patch(`jobs/${id}`, data)
+        .then(res => {
+            toast.success("Aplicação enviada com sucesso. Boa sorte!")
+            getJobAndRecruiter(id)
+        })
+        .catch(err => {
+            console.error(err)
+            toast.error("Ops! Algo deu errado.")
+        })
+    }
+
     return (
-        <JobsContext.Provider value={{ job, getJob, getJobModal, modalJobDetail, setModalJobDetail }}>
+        <JobsContext.Provider value={{ job, getJobModal, modalJobDetail, setModalJobDetail, jobApplication }}>
         {children}
         </JobsContext.Provider>
     );
