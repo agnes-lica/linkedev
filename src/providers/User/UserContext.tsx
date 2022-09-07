@@ -159,6 +159,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
           .catch((err) => {
             console.error(err);
             navigate("/login");
+            window.localStorage.removeItem("@linkeDev: UserToken");
             toast.error("Você foi desconectado. Faça login novamente.");
           });
       }
