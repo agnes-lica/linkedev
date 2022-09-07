@@ -98,16 +98,107 @@ export const Container = styled.section`
   .recruiterMainList {
     width: 100%;
     padding: 40px 55px;
+
+    .btnArrowBack {
+      position: relative;
+      right: 0;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    overflow-x: hidden;
+    clip-path: clip;
+
+    .card:nth-child(1) {
+      animation-delay: 0s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(2) {
+      animation-delay: 0.1s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(3) {
+      animation-delay: 0.2s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(4) {
+      animation-delay: 0.3s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(5) {
+      animation-delay: 0.35s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(6) {
+      animation-delay: 0.4s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(7) {
+      animation-delay: 0.45s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(8) {
+      animation-delay: 0.5s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(9) {
+      animation-delay: 0.55s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
+    .card:nth-child(10) {
+      animation-delay: 0.6s;
+      /* transform-origin: 0, 0; */
+      /* transform: translateX(800px); */
+    }
   }
 
   .card {
+    border: 1px solid transparent;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 10px;
 
     line-height: 25px;
-    padding: 0 55px;
     gap: 10px;
+
+    animation: cheguei 0.4s both;
+
+    cursor: pointer;
+    &:hover {
+      transition: 0.2s ease;
+      border: 1px solid lightgrey;
+      border-radius: 8px;
+      background-color: #ffffff;
+    }
+  }
+
+  @keyframes cheguei {
+    from {
+      transform-origin: 0, 0;
+      transform: translateX(800px);
+      opacity: 0;
+      transition-property: transform, opacity;
+      transition-duration: 1s;
+      transition-timing-function: ease;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 100%;
+    }
   }
 
   .pic {
@@ -133,5 +224,7 @@ export const Container = styled.section`
   .details {
     display: flex;
     flex-direction: column;
+
+    text-align: end;
   }
 `;

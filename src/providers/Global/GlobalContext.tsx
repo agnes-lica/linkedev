@@ -1,6 +1,6 @@
 import { createContext, ReactNode, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import userImg from "../../assets/user.png"
+import userImg from "../../assets/user.png";
 export const GlobalContext = createContext({} as GlobalProviderData);
 
 interface GlobalProps {
@@ -21,7 +21,7 @@ function GlobalProvider({ children }: GlobalProps) {
   };
 
   const handleImageError = (e: SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = userImg
+    e.currentTarget.src = userImg;
   };
 
   return (
