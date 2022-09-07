@@ -1,48 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { RecruiterContext } from "../../providers/Recruiter/RecruiterContext";
+import { UserContext } from "../../providers/User/UserContext";
 import * as yup from "yup";
 import { Container, Form, Header } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { GlobalContext } from "../../providers/Global/GlobalContext";
 
 interface IEditModallProps {
   name: string;
   email: string;
   title: string;
   stacks: string[];
-  resumo: string;
-  avatar_URL: string;
+  bio: string;
+  avatar_url: string;
 }
 
 const EditModalProfileDev = () => {
-  const { editProfileDev, editModalDev, setEditModalDev, user } =
-    useContext(RecruiterContext);
+  const { editProfileDev, setEditModalDev, editModalDev, user, setUser } =
+    useContext(UserContext);
+  const { handleImageError } = useContext(GlobalContext);
+  console.log("user", user);
 
   const formEditDev = yup.object().shape({
-    name: yup.string(),
-    email: yup.string().email("email inválido"),
-    title: yup.string(),
-    stacks: yup.string(),
-    avatar_URL: yup.string().url("jpg ou png"),
-    resumo: yup.string(),
+    name: yup.string().optional(),
+    email: yup.string().email("email inválido").optional(),
+    title: yup.string().optional(),
+    stacks: yup.string().optional(),
+    avatar_url: yup.string().url("jpg ou png").optional(),
+    bio: yup.string().optional(),
   });
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IEditModallProps>({
     resolver: yupResolver(formEditDev),
+    // defaultValues: {
+    //   name: user?.name,
+    //   email: user?.email,
+    //   title: user?.title,
+    //   stacks: user?.stacks,
+    //   avatar_url: user?.avatar_url,
+    //   resumo: user?.resumo,
+    // },
   });
 
-  // const handleEditDev = (event: React.FormEvent<HTMLFormElement>) => {
-  //   console.log(event);
-  //   event.preventDefault();
-  //   editProfileDev(editModalDev);
-  // };
-  // value={editModalDev?.name}
-  // onChange={(event) => setEditDev(event.target.value)}
+  // const dev = { name: user?.name, email: user?.email };
 
   return (
     <Container>
@@ -75,7 +81,7 @@ const EditModalProfileDev = () => {
                 defaultValue={user?.email}
                 {...register("email")}
               />
-
+              <p>{errors.email?.message}</p>
               <label htmlFor="title">Título / Objetivo</label>
               <input
                 type="text"
@@ -83,7 +89,7 @@ const EditModalProfileDev = () => {
                 defaultValue={user?.title}
                 {...register("title")}
               />
-
+              <p>{errors.title?.message}</p>
               <label htmlFor="stacks">Stacks</label>
               <input
                 type="text"
@@ -91,26 +97,36 @@ const EditModalProfileDev = () => {
                 defaultValue={user?.stacks}
                 {...register("stacks")}
               />
+              <p>{errors.stacks?.message}</p>
             </div>
 
             <div className="formdev2">
               {/* <img className="perfilDev" src="perfil.svg" alt="Perfil Dev" /> */}
-              <img className="perfilDev" src={user?.avatar_URL} alt="Perfil Dev" />
+              <img
+                className="perfilDev"
+                defaultValue={user?.avatar_url}
+                src={user?.avatar_url}
+                alt="Perfil Dev"
+                onError={handleImageError}
+              />
 
               <label htmlFor="url">Escolher url</label>
               <input
                 type="text"
                 id="url"
-                defaultValue={user?.avatar_URL}
-                {...register("avatar_URL")}
+                defaultValue={user?.avatar_url}
+                {...register("avatar_url")}
               />
 
-              <label htmlFor="resumo">Resumo</label>
+              <p>{errors.avatar_url?.message}</p>
+
+              <label htmlFor="bio">Bio</label>
               <textarea
-                id="resumo"
+                id="bio"
                 defaultValue={user?.resumo}
-                {...register("resumo")}
+                {...register("bio")}
               />
+              <p>{errors.bio?.message}</p>
             </div>
           </div>
           <div className="divButton">

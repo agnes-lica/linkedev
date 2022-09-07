@@ -20,9 +20,9 @@ interface IUserProps {
 
 export interface IUser {
   id: string;
-  name: string;
-  email: string;
-  password: string;
+  name?: string;
+  email?: string;
+  password?: string;
   company?: string;
   social: string;
   avatar_url: string;
@@ -43,7 +43,7 @@ export interface IEditDev {
   stacks?: string[];
   bio?: string;
   social?: string;
-  avatar_URL?: string;
+  avatar_url?: string;
   resumo?: string;
 }
 
@@ -55,7 +55,7 @@ export interface IEditDevForm {
   stacks: string[];
   bio?: string;
   social?: string;
-  avatar_URL: string;
+  avatar_url: string;
 }
 
 export interface IHandleRegister {
@@ -174,20 +174,25 @@ const UserProvider = ({ children }: IProviderChildren) => {
     autoLogin();
   }, [token, id]);
 
+  useEffect(() => {
+
+  },[])
   const editProfileDev = (data: IEditDev | string) => {
-    console.log(data);
+    const dev = { name: user?.name, email: user?.email };
+    console.log("data", data);
     api
       .patch(`/users/${user?.id}`, data)
       .then((response) => {
         console.log(response);
-        // setEditModalDev(null);
+        setEditModalDev(null);
         toast.success("perfil atualizado com sucesso!");
       })
       .catch((err) => {
         console.log(err);
 
         toast.error("Erro ao atualizar perfil!");
-      });
+      })
+
   };
 
   return (

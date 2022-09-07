@@ -149,7 +149,7 @@ export const Form = styled.form`
     }
 
     .formdev {
-      margin-top: 40px;
+      margin-top: 50px;
     }
 
     label {
@@ -161,7 +161,9 @@ export const Form = styled.form`
       margin-bottom: 10px;
       padding: 2px;
       display: flex;
-      width: 40%;
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
     }
 
     textarea {
