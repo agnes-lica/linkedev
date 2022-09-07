@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import ModalJobDetails from "../../components/ModalJobDetails";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { JobsContext } from "../../providers/Jobs/JobsContext";
@@ -9,7 +9,7 @@ import { Container } from "./style";
 function DevDashboard() {
   const { loading, user } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { getJobModal, modalJobDetail } = useContext(JobsContext)
 
   if (loading) {

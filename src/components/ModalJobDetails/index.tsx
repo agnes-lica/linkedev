@@ -36,7 +36,7 @@ function ModalJobDetails(){
                         <h2>Resumo</h2>
                         <p>{job?.description}
                         </p>
-                        <p><BsStackOverflow style={style} /> {job?.stacks.map((stack: any, index: any) => <span className="stack" key={index}>{stack}</span>)} </p>
+                        <p><BsStackOverflow style={style} /> {job?.stacks.map((stack, index) => <span className="stack" key={index}>{stack}</span>)} </p>
                     </section>
 
                     <section className="jobDetails">

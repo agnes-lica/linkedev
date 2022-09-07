@@ -23,7 +23,7 @@ interface JobData {
     place: string;
     salary: string;
     level: string;
-    stacks: string;
+    stacks: string[];
     type: string;
     reputation: string;
     candidates: string[];
@@ -47,7 +47,7 @@ function JobsProvider({ children }: JobsProps) {
     }
 
     function getJobModal(id: string) {        
-        Promise.all([getJob(id), getDev(job?.userId)])
+        Promise.all([getJob(id), getDev(job?.userId!)])
         setModalJobDetail(true)
     }
 
