@@ -1,150 +1,150 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100%;
-  background-color: #000;
+	width: 100vw;
+	height: 100%;
+	background-color: #000;
 
-  .buttonBack {
-    visibility: hidden;
-  }
-  .divRegister {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+	.buttonBack {
+		visibility: hidden;
+	}
+	.divRegister {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-  .imgLogin {
-    display: none;
-  }
+	.imgLogin {
+		display: none;
+	}
 
-  h2 {
-    width: 280px;
-    height: 36px;
-    padding: 10px;
-    background-color: #bf90dc;
-    border-radius: 10px 10px 0px 0px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    color: #000;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-  }
+	h2 {
+		width: 280px;
+		height: 36px;
+		padding: 10px;
+		background-color: #bf90dc;
+		border-radius: 10px 10px 0px 0px;
+		margin-bottom: 10px;
+		margin-top: 20px;
+		color: #000;
+		font-size: 14px;
+		font-weight: 700;
+		text-align: center;
+	}
 
-  h3 {
-    visibility: hidden;
-  }
+	h3 {
+		visibility: hidden;
+	}
 
-  .logoLinke2 {
-    display: none;
-  }
+	.logoLinke2 {
+		display: none;
+	}
 
-  @media (min-width: 900px) {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+	@media (min-width: 900px) {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
 
-    .buttonBack {
-      visibility: visible;
-      width: 80px;
-      height: 26px;
-      text-decoration: none;
-      margin-bottom: 10px;
-      margin-left: 2%;
-      color: #f8f9fa;
-      border: 1px solid #f8f9fa;
-      border-radius: 4px;
-      text-align: center;
-      padding: 4px;
-      font-size: 14px;
-      font-weight: 600;
-    }
+		.buttonBack {
+			visibility: visible;
+			width: 80px;
+			height: 26px;
+			text-decoration: none;
+			margin-bottom: 10px;
+			margin-left: 2%;
+			color: #f8f9fa;
+			border: 1px solid #f8f9fa;
+			border-radius: 4px;
+			text-align: center;
+			padding: 4px;
+			font-size: 14px;
+			font-weight: 600;
+		}
 
-    .div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-right: 20px;
-    }
-    .divImgDesktop {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      margin: 0px;
-    }
+		.div {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin-right: 20px;
+		}
+		.divImgDesktop {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			margin: 0px;
+		}
 
-    .logoLinke2 {
-      display: flex;
-      width: 300px;
-      height: 80px;
-      margin-left: 20px;
-    }
+		.logoLinke2 {
+			display: flex;
+			width: 300px;
+			height: 80px;
+			margin-left: 20px;
+		}
 
-    h3 {
-      visibility: visible;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 100px;
-      margin-left: 20px;
-    }
+		h3 {
+			visibility: visible;
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 100px;
+			margin-left: 20px;
+		}
 
-    .imgLogin {
-      display: flex;
-      width: 580px;
-      margin-top: 100px;
-    }
+		.imgLogin {
+			display: flex;
+			width: 580px;
+			margin-top: 100px;
+		}
 
-    .divRegister {
-      margin-right: 20px;
-    }
-  }
+		.divRegister {
+			margin-right: 20px;
+		}
+	}
 
-  @media (min-width: 1100px) {
-    .buttonBack {
-      width: 80px;
-      height: 24px;
-      margin-left: 12%;
-    }
+	@media (min-width: 1100px) {
+		.buttonBack {
+			width: 80px;
+			height: 24px;
+			margin-left: 12%;
+		}
 
-    .div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-    }
+		.div {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+		}
 
-    .logoLinke2 {
-      width: 300px;
-      height: 80px;
-      margin-left: 40px;
-    }
+		.logoLinke2 {
+			width: 300px;
+			height: 80px;
+			margin-left: 40px;
+		}
 
-    h3 {
-      visibility: visible;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      margin-left: 40px;
-    }
+		h3 {
+			visibility: visible;
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 10px;
+			margin-left: 40px;
+		}
 
-    .imgLogin {
-      display: flex;
-      width: 640px;
-      margin-top: 10px;
-    }
+		.imgLogin {
+			display: flex;
+			width: 640px;
+			margin-top: 10px;
+		}
 
-    .divRegister {
-      margin-right: 40px;
-    }
+		.divRegister {
+			margin-right: 40px;
+		}
 
-    h2 {
-      margin-bottom: 0px;
-      width: 300px;
-      height: 38px;
-      font-size: 14px;
-    }
-  }
+		h2 {
+			margin-bottom: 0px;
+			width: 300px;
+			height: 38px;
+			font-size: 14px;
+		}
+	}
 `;
 
 export const Header = styled.header`

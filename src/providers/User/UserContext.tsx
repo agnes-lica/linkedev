@@ -85,7 +85,19 @@ const UserProvider = ({ children }: IProviderChildren) => {
 
   const handleRegister = (data: IHandleRegister) => {
     api
-      .post("/register", data)
+      .post("/register", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        company: data.company,
+        social: data.social,
+        avatar_url: data.avatar_url,
+        is_recruiter: data.is_recruiter,
+        level: data.level,
+        stacks: tags,
+        bio: data.bio,
+        title: data.title,
+      })
       .then((response) => {
         console.log(response.data);
         toast.success("Cadastro realizado com sucesso!");

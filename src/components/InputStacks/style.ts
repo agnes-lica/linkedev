@@ -6,10 +6,16 @@ export const Tags = styled.ul`
 	min-height: 3rem;
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-start;
 	gap: 10px;
 	list-style: none;
 	font-size: 14px;
 	overflow: hidden;
+	background-color: #fff;
+	padding: 0.5rem;
+	border-bottom: 1px solid var(--primary-3-color);
+	border-radius: 4px;
 
 	& > div {
 		width: fit-content;
@@ -22,9 +28,11 @@ export const Tags = styled.ul`
 			padding: 5px 10px;
 			border-radius: 4px;
 			border: 1px solid var(--primary-3-color);
+			color: var(--primary-3-color);
 		}
 
 		span {
+			color: var(--primary-3-color);
 			cursor: pointer;
 		}
 	}
