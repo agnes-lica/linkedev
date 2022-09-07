@@ -1,4 +1,3 @@
-import Button from "../Button";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User/UserContext";
 import { JobsContainer } from "./styles";
@@ -23,7 +22,7 @@ const JobsList = () => {
       {jobList.map((job) => (
         <li key={job.userId}>
           <h1>{job.title}</h1>
-          <p>N° aplicações: {job.candidates.length}</p>
+          <p>N° aplicações: {job?.candidates?.length}</p>
           <p>{job.place}</p>
           <p>{job.salary}</p>
           <p>{job.level}</p>
