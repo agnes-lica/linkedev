@@ -116,7 +116,7 @@ const RegisterRecruiter = () => {
               <option value="dev">Desenvolvedor</option>
               <option value="recruiter">Tech Recruiter</option>
             </select>
-            {selectform == "dev" ? <DevForm /> : <RecruiterForm />}
+            {selectform === "dev" ? <DevForm /> : <RecruiterForm />}
             <button className="buttonRegister" type="submit">
               Cadastrar
             </button>
