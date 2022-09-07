@@ -45,6 +45,7 @@ function JobsProvider({ children }: JobsProps) {
   const [modalJobDetail, setModalJobDetail] = useState(false);
 
   const { getDev } = useContext(DevContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const getJobList = async () => {
@@ -61,7 +62,19 @@ function JobsProvider({ children }: JobsProps) {
 
     getJobList();
   }, []);
-  const { user } = useContext(UserContext);
+
+  const getJobAndRecruiter = async (id: string) => {
+    await api
+      .get(`jobs/${id}`)
+      .then((res) => {
+        setJob(res.data);
+        return res;
+      })
+      .then((res) => {
+        getDev(res.data.userId);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const getJob = (id: string) => {
     api.get(`jobs/${id}`).then((res) => {
@@ -71,6 +84,7 @@ function JobsProvider({ children }: JobsProps) {
   };
 
   function getJobModal(id: string) {
+    getJobAndRecruiter(id);
     setModalJobDetail(true);
   }
 

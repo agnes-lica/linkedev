@@ -12,6 +12,7 @@ import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../components/Button";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 interface Iparam {
   valor: string;
