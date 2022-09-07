@@ -6,6 +6,11 @@ export const Container = styled.section`
 
   font-family: "roboto", sans-serif;
 
+  .buttonMySubscription {
+    width: 7rem;
+    height: 2.5rem;
+  }
+
   .mainContent {
     width: 80%;
     max-width: 1300px;

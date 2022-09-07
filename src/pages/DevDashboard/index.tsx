@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import ModalJobDetails from "../../components/ModalJobDetails";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
@@ -19,87 +19,90 @@ interface Iparam {
 }
 
 function DevDashboard() {
-  const {
-    job,
-    getJob,
-    getJobModal,
-    modalJobDetail,
-    setModalJobDetail,
-    jobList,
-  } = useContext(JobsContext);
+  const { job, getJobModal, modalJobDetail, setModalJobDetail, jobList } =
+    useContext(JobsContext);
   const { user } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  function funçãoTeste() {
-    console.log("oi");
-  }
-
-  console.log(jobList);
+  const [mySubscription, setMySubscription] = useState(false);
 
   return !user?.is_recruiter ? (
     <Container>
       <Header />
       <section className="mainContent">
         <Aside />
-        <div className="jobContainer">
-          <div className="jobContainerHeader">
-            <h2>Início</h2>
-            <nav>
-              <div className="buttons">
-                <Button buttonFunction={funçãoTeste}>Meus envios</Button>
-              </div>
-              <div className="search">
-                <input placeholder="Nome, Tecnologia..." type="text" />
-                <button className="searchButton">
-                  <AiOutlineSearch size={25} />
-                </button>
-              </div>
-              <div className="filter">
-                <p>
-                  Filtrando por: <span>Todos</span>
-                  <MdOutlineKeyboardArrowDown />
-                </p>
-              </div>
-            </nav>
+        {mySubscription ? (
+          <div className="jobContainer">
+            <h1>teste</h1>
+            <button onClick={() => setMySubscription(false)}>voltar</button>
           </div>
-          <section className="jobList">
-            {jobList?.map((jobElem) => (
-              <div key={jobElem.id} className="card">
-                <div className="right">
-                  <span>Há 12 horas</span>
-                  <h2>{jobElem.title}</h2>
-                  <p>{jobElem.description}</p>
-                  <p>{jobElem.type}</p>
-                </div>
-                <div className="left">
+        ) : (
+          <div className="jobContainer">
+            <div className="jobContainerHeader">
+              <h2>Início</h2>
+              <nav>
+                <div className="buttons">
                   <button
-                    onClick={() => getJobModal(jobElem.id)}
-                    className="more"
+                    className="buttonMySubscription"
+                    onClick={() => setMySubscription(true)}
                   >
-                    <BsThreeDots size={25} />
+                    Meus envios
                   </button>
-                  <div className="textDescription">
-                    getModalDevProfile(dev.id)
-                    <span>
-                      <MdLocationOn />
-                      {jobElem.place}
-                    </span>
-                    <span>
-                      <BsCashCoin />
-                      {jobElem.salary}
-                    </span>
-                    <span>
-                      <BsFillLayersFill />
-                      {jobElem.stacks}
-                    </span>
+                </div>
+                <div className="search">
+                  <input placeholder="Nome, Tecnologia..." type="text" />
+                  <button className="searchButton">
+                    <AiOutlineSearch size={25} />
+                  </button>
+                </div>
+                <div className="filter">
+                  <p>
+                    Filtrando por: <span>Todos</span>
+                    <MdOutlineKeyboardArrowDown />
+                  </p>
+                </div>
+              </nav>
+            </div>
+            <section className="jobList">
+              {jobList?.map((jobElem) => (
+                <div key={jobElem.id} className="card">
+                  <div className="right">
+                    <span>Há 12 horas</span>
+                    <h2>{jobElem.title}</h2>
+                    <p>{jobElem.description}</p>
+                    <p>{jobElem.type}</p>
+                  </div>
+                  <div className="left">
+                    <button
+                      onClick={() => getJobModal(jobElem.id)}
+                      className="more"
+                    >
+                      <BsThreeDots size={25} />
+                    </button>
+                    <div className="textDescription">
+                      getModalDevProfile(dev.id)
+                      <span>
+                        <MdLocationOn />
+                        {jobElem.place}
+                      </span>
+                      <span>
+                        <BsCashCoin />
+                        {jobElem.salary}
+                      </span>
+                      <span>
+                        <BsFillLayersFill />
+                        {jobElem.stacks}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </section>
-        </div>
+              ))}
+            </section>
+          </div>
+        )}
       </section>
+      {modalJobDetail && <ModalJobDetails />}
     </Container>
   ) : (
     <>{logout()}</>

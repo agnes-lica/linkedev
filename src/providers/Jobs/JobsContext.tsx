@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
 import api from "../../services/api";
 import { DevContext } from "../Dev/DevContext";
 import { UserContext } from "../User/UserContext";
@@ -16,7 +17,7 @@ interface JobsProps {
 }
 
 interface JobsProviderData {
-  getJob: (id: string) => void;
+  jobApplication: (id: string) => void;
   job: JobData | null;
   getJobModal: (id: string) => void;
   modalJobDetail: boolean;
@@ -33,8 +34,8 @@ interface JobData {
   stacks: string[];
   type: string;
   reputation: string;
-  candidates: string[];
-  userId: any;
+  candidates: any[];
+  userId: string;
   date: string;
   id: string;
 }
@@ -64,23 +65,21 @@ function JobsProvider({ children }: JobsProps) {
   }, []);
 
   const getJobAndRecruiter = async (id: string) => {
+    console.log(`${id} job and recruiter`);
+
     await api
       .get(`jobs/${id}`)
       .then((res) => {
         setJob(res.data);
+        console.log(res.data);
         return res;
       })
       .then((res) => {
+        console.log(res.data.userId);
+
         getDev(res.data.userId);
       })
       .catch((err) => console.error(err));
-  };
-
-  const getJob = (id: string) => {
-    api.get(`jobs/${id}`).then((res) => {
-      console.log(res);
-      setJob(res.data);
-    });
   };
 
   function getJobModal(id: string) {
@@ -88,15 +87,35 @@ function JobsProvider({ children }: JobsProps) {
     setModalJobDetail(true);
   }
 
+  async function jobApplication(id: string) {
+    const repeated = job?.candidates.find(
+      (candidate) => candidate.id === user?.id
+    );
+    if (repeated) {
+      return toast.error("Você já se candidatou para essa vaga");
+    }
+    const data = { candidates: [...job?.candidates!, user] };
+    await api
+      .patch(`jobs/${id}`, data)
+      .then((res) => {
+        toast.success("Aplicação enviada com sucesso. Boa sorte!");
+        getJobAndRecruiter(id);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Ops! Algo deu errado.");
+      });
+  }
+
   return (
     <JobsContext.Provider
       value={{
         job,
-        getJob,
         getJobModal,
         modalJobDetail,
         setModalJobDetail,
         jobList,
+        jobApplication,
       }}
     >
       {children}
