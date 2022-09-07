@@ -1,6 +1,9 @@
 import Aside from "../../components/Aside";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
+import DevsList from "../../components/DevsList";
+import JobsList from "../../components/JobsList";
+import SubscriptionsList from "../../components/SubscriptionsList";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -12,17 +15,24 @@ import DevProfile from "../../components/ModalDevProfile";
 import { DevContext } from "../../providers/Dev/DevContext";
 
 function RecruiterDashboard() {
-  const { loading, user, devList } = useContext(UserContext);
+  const { loading, user, nav, setNav } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
   const { dev, getModalDevProfile, modalDevProfile } = useContext(DevContext);
 
   const navigate = useNavigate();
 
-  function vacancies() {
-    navigate("/vacancies");
+  const { getRecruiterSubsList, getRecruiterJobsList } =
+    useContext(UserContext);
+
+  function jobs() {
+    getRecruiterJobsList();
+    setNav("jobsList");
+    // navigate("/jobs");
   }
   function subscriptions() {
-    navigate("/subscriptions");
+    getRecruiterSubsList();
+    setNav("subsList");
+    // navigate("/subscriptions");
   }
 
   return (
@@ -39,7 +49,7 @@ function RecruiterDashboard() {
                 </div>
                 <nav>
                   <section className="buttons">
-                    <Button buttonFunction={vacancies}>Minhas Vagas</Button>
+                    <Button buttonFunction={jobs}>Minhas Vagas</Button>
                     <Button buttonFunction={subscriptions}>Inscrições</Button>
                   </section>
                   <section className="search">
@@ -57,35 +67,11 @@ function RecruiterDashboard() {
                 </nav>
               </div>
               <div className="recruiterMainList">
-                {devList.map((dev) => (
-                  <div
-                    key={dev.id}
-                    className="card"
-                    onClick={() => getModalDevProfile(dev.id)}
-                  >
-                    <div className="pic">
-                      <img
-                        src={dev.avatar_url}
-                        onError={handleImageError}
-                        alt={dev.name}
-                      />
-                    </div>
-                    <section className="content">
-                      <div className="presentation">
-                        <span>Há 12 horas</span>
-                        <h2>{dev.name}</h2>
-                        <p>{dev.title}</p>
-                        <p>Modelo de trabalho</p>
-                      </div>
-                      <div className="details">
-                        <span>São Paulo</span>
-                        <span>R$ 3.000,00</span>
-                        <span>2 anos</span>
-                        <span>{dev.stacks}</span>
-                      </div>
-                    </section>
-                  </div>
-                ))}
+                <ul>
+                  {nav === "jobsList" && <JobsList />}
+                  {nav === "subsList" && <SubscriptionsList />}
+                  {nav === "devsList" && <DevsList />}
+                </ul>
               </div>
             </div>
           </div>

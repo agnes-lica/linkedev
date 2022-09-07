@@ -7,7 +7,8 @@ interface Props {
 export const Container = styled.div<Props>`
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--gray-color-3);
+  background-color: var(--gray-color-0);
+  color: var(--gray-color-3);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -33,7 +34,10 @@ export const Container = styled.div<Props>`
     width: 100%;
     min-height: 100%;
     position: relative;
-    bottom: 60px;
+    bottom: 174px;
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    background-size: 100vw;
   }
 
   /* ===================================================== */
@@ -100,8 +104,9 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    top: 120px;
-    color: #000;
+    align-items: center;
+    top: 80px;
+    color: var(--gray-color-3);
     text-align: center;
     gap: 40px;
     z-index: 4;
@@ -127,6 +132,28 @@ export const Div = styled.div`
     text-decoration: underline var(--primary-2-color);
     overflow: hidden;
   }
+
+  .buttonBack {
+    text-decoration: none;
+    color: var(--gray-color-0);
+    background-color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-0);
+
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .buttonBack:hover {
+    overflow: hidden;
+    background-color: var(--gray-color-0);
+    color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-3);
+  }
+
   /* ===================================================== */
 
   @media (min-width: 800px) {
@@ -143,7 +170,6 @@ export const Div = styled.div`
       text-align: start;
       gap: 50px;
       margin-bottom: 100px;
-      color: var(--gray-color-1);
     }
 
     h2 {
