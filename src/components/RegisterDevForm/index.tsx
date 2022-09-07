@@ -6,6 +6,7 @@ import { UserContext } from "../../providers/User/UserContext";
 import { Container, Form, Header } from "./style";
 import RegisterDevRecPage from "../RegisterDevRecPage";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
+import InputStacks from "../InputStacks";
 
 interface IRegisterDev {
   name: string;
@@ -41,7 +42,6 @@ const DevForm = () => {
       .equals([yup.ref("password"), null], "A senha não corresponde"),
     level: yup.string().required("escolha um dos níveis"),
     title: yup.string().required("campo obrigatório"),
-    stacks: yup.string().required("adicione suas tecnologias"),
     bio: yup.string().required("bio obrigatória"),
     social: yup
       .string()
@@ -137,12 +137,7 @@ const DevForm = () => {
               </select>
 
               <label htmlFor="stacks">Tecnologias</label>
-              <input
-                type="text"
-                id="stacks"
-                placeholder="Digite suas tecnologias"
-                {...register("stacks")}
-              />
+              <InputStacks />
               <p>{errors.stacks?.message}</p>
 
               <label htmlFor="bio">Bio</label>

@@ -6,16 +6,23 @@ import { toast } from "react-toastify";
 import api from "../../services/api";
 //import { getLinkeDev } from "../../Services/LinkeDev";
 
+const toastSuccessAddTech = () => toast.success("Vaga cadastrada com sucesso!");
+const toastErrorAddTech = () => toast.error("Verifique os dados incorretos!");
+
 interface IUserProps {
   user: IUser | null;
   setUser: React.Dispatch<React.SetStateAction<null | IUser>>;
+  devList: IUser[];
   editModalDev: IEditDev | null;
   setEditModalDev: (editModalDev: IEditDev | null) => void;
-  devList: IUser[];
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
   editProfileDev: (data: IEditDevForm | string) => void;
   loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  addJob: (data: IJob) => void;
+  tags: string[];
+  setTags: (tags: string[]) => void;
 }
 
 export interface IUser {
@@ -80,6 +87,20 @@ interface IProviderChildren {
   children: ReactNode;
 }
 
+export interface IJob {
+  title: string;
+  description: string;
+  place: string;
+  salary: string;
+  level: string;
+  stacks: string[];
+  type: string;
+  reputation?: number;
+  candidates?: string[];
+  userId?: string;
+  date?: string;
+}
+
 export const UserContext = createContext<IUserProps>({} as IUserProps);
 const UserProvider = ({ children }: IProviderChildren) => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -90,10 +111,23 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const token = window.localStorage.getItem("@linkeDev: UserToken");
   const id = window.localStorage.getItem("@linkeDev: UserID");
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const [tags, setTags] = useState<string[]>([]);
 
   const handleRegister = (data: IHandleRegister) => {
     api
-      .post("/register", data)
+      .post("/register", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        company: data.company,
+        social: data.social,
+        avatar_url: data.avatar_url,
+        is_recruiter: data.is_recruiter,
+        level: data.level,
+        stacks: tags,
+        bio: data.bio,
+        title: data.title,
+      })
       .then((response) => {
         console.log(response.data);
         toast.success("Cadastro realizado com sucesso!");
@@ -162,21 +196,53 @@ const UserProvider = ({ children }: IProviderChildren) => {
         await api
           .get(`/users/${id}`)
           .then((res: AxiosResponse) => {
+            delete res.data.password;
             setUser(res.data);
           })
           .catch((err) => {
             console.error(err);
             navigate("/login");
+            window.localStorage.removeItem("@linkeDev: UserToken");
             toast.error("Você foi desconectado. Faça login novamente.");
           });
       }
     }
     autoLogin();
-  }, [token, id]);
+  }, [token, id, navigate]);
 
-  useEffect(() => {
+  const today = new Date();
 
-  },[])
+  const addJob = (data: IJob) => {
+    api
+      .post("/jobs", {
+        title: data.title,
+        description: data.description,
+        place: data.place,
+        salary: data.salary,
+        level: data.level,
+        stacks: tags,
+        type: data.type,
+        // Server-side data:
+        reputation: 0,
+        candidates: [],
+        userId: id,
+        date: today.toLocaleDateString(),
+      })
+      .then((response) => {
+        toastSuccessAddTech();
+        console.log(response.data);
+      })
+      .catch((error) => {
+        toastErrorAddTech();
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+        setTags([]);
+      });
+  };
+
+  useEffect(() => {}, []);
   const editProfileDev = (data: IEditDev | string) => {
     const dev = { name: user?.name, email: user?.email };
     console.log("data", data);
@@ -191,8 +257,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         console.log(err);
 
         toast.error("Erro ao atualizar perfil!");
-      })
-
+      });
   };
 
   return (
@@ -202,11 +267,15 @@ const UserProvider = ({ children }: IProviderChildren) => {
         setUser,
         devList,
         loading,
+        setLoading,
         editModalDev,
         setEditModalDev,
         handleRegister,
         handleLogin,
         editProfileDev,
+        addJob,
+        tags,
+        setTags,
       }}
     >
       {children}
