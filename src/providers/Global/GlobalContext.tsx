@@ -13,7 +13,6 @@ interface GlobalProviderData {
 }
 
 function GlobalProvider({ children }: GlobalProps) {
-  const [usersList, setUsersList] = useState([]);
   const navigate = useNavigate();
 
   const logout = () => {
