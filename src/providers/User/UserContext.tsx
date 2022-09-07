@@ -17,7 +17,7 @@ interface IUserProps {
   setEditModalDev: (editModalDev: IEditDev | null) => void;
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
-  editProfileDev: (data: IEditDevForm | string) => void;
+  editProfileDev: (data: IEditDev) => void;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   addJob: (data: IJob) => void;
@@ -38,7 +38,6 @@ export interface IUser {
   stacks?: string[];
   bio?: string;
   title?: string;
-  resumo: string;
 }
 
 export interface IEditDev {
@@ -51,7 +50,6 @@ export interface IEditDev {
   bio?: string;
   social?: string;
   avatar_url?: string;
-  resumo?: string;
 }
 
 export interface IEditDevForm {
@@ -242,14 +240,20 @@ const UserProvider = ({ children }: IProviderChildren) => {
       });
   };
 
-  useEffect(() => {}, []);
-  const editProfileDev = (data: IEditDev | string) => {
-    const dev = { name: user?.name, email: user?.email };
-    console.log("data", data);
+  const editProfileDev = (data: IEditDev) => {
+    !data.name && delete data.name;
+    !data.email && delete data.email;
+    !data.title && delete data.title;
+    !data.stacks && delete data.stacks;
+    !data.avatar_url && delete data.avatar_url;
+    !data.bio && delete data.bio;
+
+    // console.log("data", data);
     api
       .patch(`/users/${user?.id}`, data)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        setUser(response.data);
         setEditModalDev(null);
         toast.success("perfil atualizado com sucesso!");
       })
