@@ -10,7 +10,6 @@ import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import DevProfile from "../../components/ModalDevProfile";
 import { DevContext } from "../../providers/Dev/DevContext";
-import ModalCreateJob from "../../components/ModalCreateJob";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);

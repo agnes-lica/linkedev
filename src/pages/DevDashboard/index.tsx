@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import ModalJobDetails from "../../components/ModalJobDetails";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { JobsContext } from "../../providers/Jobs/JobsContext";

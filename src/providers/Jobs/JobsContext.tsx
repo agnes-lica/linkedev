@@ -7,6 +7,7 @@ import {
 } from "react";
 import api from "../../services/api";
 import { DevContext } from "../Dev/DevContext";
+import { UserContext } from "../User/UserContext";
 
 export const JobsContext = createContext({} as JobsProviderData);
 
@@ -60,6 +61,7 @@ function JobsProvider({ children }: JobsProps) {
 
     getJobList();
   }, []);
+  const { user } = useContext(UserContext);
 
   const getJob = (id: string) => {
     api.get(`jobs/${id}`).then((res) => {
@@ -69,7 +71,6 @@ function JobsProvider({ children }: JobsProps) {
   };
 
   function getJobModal(id: string) {
-    Promise.all([getJob(id), getDev(job?.userId)]);
     setModalJobDetail(true);
   }
 

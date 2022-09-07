@@ -13,7 +13,7 @@ import { GlobalContext } from "../../providers/Global/GlobalContext"
 function ModalJobDetails(){
 
     const style = { fontSize: "22px", color:"#5B2E76"}
-    const { job,setModalJobDetail } = useContext(JobsContext)
+    const { job,setModalJobDetail, jobApplication } = useContext(JobsContext)
     const { dev } = useContext(DevContext)
     const { handleImageError } = useContext(GlobalContext)
 
@@ -36,7 +36,7 @@ function ModalJobDetails(){
                         <h2>Resumo</h2>
                         <p>{job?.description}
                         </p>
-                        <p><BsStackOverflow style={style} /> {job?.stacks.map((stack: any, index: any) => <span className="stack" key={index}>{stack}</span>)} </p>
+                        <p><BsStackOverflow style={style} /> {job?.stacks.map((stack, index) => <span className="stack" key={index}>{stack}</span>)} </p>
                     </section>
 
                     <section className="jobDetails">
@@ -48,7 +48,7 @@ function ModalJobDetails(){
                             <p><BsCalendarWeek style={style} /> {job?.date}</p>    
                         </div>           
                                             
-                        <Button buttonFunction={() => console.log('interessante')}>Aplicar</Button>                   
+                        <Button buttonFunction={() => jobApplication(job?.id!)}>Aplicar</Button>                   
 
                     </section>
                 </div>
