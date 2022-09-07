@@ -1,25 +1,31 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import ModalJobDetails from "../../components/ModalJobDetails";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
+import { JobsContext } from "../../providers/Jobs/JobsContext";
 import { UserContext } from "../../providers/User/UserContext";
 
 import { Container } from "./style";
 import Header from "../../components/Header";
 import Aside from "../../components/Aside";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../components/Button";
 import { AiOutlineSearch } from "react-icons/ai";
-import VacancieProvider, {
-  VacancieContext,
-} from "../../providers/Vacancie/VacancieContext";
+import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
 
 interface Iparam {
   valor: string;
 }
 
 function DevDashboard() {
-  const { vacancieList, setVacancieList, vacancie, setVacancie } =
-    useContext(VacancieContext);
+  const {
+    job,
+    getJob,
+    getJobModal,
+    modalJobDetail,
+    setModalJobDetail,
+    jobList,
+  } = useContext(JobsContext);
   const { user } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
   const navigate = useNavigate();
@@ -28,7 +34,7 @@ function DevDashboard() {
     console.log("oi");
   }
 
-  console.log(vacancieList);
+  console.log(jobList);
 
   return !user?.is_recruiter ? (
     <Container>
@@ -56,22 +62,38 @@ function DevDashboard() {
               </div>
             </nav>
           </div>
-          <section>
-            {vacancieList.map((job) => (
-              <div key={job.description} className="card">
-                <section className="content">
-                  <div className="presentation">
-                    <span>Há 12 horas</span>
-                    <h2>{job.title}</h2>
-                    <p>{job.level}</p>
-                    <p>{job.type}</p>
+          <section className="jobList">
+            {jobList?.map((jobElem) => (
+              <div key={jobElem.id} className="card">
+                <div className="right">
+                  <span>Há 12 horas</span>
+                  <h2>{jobElem.title}</h2>
+                  <p>{jobElem.description}</p>
+                  <p>{jobElem.type}</p>
+                </div>
+                <div className="left">
+                  <button
+                    onClick={() => getJobModal(jobElem.id)}
+                    className="more"
+                  >
+                    <BsThreeDots size={25} />
+                  </button>
+                  <div className="textDescription">
+                    getModalDevProfile(dev.id)
+                    <span>
+                      <MdLocationOn />
+                      {jobElem.place}
+                    </span>
+                    <span>
+                      <BsCashCoin />
+                      {jobElem.salary}
+                    </span>
+                    <span>
+                      <BsFillLayersFill />
+                      {jobElem.stacks}
+                    </span>
                   </div>
-                  <div className="details">
-                    <span>{job.place}</span>
-                    <span>{job.salary}</span>
-                    <span>{job.stacks}</span>
-                  </div>
-                </section>
+                </div>
               </div>
             ))}
           </section>
