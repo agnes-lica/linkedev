@@ -2,22 +2,22 @@ import Aside from "../../components/Aside";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import DevsList from "../../components/DevsList";
-import DevProfile from "../../components/DevProfile";
+import JobsList from "../../components/JobsList";
 import SubscriptionsList from "../../components/SubscriptionsList";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
-import { GlobalContext } from "../../providers/Global/GlobalContext";
-import { UserContext } from "../../providers/User/UserContext";
-import { DevContext } from "../../providers/Dev/DevContext";
-import { useContext, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
-import JobsList from "../../components/JobsList";
+import { UserContext } from "../../providers/User/UserContext";
+import { useContext } from "react";
+import { GlobalContext } from "../../providers/Global/GlobalContext";
+import DevProfile from "../../components/ModalDevProfile";
+import { DevContext } from "../../providers/Dev/DevContext";
 
 function RecruiterDashboard() {
   const { loading, user, nav, setNav } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
-  const { dev, getDev, modalDevProfile } = useContext(DevContext);
+  const { dev, getModalDevProfile, modalDevProfile } = useContext(DevContext);
 
   const navigate = useNavigate();
 

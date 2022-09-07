@@ -1,4 +1,4 @@
-import { createContext, ReactNode, SyntheticEvent, useState } from "react";
+import { createContext, ReactNode, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import userImg from "../../assets/user.png";
 export const GlobalContext = createContext({} as GlobalProviderData);
@@ -13,7 +13,6 @@ interface GlobalProviderData {
 }
 
 function GlobalProvider({ children }: GlobalProps) {
-  // const [usersList, setUsersList] = useState([]); //acho q n precisa mais
   const navigate = useNavigate();
 
   const logout = () => {

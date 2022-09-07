@@ -7,7 +7,7 @@ interface Props {
 export const Container = styled.div<Props>`
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--gray-color-3);
+  background-color: var(--gray-color-0);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -31,6 +31,13 @@ export const Container = styled.div<Props>`
     font-weight: 500;
   }
 
+  .buttonBack:hover {
+    overflow: hidden;
+    background-color: var(--gray-color-0);
+    color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-3);
+  }
+
   .divLogin {
     display: flex;
     flex-direction: column;
@@ -47,7 +54,6 @@ export const Container = styled.div<Props>`
     padding: 10px;
     background-color: var(--primary-2-color);
     border-radius: 10px 10px 0px 0px;
-    margin-bottom: 10px;
     margin-top: 20px;
     color: var(--gray-color-0);
     font-size: 14px;
@@ -81,21 +87,21 @@ export const Container = styled.div<Props>`
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      margin: 0px;
     }
 
     .logoLinke2 {
       display: flex;
-      width: 320px;
-      height: 100px;
+      width: 350px;
+      height: 120px;
       margin-left: 20px;
     }
 
     h3 {
       visibility: visible;
+      color: var(--gray-color-3);
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
       margin-left: 20px;
     }
 
@@ -119,14 +125,7 @@ export const Container = styled.div<Props>`
       justify-content: space-evenly;
     }
 
-    .logoLinke2 {
-      width: 300px;
-      height: 80px;
-      margin-left: 40px;
-    }
-
     h3 {
-      visibility: visible;
       margin-bottom: 10px;
       margin-left: 40px;
     }
@@ -155,7 +154,7 @@ export const Header = styled.header`
   justify-content: center;
 
   .logoLinke {
-    width: 200px;
+    width: 258px;
     margin-top: 20px;
   }
 
@@ -171,7 +170,7 @@ export const Form = styled.form`
   width: 280px;
 
   label {
-    color: var(--gray-color-0);
+    color: var(--gray-color-3);
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 4px;
@@ -188,38 +187,12 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: var(--gray-color-0);
+    background-color: #d0cbd3;
 
     box-sizing: border-box;
     border: 1px solid var(--gray-color-0);
     border-radius: 4px;
 
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 22px;
-
-    color: #343b41;
-  }
-
-  select {
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px 12px;
-    gap: 8px;
-
-    width: 280px;
-    height: 38px;
-
-    background-color: var(--gray-color-0);
-
-    border: 1px solid var(--gray-color-0);
-    border-radius: 4px;
-
-    font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -255,7 +228,7 @@ export const Form = styled.form`
   }
 
   .buttonLogin:hover {
-    background-color: var(--primary-2-focus-color);
+    background-color: var(--primary-focus-color);
   }
 
   @media (min-width: 900px) {
@@ -266,11 +239,6 @@ export const Form = styled.form`
     width: 300px;
 
     input {
-      width: 300px;
-      height: 38px;
-    }
-
-    select {
       width: 300px;
       height: 38px;
     }

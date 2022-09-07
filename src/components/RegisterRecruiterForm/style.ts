@@ -7,7 +7,7 @@ interface Props {
 export const Container = styled.div<Props>`
   width: 100vw;
   min-height: 100vh;
-  background-color: #000;
+  background-color: var(--gray-color-0);
   display: ${(props) => {
     if (props.page) return "block";
     else return "none";
@@ -24,7 +24,14 @@ export const Container = styled.div<Props>`
     margin-top: 10px;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
+  }
+
+  .buttonBack:hover {
+    overflow: hidden;
+    background-color: var(--gray-color-0);
+    color: var(--gray-color-3);
+    border: 1px solid var(--gray-color-3);
   }
 
   .divRegister {
@@ -43,7 +50,6 @@ export const Container = styled.div<Props>`
     padding: 10px;
     background-color: var(--primary-2-color);
     border-radius: 10px 10px 0px 0px;
-    margin-bottom: 10px;
     margin-top: 20px;
     color: var(--gray-color-0);
     font-size: 14px;
@@ -90,6 +96,7 @@ export const Container = styled.div<Props>`
 
     h3 {
       visibility: visible;
+      color: var(--gray-color-3);
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 60px;
@@ -118,8 +125,8 @@ export const Container = styled.div<Props>`
     }
 
     .logoLinke2 {
-      width: 300px;
-      height: 80px;
+      width: 350px;
+      height: 120px;
       margin-left: 40px;
     }
 
@@ -142,7 +149,6 @@ export const Container = styled.div<Props>`
     }
 
     h2 {
-      margin-bottom: 0px;
       width: 300px;
       height: 38px;
       font-size: 14px;
@@ -156,7 +162,7 @@ export const Header = styled.header`
   justify-content: center;
 
   .logoLinke {
-    width: 200px;
+    width: 280px;
     margin-top: 20px;
   }
 
@@ -172,7 +178,7 @@ export const Form = styled.form`
   width: 280px;
 
   label {
-    color: var(--gray-color-0);
+    color: var(--gray-color-3);
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 4px;
@@ -189,7 +195,7 @@ export const Form = styled.form`
     width: 280px;
     height: 38px;
 
-    background-color: var(--gray-color-0);
+    background-color: #d0cbd3;
 
     box-sizing: border-box;
     border: 1px solid var(--gray-color-0);
@@ -247,11 +253,11 @@ export const Form = styled.form`
     height: 40px;
     margin-right: 2px;
     margin-top: 10px;
-    background: var(--primary-2-color);
-    color: var(--gray-color-0);
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 500;
+  }
+  .buttonRegister:hover {
+    background-color: var(--primary-focus-color);
   }
 
   @media (min-width: 900px) {
@@ -260,10 +266,6 @@ export const Form = styled.form`
   @media (min-width: 1100px) {
     margin-bottom: 10px;
     width: 300px;
-
-    label {
-      font-size: 10px;
-    }
 
     input {
       width: 300px;

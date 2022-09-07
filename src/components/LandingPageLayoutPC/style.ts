@@ -13,14 +13,14 @@ export const Container = styled.section`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   button {
-    width: 7rem;
-    height: 3rem;
-
+    width: fit-content;
+    height: fit-content;
     border: none;
     border-radius: 8px;
+    padding: 15px 20px;
   }
 
   button:hover {
@@ -50,6 +50,7 @@ export const Container = styled.section`
       font-size: 32px;
       font-weight: 400;
       color: var(--gray-color-1);
+      line-height: 1;
     }
 
     p:nth-child(2) {

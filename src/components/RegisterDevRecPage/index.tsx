@@ -1,24 +1,25 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DevForm from "../RegisterDevForm";
 import RecruiterForm from "../RegisterRecruiterForm";
 import { Container, Div, Header } from "./style";
 
-
 const RegisterDevRecPage = () => {
   const [value, setValue] = useState("");
   const [page, setPage] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <>
       <Container page={page}>
         <Header>
-          <img className="logoLinke" src="./logoLinke.svg" alt="LinkeDev" />
+          <img className="logoLinke" src="./LogoPC_light.svg" alt="LinkeDev" />
         </Header>
         <div className="div">
           <div className="divImgDesktop">
             <img
               className="logoLinke2"
-              src="./LogoPC_Dark.svg"
+              src="./LogoPC_light.svg"
               alt="LinkeDev"
             />
             <h3>A maior plataforma de contratações tech!</h3>
@@ -53,6 +54,9 @@ const RegisterDevRecPage = () => {
                 </span>
                 ?
               </h4>
+              <button className="buttonBack" onClick={() => navigate("/")}>
+                voltar
+              </button>
             </div>
           </Div>
         </div>

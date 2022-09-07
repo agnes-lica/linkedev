@@ -87,6 +87,9 @@ button:hover{
     background: var(--primary-focus-color);
 }
 
+button {
+    border-radius: 4px;
+}
 
 `;
 
