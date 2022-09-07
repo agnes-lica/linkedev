@@ -10,7 +10,7 @@ import Header from "../../components/Header";
 import Aside from "../../components/Aside";
 import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../components/Button";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
 import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
@@ -33,10 +33,28 @@ function DevDashboard() {
       <section className="mainContent">
         <Aside />
         {mySubscription ? (
-          <div className="jobContainer">
-            <h1>teste</h1>
-            <button onClick={() => setMySubscription(false)}>voltar</button>
-          </div>
+          <>
+            <div className="jobContainer">
+              <div className="jobContainerHeader">
+                <h2>Meus Envios</h2>
+                <div className="buttonArrow">
+                  <button onClick={() => setMySubscription(false)}>
+                    <AiOutlineArrowLeft size={20} />
+                  </button>
+                </div>
+              </div>
+              <div className="jobList">
+                <div className="job">
+                  <span>Há 1 hora</span>
+                  <div>
+                    <h3>title</h3>
+                    <p>stack: </p>
+                    <span>Não lido</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
         ) : (
           <div className="jobContainer">
             <div className="jobContainerHeader">
