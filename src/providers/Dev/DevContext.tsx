@@ -13,6 +13,7 @@ interface DevProviderData{
     getDev: (id: string) => void;
     modalDevProfile: boolean;
     setModalDevProfile: React.Dispatch<React.SetStateAction<boolean>>;
+    getModalDevProfile: (id: string) => void;
 }
 
 function DevProvider({children}: DevProps){
@@ -24,12 +25,16 @@ function DevProvider({children}: DevProps){
         await api.get(`/users/${id}`)
         .then(res => {
             setDev(res.data)
-            setModalDevProfile(true)
         })
     }
 
+    async function getModalDevProfile(id: string){
+        await getDev(id)
+        setModalDevProfile(true)
+    }
+
     return(
-        <DevContext.Provider value={{dev, getDev, modalDevProfile, setModalDevProfile}}>
+        <DevContext.Provider value={{dev, getDev, getModalDevProfile, modalDevProfile, setModalDevProfile}}>
             {children}
         </DevContext.Provider>
     )

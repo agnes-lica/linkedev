@@ -8,14 +8,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { UserContext } from "../../providers/User/UserContext";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
-import DevProfile from "../../components/DevProfile";
+import DevProfile from "../../components/ModalDevProfile";
 import { DevContext } from "../../providers/Dev/DevContext";
 import ModalCreateJob from "../../components/ModalCreateJob";
 
 function RecruiterDashboard() {
   const { loading, user, devList } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
-  const { dev, getDev, modalDevProfile } =useContext(DevContext)
+  const { dev, getModalDevProfile, modalDevProfile } =useContext(DevContext)
 
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ function RecruiterDashboard() {
           </div>
           <div className="recruiterMainList">
             {devList.map((dev) => (
-              <div key={dev.id} className="card" onClick={() => getDev(dev.id)}>
+              <div key={dev.id} className="card" onClick={() => getModalDevProfile(dev.id)}>
                 <div className="pic">
                   <img src={dev.avatar_url} onError={handleImageError} alt={dev.name} />
                 </div>

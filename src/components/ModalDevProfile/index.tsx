@@ -8,12 +8,12 @@ import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { DevContext } from "../../providers/Dev/DevContext";
 
 
-interface DevProfileProps{
+interface ModalDevProfileProps{
     dev: IUser | null;
 }
 
 
-function DevProfile({dev} : DevProfileProps){
+function ModalDevProfile({dev} : ModalDevProfileProps){
     const style = { fontSize: "22px", color:"#5B2E76"}
     const { handleImageError } = useContext(GlobalContext)
     const { setModalDevProfile } = useContext(DevContext)
@@ -64,4 +64,4 @@ function DevProfile({dev} : DevProfileProps){
     )
 }
 
-export default DevProfile;
+export default ModalDevProfile;
