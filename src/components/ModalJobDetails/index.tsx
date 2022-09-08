@@ -66,7 +66,7 @@ function ModalJobDetails() {
 								{job?.type}
 							</p>
 							<p>
-								<MdOutlineAttachMoney style={style} /> {job?.salary}
+								<MdOutlineAttachMoney style={style} /> {job?.salary},00
 							</p>
 							<p>
 								<BsCalendarWeek style={style} /> {job?.date}

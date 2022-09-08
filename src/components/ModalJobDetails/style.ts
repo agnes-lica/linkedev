@@ -12,6 +12,9 @@ export const ContainerModal = styled.div`
     left: 0;
     background-color: rgba(0,0,0,0.8);
     overflow-y: scroll;
+
+    animation:modalSlide 0.3s ease-out forwards;
+    transform: translateY(50%);
 `
 
 export const Container = styled.div`

@@ -1,22 +1,18 @@
 import { Container } from "./styles";
 import { BsStackOverflow } from "react-icons/bs"
-import { MdPlace, MdAlternateEmail } from "react-icons/md"
+import { MdAlternateEmail } from "react-icons/md"
 import { GrClose } from "react-icons/gr"
 import { useContext } from "react";
-import { IUser } from "../../providers/User/UserContext";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { DevContext } from "../../providers/Dev/DevContext";
+import { AiOutlineThunderbolt } from "react-icons/ai";
 
 
-interface ModalDevProfileProps{
-    dev: IUser | null;
-}
 
-
-function ModalDevProfile({dev} : ModalDevProfileProps){
+function ModalDevProfile(){
     const style = { fontSize: "22px", color:"#5B2E76"}
     const { handleImageError } = useContext(GlobalContext)
-    const { setModalDevProfile } = useContext(DevContext)
+    const { dev, setModalDevProfile } = useContext(DevContext)
 
     return(
         <Container>
@@ -25,24 +21,24 @@ function ModalDevProfile({dev} : ModalDevProfileProps){
                 
                 <header> 
                     <button className="buttonClose" onClick={() => setModalDevProfile(false)}><GrClose /></button>    
-                    <img src={dev?.avatar_URL} onError={handleImageError} alt="Avatar do usuário" />                
+                    <img src={dev?.avatar_URL || ""} onError={handleImageError} alt="Avatar do usuário" />                
                     <h1>{dev?.name}</h1>                              
                 </header>
 
 
                 <div className="devDetails">
                     <section >
-                        <span>{dev?.name} é um.. </span>                        
+                        <span>{dev?.name} é um(a).. </span>                        
                         <h2>{dev?.title}</h2>
 
                         <div className="devStacks">
                             <p><BsStackOverflow style={style}/></p> 
-                            {dev?.stacks?.map((stack, index) => <span key={index} className="stack">{stack}</span>)} 
+                            {typeof dev?.stacks === "string" ? dev.stacks : dev?.stacks?.map((stack, index) => <span key={index} className="stack">{stack}</span>)} 
 
                         </div>
 
                         <div>
-                            <p><MdPlace style={style} /> </p>
+                            <p><AiOutlineThunderbolt style={style} /> {dev?.level}</p>
                             <p><MdAlternateEmail style={style} />{dev?.social}</p>
                         </div>
                     </section>

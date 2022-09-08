@@ -5,11 +5,13 @@ import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineLogout } from "react-icons/md";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { UserContext } from "../../providers/User/UserContext";
+import { DevContext } from "../../providers/Dev/DevContext";
 
 function Dropdown() {
   const [open, setOpen] = useState<boolean>(false);
   const { logout } = useContext(GlobalContext);
-  const { user, setEditModalDev } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const { setEditModalDev } =useContext(DevContext)
 
   useEffect(() => {
     open &&
@@ -27,11 +29,9 @@ function Dropdown() {
       {open && (
         <div className="dropdown">
           <button onClick={() => setEditModalDev(user)}>
-            {" "}
             <BiEditAlt /> Editar Perfil
           </button>
           <button onClick={logout}>
-            {" "}
             <MdOutlineLogout /> Logout
           </button>
         </div>

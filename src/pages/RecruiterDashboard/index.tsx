@@ -27,12 +27,12 @@ function RecruiterDashboard() {
   function jobs() {
     getRecruiterJobsList();
     setNav("jobsList");
-    // navigate("/jobs");
+
   }
   function subscriptions() {
     getRecruiterSubsList();
     setNav("subsList");
-    // navigate("/subscriptions");
+
   }
 
   return (
@@ -75,7 +75,7 @@ function RecruiterDashboard() {
               </div>
             </div>
           </div>
-          {modalDevProfile && <DevProfile dev={dev} />}
+          {modalDevProfile && <DevProfile />}
         </Container>
       )}
     </>

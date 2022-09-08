@@ -17,6 +17,10 @@ export const Container = styled.div`
 
   border-radius: 4px;
   background-color: #2c2c2c;
+  animation:modalSlide 0.3s ease-out forwards;
+  transform: translateY(50%);
+
+
 
   .modal {
     background-color: #fff;

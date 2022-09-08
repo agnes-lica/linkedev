@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { IEditDev, UserContext } from "../../providers/User/UserContext";
+import {  UserContext } from "../../providers/User/UserContext";
 import * as yup from "yup";
 import { Container, Form, Header } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
+import { DevContext, IEditDev } from "../../providers/Dev/DevContext";
 
 const EditModalProfileDev = () => {
-  const { editProfileDev, setEditModalDev, user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const {editProfileDev, setEditModalDev} = useContext(DevContext)
   const { handleImageError } = useContext(GlobalContext);
-  // console.log("user", user);
 
   const formEditDev = yup.object().shape({
     name: yup.string().optional(),

@@ -4,12 +4,14 @@ import { BiEditAlt } from "react-icons/bi";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User/UserContext";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
+import { DevContext } from "../../providers/Dev/DevContext";
 
 function Aside() {
   const style = { fontSize: "22px", color: "#BF90DC" };
 
-  const { user, setEditModalDev} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext)
+  const { getModalDevProfile, setEditModalDev } =useContext(DevContext)
 
   return (
     <Container>
@@ -17,6 +19,7 @@ function Aside() {
         <>
           <header>
             <img
+              onClick={() => getModalDevProfile(user.id)}
               src={user.avatar_URL || "../../assets/user.png"} onError={handleImageError}
               alt="Foto de perfil do usuário"
             />

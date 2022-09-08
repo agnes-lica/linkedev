@@ -1,11 +1,9 @@
 import { AxiosResponse } from "axios";
 import React, { useState, ReactNode, createContext, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import JobsList from "../../components/JobsList";
 import api from "../../services/api";
-//import { getLinkeDev } from "../../Services/LinkeDev";
+
 
 const toastSuccessAddTech = () => toast.success("Vaga cadastrada com sucesso!");
 const toastErrorAddTech = () => toast.error("Verifique os dados incorretos!");
@@ -14,11 +12,11 @@ interface IUserProps {
   user: IUser | null;
   setUser: React.Dispatch<React.SetStateAction<null | IUser>>;
   devList: IUser[];
-  editModalDev: IEditDev | null;
-  setEditModalDev: (editModalDev: IEditDev | null) => void;
+  // editModalDev: IEditDev | null;
+  // setEditModalDev: (editModalDev: IEditDev | null) => void;
   handleRegister: (data: IHandleRegister) => void;
   handleLogin: (data: IHandleLogin) => void;
-  editProfileDev: (data: IEditDev) => void;
+  // editProfileDev: (data: IEditDev) => void;
   getRecruiterSubsList: () => void;
   getRecruiterJobsList: () => void;
   setTags: (tags: string[]) => void;
@@ -47,28 +45,18 @@ export interface IUser {
   title?: string;
 }
 
-export interface IEditDev {
-  name?: string;
-  email?: string;
-  password?: string;
-  level?: string;
-  title?: string;
-  stacks?: string[];
-  bio?: string;
-  social?: string;
-  avatar_URL?: string;
-}
 
-export interface IEditDevForm {
-  email: string;
-  password?: string;
-  level?: string;
-  title: string;
-  stacks: string[];
-  bio?: string;
-  social?: string;
-  avatar_URL: string;
-}
+
+// export interface IEditDevForm {
+//   email: string;
+//   password?: string;
+//   level?: string;
+//   title: string;
+//   stacks: string[];
+//   bio?: string;
+//   social?: string;
+//   avatar_URL: string;
+// }
 
 export interface IHandleRegister {
   name: string;
@@ -102,25 +90,25 @@ export interface IJob {
   stacks: string[];
   type: string;
   reputation?: number;
-  candidates?: string[];
+  candidates?: IUser[];
   userId?: string;
   date?: string;
 }
 
 export const UserContext = createContext<IUserProps>({} as IUserProps);
 const UserProvider = ({ children }: IProviderChildren) => {
+
+  const token = window.localStorage.getItem("@linkeDev: UserToken");
+  const id = window.localStorage.getItem("@linkeDev: UserID");
+  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const [user, setUser] = useState<IUser | null>(null);
   const [devList, setDevList] = useState<IUser[]>([]);
   const [jobList, setJobList] = useState<IJob[]>([]);
   const [recruiterSubs, setRecruiterSubs] = useState<IUser[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [nav, setNav] = useState("devsList");
-  const [editModalDev, setEditModalDev] = useState<IEditDev | null>(null);
-  const navigate = useNavigate();
-  const token = window.localStorage.getItem("@linkeDev: UserToken");
-  const id = window.localStorage.getItem("@linkeDev: UserID");
-  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const [tags, setTags] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   const handleRegister = (data: IHandleRegister) => {
     api
@@ -138,7 +126,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
         title: data.title,
       })
       .then((response) => {
-        // console.log(response.data);
         toast.success("Cadastro realizado com sucesso!");
         navigate("/login", { replace: true });
       })
@@ -185,7 +172,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
       );
       const candidates = recSubs[0].candidates;
       setRecruiterSubs(candidates);
-      // console.log(jobList);
+
     });
   };
 
@@ -196,7 +183,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
         (job: IJob) => job.userId === user?.id
       );
       setJobList(recruiterJobs);
-      // console.log(jobList);
     });
   };
 
@@ -206,6 +192,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         .get("/users")
         .then((res: AxiosResponse) => {
           const devs = res.data.filter((dev: IUser) => !dev.is_recruiter);
+          console.log(devs)
           setDevList(devs);
         })
         .catch((err) => {
@@ -274,29 +261,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
       });
   };
 
-  const editProfileDev = (data: IEditDev) => {
-    !data.name && delete data.name;
-    !data.email && delete data.email;
-    !data.title && delete data.title;
-    !data.stacks && delete data.stacks;
-    !data.avatar_URL && delete data.avatar_URL;
-    !data.bio && delete data.bio;
-
-    // console.log("data", data);
-    api
-      .patch(`/users/${user?.id}`, data)
-      .then((response) => {
-        // console.log(response);
-        setUser(response.data);
-        setEditModalDev(null);
-        toast.success("perfil atualizado com sucesso!");
-      })
-      .catch((err) => {
-        console.log(err);
-
-        toast.error("Erro ao atualizar perfil!");
-      });
-  };
 
   return (
     <UserContext.Provider
@@ -307,8 +271,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
         jobList,
         loading,
         setLoading,
-        editModalDev,
-        setEditModalDev,
         handleRegister,
         handleLogin,
         nav,
@@ -316,7 +278,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
         recruiterSubs,
         getRecruiterSubsList,
         getRecruiterJobsList,
-        editProfileDev,
         addJob,
         tags,
         setTags,

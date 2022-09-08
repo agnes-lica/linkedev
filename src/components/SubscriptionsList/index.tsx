@@ -1,4 +1,3 @@
-import Button from "../Button";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User/UserContext";
 import { SubsContainer } from "./styles";
@@ -9,7 +8,7 @@ const SubscriptionsList = () => {
     setNav("devsList");
   }
 
-  const { nav, setNav, recruiterSubs } = useContext(UserContext);
+  const { setNav, recruiterSubs } = useContext(UserContext);
   return (
     <SubsContainer>
       <div className="backArrow">
