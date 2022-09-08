@@ -46,19 +46,18 @@ export const Header = styled.header`
 
   h2 {
     width: 100%;
-    padding: 10px;
+    padding: 25px;
     background-color: #f6f5f6;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 4px;
+    font-weight: 700;
   }
 
   .vectorBack {
     width: 22px;
   }
 
-  @media (min-width: 900px) {
-  }
 `;
 
 export const Form = styled.form`
@@ -152,7 +151,8 @@ export const Form = styled.form`
     }
 
     .formdev {
-      margin-top: 50px;
+      justify-content: space-around;
+      margin: 5px 0;
     }
 
     label {
@@ -167,6 +167,7 @@ export const Form = styled.form`
       width: 105px;
       height: 105px;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     textarea {

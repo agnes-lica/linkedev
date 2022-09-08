@@ -23,8 +23,11 @@ export const Container = styled.aside`
 
       img {
         width: 136px;
+        height: 136px;
         border-radius: 50%;
         margin-bottom: 20px;
+        object-fit: cover;
+        border: 2px solid var(--primary-3-color);
       }
 
       span {
@@ -73,7 +76,7 @@ export const Container = styled.aside`
   button {
     width: 100%;
     border-radius: 8px;
-    padding: 15px 0;
+    padding: 12px 0;
     border: 1px solid var(--primary-3-color);
     color: var(--primary-new);
     background: transparent;
@@ -81,5 +84,11 @@ export const Container = styled.aside`
     align-items: center;
     justify-content: center;
     gap: 8px;
+    transition: ease-in-out 0.5s;
+  }
+
+  button:hover{
+    background-color: var(--primary-3-color);
+    color: var(--gray-color-0);
   }
 `;
