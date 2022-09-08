@@ -4,7 +4,6 @@ import DevDashboard from "../pages/DevDashboard";
 import RecruiterDashboard from "../pages/RecruiterDashboard";
 import Login from "../pages/login";
 import RegisterDevRecPage from "../components/RegisterDevRecPage";
-import EditModalPerfilDev from "../components/EditModalPerfilDev";
 
 const RoutesApplication = () => {
   return (
@@ -15,6 +14,7 @@ const RoutesApplication = () => {
 
       <Route path="/devDashboard" element={<DevDashboard />} />
       <Route path="/recruiterDashboard" element={<RecruiterDashboard />} />
+
     </Routes>
   );
 };

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
+import Logo from "../../assets/Logolight.svg"
 
 function LandingPageLayoutMobile() {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ function LandingPageLayoutMobile() {
   return (
     <Container>
       <div>
-        <img alt="Link e Dev Logo" src="./logoPC_Dark.svg"></img>
+        <img alt="Link e Dev Logo" src={Logo}></img>
         <h2>
           Uma comunidade gigante para conhecer que conecta devs e recruiters de
           todo o brasil em um só lugar!

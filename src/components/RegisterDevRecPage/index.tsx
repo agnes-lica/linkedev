@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DevForm from "../RegisterDevForm";
 import RecruiterForm from "../RegisterRecruiterForm";
 import { Container, Div, Header } from "./style";
+import Logo from "../../assets/LogoPC_light.svg"
 
 const RegisterDevRecPage = () => {
   const [value, setValue] = useState("");
@@ -13,13 +14,13 @@ const RegisterDevRecPage = () => {
     <>
       <Container page={page}>
         <Header>
-          <img className="logoLinke" src="./LogoPC_light.svg" alt="LinkeDev" />
+          <img className="logoLinke" src={Logo} alt="LinkeDev" />
         </Header>
         <div className="div">
           <div className="divImgDesktop">
             <img
               className="logoLinke2"
-              src="./LogoPC_light.svg"
+              src={Logo}
               alt="LinkeDev"
             />
             <h3>A maior plataforma de contratações tech!</h3>

@@ -6,13 +6,14 @@ export const Container = styled.section`
   width: 100vw;
   max-height: 100vh;
 
-  background-color: var(--gray-color-3);
+  background-color: var(--gray-color-0);
 
-  padding: 0px 20%;
   padding-top: 2rem;
 
   display: flex;
   flex-direction: column;
+  max-width: 1464px;
+  margin: auto;
   /* justify-content: space-between; */
 
   button {
@@ -35,6 +36,7 @@ export const Container = styled.section`
 
     img {
       width: 50rem;
+      max-width: 700px;
     }
     h2 {
       font-size: 40px;
@@ -47,7 +49,7 @@ export const Container = styled.section`
     flex-direction: row;
 
     p {
-      font-size: 32px;
+      font-size: 26px;
       font-weight: 400;
       color: var(--gray-color-1);
       line-height: 1;
@@ -69,6 +71,7 @@ export const Container = styled.section`
   @media (max-width: 2544px) {
     padding-top: 3rem;
     padding: 0px 10%;
+    
 
     .headerLanding {
       img {
@@ -78,13 +81,13 @@ export const Container = styled.section`
 
     .mainLanding {
       height: 100vh;
-
       display: flex;
       flex-direction: row;
       align-items: flex-end;
 
       img {
         width: 55rem;
+        max-width: 700px;
       }
 
       div:nth-child(2) {

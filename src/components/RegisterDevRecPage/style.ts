@@ -6,7 +6,7 @@ interface Props {
 
 export const Container = styled.div<Props>`
   width: 100vw;
-  min-height: 100vh;
+  max-height: 100vh;
   background-color: var(--gray-color-0);
   color: var(--gray-color-3);
   display: ${(props) => {
@@ -47,7 +47,9 @@ export const Container = styled.div<Props>`
       display: none;
     }
     .div {
-      width: 100vw;
+      width: 80%;
+      max-width: 1464px;
+      margin: auto;
       height: 100vh;
       display: flex;
       flex-direction: row;
@@ -60,6 +62,7 @@ export const Container = styled.div<Props>`
       flex-direction: column;
       justify-content: flex-end;
       width: 50vw;
+      max-width: 900px;
     }
 
     .logoLinke2 {
@@ -80,6 +83,7 @@ export const Container = styled.div<Props>`
       display: flex;
       width: 46vw;
       margin-left: 10px;
+      max-width: 800px;
     }
   }
 `;

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
+import Logo from "../../assets/LogoPC_light.svg"
+import MainImage from "../../assets/newLogoLinke.svg"
 
 function LandingPageLayoutPC() {
   const navigate = useNavigate();
@@ -8,7 +10,7 @@ function LandingPageLayoutPC() {
     <Container>
       <section className="headerLanding">
         <div>
-          <img src="./LogoPC_Dark.svg" alt="Logo LinkeDev" />
+          <img src={Logo} alt="Logo LinkeDev" />
           <h2>A maior plataforma de contratações tech!</h2>
         </div>
         <div>
@@ -18,7 +20,7 @@ function LandingPageLayoutPC() {
 
       <section className="mainLanding">
         <div>
-          <img src="./newLogoLinke.svg" alt="logo Login" />
+          <img src={MainImage} alt="logo Login" />
         </div>
         <div>
           <p>
