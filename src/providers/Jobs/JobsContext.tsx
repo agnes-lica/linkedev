@@ -23,9 +23,11 @@ interface JobsProviderData {
   modalJobDetail: boolean;
   setModalJobDetail: React.Dispatch<React.SetStateAction<boolean>>;
   jobList: JobData[] | null;
+  filteredJobs: JobData[] | null;
+  handleSearchJob: (search: string) => void;
 }
 
-interface JobData {
+export interface JobData {
   title: string;
   description: string;
   place: string;
@@ -44,6 +46,7 @@ function JobsProvider({ children }: JobsProps) {
   const [job, setJob] = useState<JobData | null>(null);
   const [jobList, setJobList] = useState<JobData[] | null>([]);
   const [modalJobDetail, setModalJobDetail] = useState(false);
+  const [filteredJobs, setFilteredJobs] = useState<JobData[] | null>([])
 
   const { getDev } = useContext(DevContext);
   const { user } = useContext(UserContext);
@@ -107,6 +110,20 @@ function JobsProvider({ children }: JobsProps) {
       });
   }
 
+
+  const handleSearchJob = (search: string) => {
+    const newList = jobList?.filter((job) => {
+      if(job.title.toLowerCase().includes(search)
+      || job.description.toLowerCase().includes(search)
+      || job.level.toLowerCase().includes(search)
+      || job.place.toLowerCase().includes(search)){
+        return true
+      }
+      return false
+    })
+    setFilteredJobs(newList!)
+  }
+
   return (
     <JobsContext.Provider
       value={{
@@ -116,6 +133,8 @@ function JobsProvider({ children }: JobsProps) {
         setModalJobDetail,
         jobList,
         jobApplication,
+        handleSearchJob,
+        filteredJobs
       }}
     >
       {children}

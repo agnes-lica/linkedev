@@ -1,32 +1,24 @@
 import { useContext, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import ModalJobDetails from "../../components/ModalJobDetails";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { JobsContext } from "../../providers/Jobs/JobsContext";
 import { UserContext } from "../../providers/User/UserContext";
-
 import { Container } from "./style";
 import Header from "../../components/Header";
 import Aside from "../../components/Aside";
 import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
-import Button from "../../components/Button";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 import EditModalProfileDev from "../../components/EditModalPerfilDev";
 
-interface Iparam {
-  valor: string;
-}
 
 function DevDashboard() {
-  const { job, getJobModal, modalJobDetail, setModalJobDetail, jobList } =
+  const {  getJobModal, modalJobDetail, jobList, handleSearchJob, filteredJobs } =
     useContext(JobsContext);
   const { user, editModalDev } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
-  const navigate = useNavigate();
-
   const [mySubscription, setMySubscription] = useState(false);
+
 
   return !user?.is_recruiter ? (
     <Container>
@@ -41,7 +33,7 @@ function DevDashboard() {
         ) : (
           <div className="jobContainer">
             <div className="jobContainerHeader">
-              <h2>Início</h2>
+              <h2>Vagas</h2>
               <nav>
                 <div className="buttons">
                   <button
@@ -52,7 +44,9 @@ function DevDashboard() {
                   </button>
                 </div>
                 <div className="search">
-                  <input placeholder="Nome, Tecnologia..." type="text" />
+                  <input placeholder="Nome, Tecnologia..." 
+                  type="text" 
+                  onChange={(e) => handleSearchJob(e.target.value)}/>
                   <button className="searchButton">
                     <AiOutlineSearch size={25} />
                   </button>
@@ -66,8 +60,11 @@ function DevDashboard() {
               </nav>
             </div>
             <section className="jobList">
-              {jobList?.map((jobElem) => (
-                <div key={jobElem.id} className="card">
+              {(filteredJobs?.length! > 0 ? filteredJobs : jobList)?.map((jobElem) => (
+                <div key={jobElem.id}
+                      onClick = {() => getJobModal(jobElem.id)}  
+                      className="card"
+                >
                   <div className="right">
                     <span>Há 12 horas</span>
                     <h2>{jobElem.title}</h2>
@@ -75,14 +72,14 @@ function DevDashboard() {
                     <p>{jobElem.type}</p>
                   </div>
                   <div className="left">
-                    <button
-                      onClick={() => getJobModal(jobElem.id)}
+                    {/* <button
+                      }
                       className="more"
                     >
                       <BsThreeDots size={25} />
-                    </button>
+                    </button> */}
                     <div className="textDescription">
-                      getModalDevProfile(dev.id)
+                      
                       <span>
                         <MdLocationOn />
                         {jobElem.place}
