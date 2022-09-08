@@ -1,15 +1,19 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/User/UserContext";
-import FormAddJob from "../FormAddJob";
 import { HeaderModal, Container } from "./style";
+import { IJob } from "../../providers/User/UserContext";
+import FormEditJob from "../FormEditJob";
 
-export default function ModalEditJob() {
+interface IModalEditJobProps {
+	job: IJob;
+}
+
+export default function ModalEditJob({ job }: IModalEditJobProps) {
 	const [showModal, setShowModal] = useState(false);
 	const { setTags } = useContext(UserContext);
 	const handleModal = () => {
 		setShowModal(!showModal);
-        setTags([]);
-        
+		setTags([]);
 	};
 
 	return showModal ? (
@@ -23,7 +27,7 @@ export default function ModalEditJob() {
 						</button>
 					</HeaderModal>
 					<main>
-						<FormAddJob />
+						<FormEditJob job={job} />
 					</main>
 				</div>
 			</div>
