@@ -6,18 +6,22 @@ import { UserContext } from "../../providers/User/UserContext";
 import { Container } from "./style";
 import Header from "../../components/Header";
 import Aside from "../../components/Aside";
-import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
-import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
+import { BsCashCoin, BsFillLayersFill } from "react-icons/bs";
+import { DevContext } from "../../providers/Dev/DevContext";
 import EditModalProfileDev from "../../components/EditModalPerfilDev";
+import JobSubscription from "../../components/JobSubscription";
 
 
 function DevDashboard() {
-  const {  getJobModal, modalJobDetail, jobList, handleSearchJob, filteredJobs } =
-    useContext(JobsContext);
-  const { user, editModalDev } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
+  const { getDevSubsList, editModalDev} = useContext(DevContext);
+  const { getJobModal, modalJobDetail, jobList, handleSearchJob, filteredJobs, handleFilterByDate } =
+  useContext(JobsContext);
   const [mySubscription, setMySubscription] = useState(false);
+  const style = { fontSize: "18px", color: "#45205C" };
 
 
   return !user?.is_recruiter ? (
@@ -25,20 +29,18 @@ function DevDashboard() {
       <Header />
       <section className="mainContent">
         <Aside />
-        {mySubscription ? (
-          <div className="jobContainer">
-            <h1>teste</h1>
-            <button onClick={() => setMySubscription(false)}>voltar</button>
-          </div>
-        ) : (
+        {mySubscription ? <JobSubscription setMySubscription={setMySubscription}/>
+        : (
           <div className="jobContainer">
             <div className="jobContainerHeader">
               <h2>Vagas</h2>
               <nav>
                 <div className="buttons">
-                  <button
-                    className="buttonMySubscription"
-                    onClick={() => setMySubscription(true)}
+                <button
+                    onClick={() => {
+                      setMySubscription(true);
+                      getDevSubsList();
+                    }}
                   >
                     Meus envios
                   </button>
@@ -52,10 +54,14 @@ function DevDashboard() {
                   </button>
                 </div>
                 <div className="filter">
-                  <p>
-                    Filtrando por: <span>Todos</span>
-                    <MdOutlineKeyboardArrowDown />
-                  </p>
+                  
+                    Filtre por: 
+                    <select onChange={(e) => handleFilterByDate(e.target.value)}>
+                      <option value=""></option>
+                      <option value="Mais recentes">Mais recentes</option>
+                      <option value="Mais antigas">Mais antigas</option>
+                    </select>
+                                     
                 </div>
               </nav>
             </div>
@@ -66,31 +72,26 @@ function DevDashboard() {
                       className="card"
                 >
                   <div className="right">
-                    <span>Há 12 horas</span>
+                    <span>{jobElem.date}</span>
                     <h2>{jobElem.title}</h2>
                     <p>{jobElem.description}</p>
                     <p>{jobElem.type}</p>
                   </div>
                   <div className="left">
-                    {/* <button
-                      }
-                      className="more"
-                    >
-                      <BsThreeDots size={25} />
-                    </button> */}
+  
                     <div className="textDescription">
                       
                       <span>
-                        <MdLocationOn />
+                        <MdLocationOn style={style}/>
                         {jobElem.place}
                       </span>
                       <span>
-                        <BsCashCoin />
+                        <BsCashCoin style={style} />
                         {jobElem.salary}
                       </span>
                       <span>
-                        <BsFillLayersFill />
-                        {jobElem.stacks}
+                        <BsFillLayersFill style={style}/>
+                        {jobElem.stacks.map((stack, index) => <span key={index} className="stack"> {stack} </span>)}
                       </span>
                     </div>
                   </div>

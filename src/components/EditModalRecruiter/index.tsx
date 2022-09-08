@@ -5,28 +5,26 @@ import * as yup from "yup";
 import { Container, Form, Header } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
-import { DevContext, IEditDev } from "../../providers/Dev/DevContext";
+import  { IEditRecruiterForm }  from "../../providers/User/UserContext"
 
-const EditModalProfileDev = () => {
-  const { user } = useContext(UserContext);
-  const {editProfileDev, setEditModalDev} = useContext(DevContext)
+const EditModalRecruiter= () => {
+  const { user, editProfileRecruiter, setModalEditRecruiter } = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext);
 
-  const formEditDev = yup.object().shape({
+  const formEditRecruiter = yup.object().shape({
     name: yup.string().optional(),
     email: yup.string().email("email inválido").optional(),
-    title: yup.string().optional(),
-    stacks: yup.string().optional(),
+	company: yup.string().optional(),
     avatar_URL: yup.string().url("jpg ou png").optional(),
-    bio: yup.string().optional(),
+	social: yup.string().url().optional()
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IEditDev>({
-    resolver: yupResolver(formEditDev),
+  } = useForm<IEditRecruiterForm>({
+    resolver: yupResolver(formEditRecruiter),
   });
 
   return (
@@ -37,11 +35,11 @@ const EditModalProfileDev = () => {
 						className="vectorBack"
 						src="./vector_edit.svg"
 						alt="Voltar"
-						onClick={() => setEditModalDev(null)}
+						onClick={() => setModalEditRecruiter(null)}
 					/>
 					<h2>Editar Perfil</h2>
 				</Header>
-				<Form onSubmit={handleSubmit(editProfileDev)}>
+				<Form onSubmit={handleSubmit(editProfileRecruiter)}>
 					<div className="divModal">
 						<div className="formdev">
 							<label htmlFor="name">Nome</label>
@@ -51,12 +49,13 @@ const EditModalProfileDev = () => {
 							<label htmlFor="email">Email</label>
 							<input type="text" id="email" defaultValue={user?.email} {...register("email")} />
 							<p>{errors.email?.message}</p>
-							<label htmlFor="title">Título / Objetivo</label>
-							<input type="text" id="title" defaultValue={user?.title} {...register("title")} />
-							<p>{errors.title?.message}</p>
-							<label htmlFor="stacks">Stacks</label>
-							<input type="text" id="stacks" defaultValue={user?.stacks} {...register("stacks")} />
-							<p>{errors.stacks?.message}</p>
+							<label htmlFor="title">Empresa</label>
+							<input type="text" id="company" defaultValue={user?.company} {...register("company")} />
+							<p>{errors.company?.message}</p>
+							<label htmlFor="title">Contato (Insira um link)</label>
+							<input type="text" id="social" defaultValue={user?.social} {...register("social")} />
+							<p>{errors.social?.message}</p>
+							
 						</div>
 
 						<div className="formdev2">
@@ -73,9 +72,7 @@ const EditModalProfileDev = () => {
 
 							<p>{errors.avatar_URL?.message}</p>
 
-							<label htmlFor="bio">Bio</label>
-							<textarea id="bio" defaultValue={user?.bio} {...register("bio")} />
-							<p>{errors.bio?.message}</p>
+						
 						</div>
 					</div>
 					<div className="divButton">
@@ -89,4 +86,4 @@ const EditModalProfileDev = () => {
   );
 };
 
-export default EditModalProfileDev;
+export default EditModalRecruiter;

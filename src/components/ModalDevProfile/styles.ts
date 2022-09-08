@@ -13,6 +13,9 @@ export const Container = styled.div`
     background-color: rgba(0,0,0,0.8);
     overflow-y: scroll;
 
+    animation:modalSlide 0.3s ease-out forwards;
+    transform: translateY(50%);
+
     .devProfile{
         position: relative;
         width: 80vw;
@@ -44,6 +47,7 @@ export const Container = styled.div`
                 border-radius: 50%;;
                 width: 120px;
                 height: 120px;
+                object-fit: cover;
             }
 
         }
@@ -72,6 +76,9 @@ export const Container = styled.div`
                     display: flex;
                     align-items: center;
                     gap: 5px;
+                    max-width: 45ch;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 
@@ -115,7 +122,8 @@ export const Container = styled.div`
         .devProfile header img{
             width: 180px;
             height: 180px;
-            margin-top: 30px
+            margin-top: 30px;
+            object-fit: cover;
         }
 
         .devProfile .devDetails{

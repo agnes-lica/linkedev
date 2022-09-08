@@ -21,6 +21,7 @@ interface JobsProviderData {
 	editJob: (job: IJob) => void;
 	filteredJobs: JobData[] | null;
 	handleSearchJob: (search: string) => void;
+	handleFilterByDate: (search: string) => void;
 }
 
 export interface JobData {
@@ -61,21 +62,16 @@ function JobsProvider({ children }: JobsProps) {
 		};
 
 		getJobList();
-	}, []);
+	}, [filteredJobs]);
 
 	const getJobAndRecruiter = async (id: string) => {
-		console.log(`${id} job and recruiter`);
-
 		await api
 			.get(`jobs/${id}`)
 			.then((res) => {
 				setJob(res.data);
-				console.log(res.data);
 				return res;
 			})
 			.then((res) => {
-				console.log(res.data.userId);
-
 				getDev(res.data.userId);
 			})
 			.catch((err) => console.error(err));
@@ -107,19 +103,32 @@ function JobsProvider({ children }: JobsProps) {
 
   const handleSearchJob = (search: string) => {
     const newList = jobList?.filter((job) => {
+		const jobTech = job.stacks.find((stack) => stack.toLowerCase().includes(search))
       if(job.title.toLowerCase().includes(search)
       || job.description.toLowerCase().includes(search)
       || job.level.toLowerCase().includes(search)
-      || job.place.toLowerCase().includes(search)){
+      || job.place.toLowerCase().includes(search)
+	  || jobTech){
         return true
       }
       return false
     })
-    setFilteredJobs(newList!)
+    setFilteredJobs(newList!)	
+  }
+
+
+  const handleFilterByDate = (search: string) => {
+	let newList: JobData[] | undefined;
+	if(search === "Mais antigas"){
+		newList = jobList?.sort((a, b) => (a.date < b.date ? -1 : 1))		
+	}
+	if(search === "Mais recentes"){
+		newList = jobList?.sort((a, b) => (a.date < b.date ? 1 : -1))		
+	}
+	setFilteredJobs(newList!)		
   }
 
 	const editJob = (job: IJob) => {
-		console.log("Stacks:", job.stacks);
 		api.patch(`/jobs/${job.id}`, {
 			title: job.title,
 			description: job.description,
@@ -130,7 +139,6 @@ function JobsProvider({ children }: JobsProps) {
 			type: job.type,
 		})
 			.then((response) => {
-				console.log(response);
 				toast.success("Vaga atualizada com sucesso!");
 			})
 			.catch((err) => {
@@ -151,6 +159,7 @@ function JobsProvider({ children }: JobsProps) {
 				handleSearchJob,
 				filteredJobs,
 				editJob,
+				handleFilterByDate
 			}}
 		>
 			{children}

@@ -13,9 +13,10 @@ import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import DevProfile from "../../components/ModalDevProfile";
 import { DevContext } from "../../providers/Dev/DevContext";
+import EditModalRecruiter from "../../components/EditModalRecruiter";
 
 function RecruiterDashboard() {
-  const { loading, user, nav, setNav } = useContext(UserContext);
+  const { loading, user, nav, setNav, modalEditRecruiter } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
   const { dev, getModalDevProfile, modalDevProfile } = useContext(DevContext);
 
@@ -27,12 +28,12 @@ function RecruiterDashboard() {
   function jobs() {
     getRecruiterJobsList();
     setNav("jobsList");
-    // navigate("/jobs");
+
   }
   function subscriptions() {
     getRecruiterSubsList();
     setNav("subsList");
-    // navigate("/subscriptions");
+
   }
 
   return (
@@ -75,7 +76,8 @@ function RecruiterDashboard() {
               </div>
             </div>
           </div>
-          {modalDevProfile && <DevProfile dev={dev} />}
+          {modalDevProfile && <DevProfile />}
+          {modalEditRecruiter && <EditModalRecruiter />}
         </Container>
       )}
     </>
