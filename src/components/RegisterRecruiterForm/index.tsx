@@ -117,7 +117,7 @@ const RecruiterForm = () => {
               />
               <p>{errors.company?.message}</p>
 
-              <label htmlFor="social">Link Social</label>
+              <label htmlFor="social">Contato (Insira um link)</label>
               <input
                 type="text"
                 id="social"
@@ -126,7 +126,7 @@ const RecruiterForm = () => {
               />
               <p>{errors.social?.message}</p>
 
-              <label htmlFor="avatar">Link para avatar</label>
+              <label htmlFor="avatar">Sua melhor foto (Insira um link)</label>
               <input
                 type="text"
                 id="avatar"

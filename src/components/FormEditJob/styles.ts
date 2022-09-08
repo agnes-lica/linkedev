@@ -26,17 +26,17 @@ export const Form = styled.form`
 		color: var(--primar-focus-color);
 	}
 
-	.error {
-		color: var(--negative-color);
+	input:not(:placeholder-shown) {
+		font-weight: 700;
+		color: #000;
 	}
 
 	.submitButton {
 		width: 100%;
-		height: fit-content;
-		padding: 15px 0;
 	}
 
 	button {
 		border-radius: 4px;
+		padding: 15px 0;
 	}
 `;

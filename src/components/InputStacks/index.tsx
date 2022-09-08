@@ -25,7 +25,8 @@ function InputStacks() {
 			<Tags>
 				{tags.map((tag, index) => (
 					<div key={index}>
-						<li key={index}>{tag}</li> <span key={index} onClick={() => handleDelete(index)}>X</span>
+						<li>{tag}</li> 
+						<span onClick={() => handleDelete(index)}>X</span>
 					</div>
 				))}
 			</Tags>

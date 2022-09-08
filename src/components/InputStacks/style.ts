@@ -6,7 +6,7 @@ export const Tags = styled.ul`
 	min-height: 3rem;
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
 	gap: 10px;
 	list-style: none;
@@ -15,7 +15,6 @@ export const Tags = styled.ul`
 	background-color: #fff;
 	padding: 0.5rem;
 	border-bottom: 1px solid var(--primary-3-color);
-	border-radius: 4px;
 
 	& > div {
 		width: fit-content;

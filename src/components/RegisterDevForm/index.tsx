@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { UserContext } from "../../providers/User/UserContext";
 import { Container, Form, Header } from "./style";
 import RegisterDevRecPage from "../RegisterDevRecPage";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import InputStacks from "../InputStacks";
 
 interface IRegisterDev {
@@ -136,7 +135,7 @@ const DevForm = () => {
                 <option value="senior">Nível Sênior</option>
               </select>
 
-              <label htmlFor="stacks">Tecnologias</label>
+              <label htmlFor="stacks">Tecnologias que você domina</label>
               <InputStacks />
               <p>{errors.stacks?.message}</p>
 
@@ -149,7 +148,7 @@ const DevForm = () => {
               />
               <p>{errors.bio?.message}</p>
 
-              <label htmlFor="social">Link Social</label>
+              <label htmlFor="social">Contato (Insira um link)</label>
               <input
                 type="text"
                 id="social"
@@ -158,7 +157,7 @@ const DevForm = () => {
               />
               <p>{errors.social?.message}</p>
 
-              <label htmlFor="avatar">Link para avatar</label>
+              <label htmlFor="avatar">Sua melhor foto (Insira um link)</label>
               <input
                 type="text"
                 id="avatar"

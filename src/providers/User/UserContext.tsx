@@ -93,6 +93,7 @@ interface IProviderChildren {
 }
 
 export interface IJob {
+  id?: string;
   title: string;
   description: string;
   place: string;
