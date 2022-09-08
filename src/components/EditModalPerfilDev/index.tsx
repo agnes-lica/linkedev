@@ -17,7 +17,7 @@ const EditModalProfileDev = () => {
     email: yup.string().email("email inválido").optional(),
     title: yup.string().optional(),
     stacks: yup.string().optional(),
-    avatar_url: yup.string().url("jpg ou png").optional(),
+    avatar_URL: yup.string().url("jpg ou png").optional(),
     bio: yup.string().optional(),
   });
 
@@ -82,8 +82,8 @@ const EditModalProfileDev = () => {
             <div className="formdev2">
               <img
                 className="perfilDev"
-                defaultValue={user?.avatar_url}
-                src={user?.avatar_url}
+                defaultValue={user?.avatar_URL}
+                src={user?.avatar_URL}
                 alt="Perfil Dev"
                 onError={handleImageError}
               />
@@ -92,11 +92,11 @@ const EditModalProfileDev = () => {
               <input
                 type="text"
                 id="url"
-                defaultValue={user?.avatar_url}
-                {...register("avatar_url")}
+                defaultValue={user?.avatar_URL}
+                {...register("avatar_URL")}
               />
 
-              <p>{errors.avatar_url?.message}</p>
+              <p>{errors.avatar_URL?.message}</p>
 
               <label htmlFor="bio">Bio</label>
               <textarea
