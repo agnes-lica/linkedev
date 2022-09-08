@@ -24,7 +24,7 @@ function ModalJobDetails() {
       <Container>
         <header>
           <img
-            src={dev?.avatar_url}
+            src={dev?.avatar_URL}
             onError={handleImageError}
             alt="Avatar do usuário"
           />

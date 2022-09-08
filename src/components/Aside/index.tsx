@@ -17,7 +17,7 @@ function Aside() {
         <>
           <header>
             <img
-              src={user.avatar_url} onError={handleImageError}
+              src={user.avatar_URL} onError={handleImageError}
               alt="Foto de perfil do usuário"
             />
             <span>{user.is_recruiter ? "Tech Recruiter" : user?.title}</span>

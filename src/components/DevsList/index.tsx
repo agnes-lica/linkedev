@@ -13,7 +13,7 @@ const DevsList = () => {
         <DevItem key={dev.id} className="card">
           <div className="pic">
             <img
-              src={dev.avatar_url}
+              src={dev.avatar_URL}
               onError={handleImageError}
               alt={dev.name}
             />

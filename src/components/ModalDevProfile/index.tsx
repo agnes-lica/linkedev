@@ -25,7 +25,7 @@ function ModalDevProfile({dev} : ModalDevProfileProps){
                 
                 <header> 
                     <button className="buttonClose" onClick={() => setModalDevProfile(false)}><GrClose /></button>    
-                    <img src={dev?.avatar_url} onError={handleImageError} alt="Avatar do usuário" />                
+                    <img src={dev?.avatar_URL} onError={handleImageError} alt="Avatar do usuário" />                
                     <h1>{dev?.name}</h1>                              
                 </header>
 

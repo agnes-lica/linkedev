@@ -39,7 +39,7 @@ export interface IUser {
   password?: string;
   company?: string;
   social: string;
-  avatar_url: string;
+  avatar_URL: string;
   is_recruiter?: boolean;
   level?: string;
   stacks?: string[];
@@ -56,7 +56,7 @@ export interface IEditDev {
   stacks?: string[];
   bio?: string;
   social?: string;
-  avatar_url?: string;
+  avatar_URL?: string;
 }
 
 export interface IEditDevForm {
@@ -67,7 +67,7 @@ export interface IEditDevForm {
   stacks: string[];
   bio?: string;
   social?: string;
-  avatar_url: string;
+  avatar_URL: string;
 }
 
 export interface IHandleRegister {
@@ -76,7 +76,7 @@ export interface IHandleRegister {
   password: string;
   company?: string;
   social?: string;
-  avatar_url?: string;
+  avatar_URL?: string;
   is_recruiter?: boolean;
   level?: string;
   stacks?: string[];
@@ -129,7 +129,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         password: data.password,
         company: data.company,
         social: data.social,
-        avatar_url: data.avatar_url,
+        avatar_URL: data.avatar_URL,
         is_recruiter: data.is_recruiter,
         level: data.level,
         stacks: tags,
@@ -278,7 +278,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
     !data.email && delete data.email;
     !data.title && delete data.title;
     !data.stacks && delete data.stacks;
-    !data.avatar_url && delete data.avatar_url;
+    !data.avatar_URL && delete data.avatar_URL;
     !data.bio && delete data.bio;
 
     // console.log("data", data);
