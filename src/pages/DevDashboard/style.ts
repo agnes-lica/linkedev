@@ -106,10 +106,11 @@ export const Container = styled.section`
         display: flex;
         flex-direction: column;
         justify-content: center;
+
         background-color: #ffffff;
         box-shadow: 0px 3px 6px 0px #c2bfbf;
 
-        height: 3rem;
+        height: fit-content;
         padding: 0.5rem;
 
         border-radius: 8px;
@@ -122,6 +123,8 @@ export const Container = styled.section`
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+          flex-wrap: wrap;
+
           width: 100%;
           h3 {
             font-size: 16px;
@@ -341,6 +344,9 @@ export const Container = styled.section`
           input {
             width: 80%;
           }
+        }
+        .job {
+          box-shadow: none;
         }
       }
     }

@@ -53,7 +53,6 @@ function JobsProvider({ children }: JobsProps) {
       await api
         .get("jobs")
         .then((res) => {
-          console.log(res);
           setJobList(res.data);
         })
         .catch((err) => {
@@ -71,7 +70,7 @@ function JobsProvider({ children }: JobsProps) {
       .get(`jobs/${id}`)
       .then((res) => {
         setJob(res.data);
-        console.log(res.data);
+
         return res;
       })
       .then((res) => {
