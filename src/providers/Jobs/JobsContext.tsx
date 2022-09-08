@@ -53,7 +53,6 @@ function JobsProvider({ children }: JobsProps) {
 			await api
 				.get("jobs")
 				.then((res) => {
-					console.log(res);
 					setJobList(res.data);
 				})
 				.catch((err) => {

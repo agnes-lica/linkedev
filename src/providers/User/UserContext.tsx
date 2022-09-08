@@ -28,9 +28,15 @@ interface IUserProps {
   nav: string;
   setNav: React.Dispatch<React.SetStateAction<string>>;
   recruiterSubs: IUser[];
+  filteredDevs: IUser[];
+  setFilteredDevs: React.Dispatch<React.SetStateAction<IUser[]>>;
+  setDevList: React.Dispatch<React.SetStateAction<IUser[]>>;
+  searchFilter: (search: string) => void;
+  getRecruiterDevsList: () => void;
   editProfileRecruiter: (data: IEditRecruiterForm) => void;
   modalEditRecruiter:IEditRecruiterForm | null;
   setModalEditRecruiter: (modalEditRecruiter: IEditRecruiterForm | null) => void;
+  
 }
 
 export interface IUser {
@@ -106,6 +112,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [nav, setNav] = useState("devsList");
   const [tags, setTags] = useState<string[]>([]);
   const [modalEditRecruiter, setModalEditRecruiter] = useState<IEditRecruiterForm | null>(null)
+  const [filteredDevs, setFilteredDevs] = useState<IUser[]>([]);
   const navigate = useNavigate();
 
   const handleRegister = (data: IHandleRegister) => {
@@ -137,7 +144,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
     api
       .post("/login", data)
       .then((response) => {
-        // console.log(response.data);
         window.localStorage.clear();
         window.localStorage.setItem(
           "@linkeDev: UserToken",
@@ -168,6 +174,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
       const recSubs = res.data.filter(
         (job: IJob) => job.userId === user?.id && job
       );
+
       const candidates = recSubs[0].candidates;
       setRecruiterSubs(candidates);
 
@@ -190,7 +197,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
         .get("/users")
         .then((res: AxiosResponse) => {
           const devs = res.data.filter((dev: IUser) => !dev.is_recruiter);
-          console.log(devs)
           setDevList(devs);
         })
         .catch((err) => {
@@ -205,6 +211,34 @@ const UserProvider = ({ children }: IProviderChildren) => {
       getRecruiterDevsList();
     }
   }, [user]);
+
+  const searchFilter = (search: string) => {
+    const filter = devList.filter(
+      (dev) =>
+        dev.name?.toLowerCase().includes(search) ||
+        dev.title?.toLowerCase().includes(search) ||
+        dev.level?.toLowerCase().includes(search)
+    );
+
+    setFilteredDevs(filter);
+  };
+
+  const getRecruiterDevsList = async () => {
+    await api
+      .get("/users")
+      .then((res: AxiosResponse) => {
+        const devs = res.data.filter((dev: IUser) => !dev.is_recruiter);
+
+        setDevList(devs);
+        // console.log(newDevs);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     async function autoLogin() {
@@ -247,7 +281,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
       })
       .then((response) => {
         toastSuccessAddTech();
-        console.log(response.data);
       })
       .catch((error) => {
         toastErrorAddTech();
@@ -275,7 +308,6 @@ const UserProvider = ({ children }: IProviderChildren) => {
       })
       .catch((err) => {
         console.log(err);
-
         toast.error("Erro ao atualizar perfil!");
       });
   };
@@ -302,7 +334,12 @@ const UserProvider = ({ children }: IProviderChildren) => {
         setTags,
         editProfileRecruiter,
         modalEditRecruiter,
-        setModalEditRecruiter
+        setModalEditRecruiter,
+        filteredDevs,
+        setFilteredDevs,
+        searchFilter,
+        setDevList,
+        getRecruiterDevsList,
       }}
     >
       {children}

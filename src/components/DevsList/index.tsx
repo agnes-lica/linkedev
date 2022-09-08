@@ -5,13 +5,13 @@ import { UserContext } from "../../providers/User/UserContext";
 import { DevItem } from "./styles";
 
 const DevsList = () => {
-  const { devList } = useContext(UserContext);
+  const { devList, filteredDevs } = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext);
   const {getModalDevProfile} = useContext(DevContext)
 
   return (
     <>
-      {devList.map((dev) => (
+      {(filteredDevs.length > 0 ? filteredDevs : devList).map((dev) => (
         <DevItem key={dev.id} className="card"
         onClick={() => getModalDevProfile(dev.id)}>
           <div className="pic">
