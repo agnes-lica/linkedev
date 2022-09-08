@@ -7,6 +7,7 @@ export const HeaderModal = styled.header`
     align-items: center;
     justify-content: space-between;
     padding-bottom: 20px;
+	z-index: 999;
 
 	h3 {
 		color: var(--gray-color-3);
@@ -74,4 +75,12 @@ export const Container = styled.div`
 		background: transparent;
 		color: var(--gray-color-3);
 	}
+`;
+
+export const OpenButton = styled.button`
+	width: fit-content;
+	height: fit-content;
+	padding: 15px 20px;
+	margin: 0;
+	cursor: pointer;
 `;

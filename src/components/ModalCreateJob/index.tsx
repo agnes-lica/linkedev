@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/User/UserContext";
 import FormAddJob from "../FormAddJob";
-import { HeaderModal, Container } from "./style";
+import { HeaderModal, Container, OpenButton } from "./style";
 
 export default function ModalCreateJob() {
 	const [showModal, setShowModal] = useState(false);
@@ -31,7 +31,7 @@ export default function ModalCreateJob() {
 	) : (
 		<>
 			{null}
-			<button className="openButton" onClick={handleModal}>Cadastrar Vaga</button>
+			<OpenButton onClick={handleModal}>Cadastrar Vaga</OpenButton>
 		</>
 	);
 }
