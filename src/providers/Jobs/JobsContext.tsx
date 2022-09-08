@@ -19,29 +19,31 @@ interface JobsProviderData {
 	setModalJobDetail: React.Dispatch<React.SetStateAction<boolean>>;
 	jobList: JobData[] | null;
 	editJob: (job: IJob) => void;
+	filteredJobs: JobData[] | null;
+	handleSearchJob: (search: string) => void;
 }
 
 export interface JobData {
-	title: string;
-	description: string;
-	place: string;
-	salary: string;
-	level: string;
-	stacks: string[];
-	type: string;
-	reputation: string;
-	candidates: any[];
-	userId: string;
-	date: string;
-	id: string;
+  title: string;
+  description: string;
+  place: string;
+  salary: string;
+  level: string;
+  stacks: string[];
+  type: string;
+  reputation: string;
+  candidates: any[];
+  userId: string;
+  date: string;
+  id: string;
 }
 
 function JobsProvider({ children }: JobsProps) {
 	const [job, setJob] = useState<JobData | null>(null);
 	const [jobList, setJobList] = useState<JobData[] | null>([]);
 	const [modalJobDetail, setModalJobDetail] = useState(false);
+  	const [filteredJobs, setFilteredJobs] = useState<JobData[] | null>([])
 	const { tags } = useContext(UserContext);
-
 	const { getDev } = useContext(DevContext);
 	const { user } = useContext(UserContext);
 
@@ -102,6 +104,20 @@ function JobsProvider({ children }: JobsProps) {
 			});
 	}
 
+
+  const handleSearchJob = (search: string) => {
+    const newList = jobList?.filter((job) => {
+      if(job.title.toLowerCase().includes(search)
+      || job.description.toLowerCase().includes(search)
+      || job.level.toLowerCase().includes(search)
+      || job.place.toLowerCase().includes(search)){
+        return true
+      }
+      return false
+    })
+    setFilteredJobs(newList!)
+  }
+
 	const editJob = (job: IJob) => {
 		console.log("Stacks:", job.stacks);
 		api.patch(`/jobs/${job.id}`, {
@@ -132,6 +148,8 @@ function JobsProvider({ children }: JobsProps) {
 				setModalJobDetail,
 				jobList,
 				jobApplication,
+				handleSearchJob,
+				filteredJobs,
 				editJob,
 			}}
 		>
