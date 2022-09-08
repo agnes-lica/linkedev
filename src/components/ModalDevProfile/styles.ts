@@ -76,6 +76,9 @@ export const Container = styled.div`
                     display: flex;
                     align-items: center;
                     gap: 5px;
+                    max-width: 45ch;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 

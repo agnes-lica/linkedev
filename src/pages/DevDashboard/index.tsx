@@ -18,7 +18,7 @@ function DevDashboard() {
   const { user } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
   const { getDevSubsList, editModalDev} = useContext(DevContext);
-  const { getJobModal, modalJobDetail, jobList, handleSearchJob, filteredJobs } =
+  const { getJobModal, modalJobDetail, jobList, handleSearchJob, filteredJobs, handleFilterByDate } =
   useContext(JobsContext);
   const [mySubscription, setMySubscription] = useState(false);
   const style = { fontSize: "18px", color: "#45205C" };
@@ -54,10 +54,14 @@ function DevDashboard() {
                   </button>
                 </div>
                 <div className="filter">
-                  <p>
-                    Filtrando por: <span>Todos</span>
-                    <MdOutlineKeyboardArrowDown />
-                  </p>
+                  
+                    Filtre por: 
+                    <select onChange={(e) => handleFilterByDate(e.target.value)}>
+                      <option value=""></option>
+                      <option value="Mais recentes">Mais recentes</option>
+                      <option value="Mais antigas">Mais antigas</option>
+                    </select>
+                                     
                 </div>
               </nav>
             </div>

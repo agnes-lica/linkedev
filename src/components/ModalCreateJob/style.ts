@@ -22,13 +22,16 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(0, 0, 0, 0.55);
+	background-color: rgba(0,0,0,0.8);
 	position: absolute;
 	font-size: 14px;
 	color: var(--gray-color-3);
 	font-family: "Roboto", sans-serif;
 	top: 0;
 	left: 0;
+
+    animation:modalSlide 0.3s ease-out forwards;
+    transform: translateY(50%);
 
 	@media (max-width: 400px) {
 		min-width: 90vw;

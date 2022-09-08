@@ -21,6 +21,7 @@ interface JobsProviderData {
 	editJob: (job: IJob) => void;
 	filteredJobs: JobData[] | null;
 	handleSearchJob: (search: string) => void;
+	handleFilterByDate: (search: string) => void;
 }
 
 export interface JobData {
@@ -61,15 +62,13 @@ function JobsProvider({ children }: JobsProps) {
 		};
 
 		getJobList();
-	}, []);
+	}, [filteredJobs]);
 
 	const getJobAndRecruiter = async (id: string) => {
-
 		await api
 			.get(`jobs/${id}`)
 			.then((res) => {
 				setJob(res.data);
-				console.log(res.data);
 				return res;
 			})
 			.then((res) => {
@@ -114,7 +113,19 @@ function JobsProvider({ children }: JobsProps) {
       }
       return false
     })
-    setFilteredJobs(newList!)
+    setFilteredJobs(newList!)	
+  }
+
+
+  const handleFilterByDate = (search: string) => {
+	let newList: JobData[] | undefined;
+	if(search === "Mais antigas"){
+		newList = jobList?.sort((a, b) => (a.date < b.date ? -1 : 1))		
+	}
+	if(search === "Mais recentes"){
+		newList = jobList?.sort((a, b) => (a.date < b.date ? 1 : -1))		
+	}
+	setFilteredJobs(newList!)		
   }
 
 	const editJob = (job: IJob) => {
@@ -148,6 +159,7 @@ function JobsProvider({ children }: JobsProps) {
 				handleSearchJob,
 				filteredJobs,
 				editJob,
+				handleFilterByDate
 			}}
 		>
 			{children}
