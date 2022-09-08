@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section`
   font-family: "roboto", sans-serif;
 
-  background-color: var(--gray-color-3);
+  background-color: var(--gray-color-0);
   height: 100vh;
   width: 100vw;
 

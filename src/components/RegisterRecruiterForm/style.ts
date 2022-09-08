@@ -121,7 +121,10 @@ export const Container = styled.div<Props>`
     .div {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      width: 80%;
+      margin: 0 auto;
+      max-width: 1464px;
     }
 
     .logoLinke2 {
