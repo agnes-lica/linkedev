@@ -132,6 +132,7 @@ function DevDashboard() {
         )}
       </section>
       {modalJobDetail && <ModalJobDetails />}
+      {editModalDev && <EditModalProfileDev />}
     </Container>
   ) : (
     <>{logout()}</>

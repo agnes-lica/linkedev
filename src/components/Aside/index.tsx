@@ -8,7 +8,7 @@ import { GlobalContext } from "../../providers/Global/GlobalContext";
 function Aside() {
   const style = { fontSize: "22px", color: "#BF90DC" };
 
-  const { user } = useContext(UserContext);
+  const { user, setEditModalDev} = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext)
 
   return (
@@ -37,7 +37,7 @@ function Aside() {
             </p>
           </div>
 
-          <button onClick={() => console.log("editar perfil")}>
+          <button onClick={() => setEditModalDev(user)}>
             <BiEditAlt size={22} /> Editar Perfil
           </button>
         </>

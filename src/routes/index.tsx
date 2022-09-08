@@ -15,8 +15,6 @@ const RoutesApplication = () => {
 
       <Route path="/devDashboard" element={<DevDashboard />} />
       <Route path="/recruiterDashboard" element={<RecruiterDashboard />} />
-
-      <Route path="/teste" element={<EditModalPerfilDev />} />
     </Routes>
   );
 };

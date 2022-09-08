@@ -8,7 +8,7 @@ function LandingPageLayoutPC() {
     <Container>
       <section className="headerLanding">
         <div>
-          <img src="./logoLinke.svg" alt="Logo LinkeDev" />
+          <img src="./LogoPC_Dark.svg" alt="Logo LinkeDev" />
           <h2>A maior plataforma de contratações tech!</h2>
         </div>
         <div>
@@ -18,7 +18,7 @@ function LandingPageLayoutPC() {
 
       <section className="mainLanding">
         <div>
-          <img src="./logoLogin.svg" alt="logo Login" />
+          <img src="./newLogoLinke.svg" alt="logo Login" />
         </div>
         <div>
           <p>
