@@ -16,7 +16,7 @@ import { DevContext } from "../../providers/Dev/DevContext";
 import EditModalRecruiter from "../../components/EditModalRecruiter";
 
 function RecruiterDashboard() {
-  const { loading, user, nav, setNav, modalEditRecruiter } = useContext(UserContext);
+  const { loading, user, nav, setNav, modalEditRecruiter, searchFilter, filteredDevs } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
   const { dev, getModalDevProfile, modalDevProfile } = useContext(DevContext);
 
@@ -54,7 +54,9 @@ function RecruiterDashboard() {
                     <Button buttonFunction={subscriptions}>Inscrições</Button>
                   </section>
                   <section className="search">
-                    <input placeholder="Nome, Tecnologia..." type="text" />
+                    <input placeholder="Nome, Tecnologia..."
+                           onChange={(e) => searchFilter(e.target.value)}
+                           type="text" />
                     <button>
                       <AiOutlineSearch size={25} />
                     </button>
