@@ -10,6 +10,7 @@ Facilitar o contato entre desenvolvedores interessados em vagas e os recrutadore
 Endpoints da Api: https://github.com/projeto-frontend/linkedev-api
 <p>Desenvolvedor consegue:</p>
 Se cadastrar, fazer login, editar/atualizar perfil, visualizar vagas, reagir com interesse às vagas, filtrar e buscar vagas
+<br>
 <p>Tech Recruiter consegue:</p>
 Criar as publicações das vagas, visualizar as suas vagas, visualizar uma listagem de quem reagiu a suas vagas, acessar perfil dos devs, editar suas vagas, buscar devs de acordo com stack
 
