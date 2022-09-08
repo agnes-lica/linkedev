@@ -19,8 +19,8 @@ interface JobsProviderData {
 	setModalJobDetail: React.Dispatch<React.SetStateAction<boolean>>;
 	jobList: JobData[] | null;
 	editJob: (job: IJob) => void;
-  filteredJobs: JobData[] | null;
-  handleSearchJob: (search: string) => void;
+	filteredJobs: JobData[] | null;
+	handleSearchJob: (search: string) => void;
 }
 
 export interface JobData {
@@ -42,9 +42,8 @@ function JobsProvider({ children }: JobsProps) {
 	const [job, setJob] = useState<JobData | null>(null);
 	const [jobList, setJobList] = useState<JobData[] | null>([]);
 	const [modalJobDetail, setModalJobDetail] = useState(false);
-  const [filteredJobs, setFilteredJobs] = useState<JobData[] | null>([])
+  	const [filteredJobs, setFilteredJobs] = useState<JobData[] | null>([])
 	const { tags } = useContext(UserContext);
-
 	const { getDev } = useContext(DevContext);
 	const { user } = useContext(UserContext);
 
@@ -149,8 +148,8 @@ function JobsProvider({ children }: JobsProps) {
 				setModalJobDetail,
 				jobList,
 				jobApplication,
-        handleSearchJob,
-        filteredJobs
+				handleSearchJob,
+				filteredJobs,
 				editJob,
 			}}
 		>
