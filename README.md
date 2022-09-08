@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+#Projeto Front-End - Linkedev
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###Qual o problema a ser solucionado ?
+Tech Recruiters hoje tem a difícil tarefa de encontrar desenvolvedores qualificados para preencher as diversas vagas que possuem, então passam a abordar de forma incisiva perfis que acreditam ser potenciais candidatos mas estes nem sempre estão procurando colocação ou interessados. Na nossa aplicação fazemos uma ponte entre desenvolvedores que estão de fato procurando uma vaga e podem demonstrar interesse baseado nas informações adicionadas pelo tech recruiter, assim ele aborda perfis de foma mais assertiva e tem mais chance de sucesso em preencher a vaga.
+Qual a solução que a aplicação traz?
+Facilitar o contato entre desenvolvedores interessados em vagas e os recrutadores detentores das vagas em questão.
 
-## Available Scripts
+###Quais as features da aplicação que foram planejadas ?
+Endpoints da Api: https://github.com/projeto-frontend/api/blob/main/README.md
+Features do Front
+Desenvolvedor consegue:
+Se cadastrar, fazer login, editar/atualizar perfil, visualizar vagas, reagir com interesse às vagas, filtrar e buscar vagas
+Tech Recruiter consegue:
+Criar as publicações das vagas, visualizar as suas vagas, visualizar uma listagem de quem reagiu a suas vagas, acessar perfil dos devs, editar suas vagas, buscar devs de acordo com stack
 
-In the project directory, you can run:
+###Quais as bibliotecas que serão utilizadas pela equipe ?
+A aplicação será desenvolvida em Typescript e React. Utilizando as seguintes bibliotecas:
+- Styled components
+- React router dom
+- React icons
+- React forms
+- Yup
+- React toastify
+- Axios
+- React Framer Motion
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+###Quais ferramentas serão utilizadas ? (Ex: Trello, Notion, JSON Server, etc.)
+Será utilizado o Trello para organização do quadro Scrum, o código será versionado usando git e a plataforma Github utilizando conventional commits.
+Utilizaremos o JSON Server fake api para construir a API da nossa aplicação.
+Poker planning para definir dificuldade das tarefas.
