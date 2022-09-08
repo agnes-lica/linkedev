@@ -88,7 +88,7 @@ const EditModalProfileDev = () => {
                 onError={handleImageError}
               />
 
-              <label htmlFor="url">Escolher url</label>
+              <label htmlFor="url">Escolher url da imagem</label>
               <input
                 type="text"
                 id="url"
