@@ -101,7 +101,7 @@ export interface IJob {
   stacks: string[];
   type: string;
   reputation?: number;
-  candidates?: IUser[];
+  candidates?: string[];
   userId?: string;
   date?: string;
 }
