@@ -3,17 +3,17 @@ import { useContext, useState } from "react";
 import ModalJobDetails from "../../components/ModalJobDetails";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import { JobsContext } from "../../providers/Jobs/JobsContext";
-import { IJob, UserContext } from "../../providers/User/UserContext";
+import { UserContext } from "../../providers/User/UserContext";
 
 import { Container } from "./style";
 import Header from "../../components/Header";
 import Aside from "../../components/Aside";
 import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../components/Button";
-import { AiOutlineArrowLeft, AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
 import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { DevContext } from "../../providers/Dev/DevContext";
+import EditModalProfileDev from "../../components/EditModalPerfilDev";
 
 interface Iparam {
   valor: string;
@@ -22,10 +22,9 @@ interface Iparam {
 function DevDashboard() {
   const { job, getJobModal, modalJobDetail, setModalJobDetail, jobList } =
     useContext(JobsContext);
-  const { user, getRecruiterJobsList } = useContext(UserContext);
+  const { user, editModalDev } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
   const navigate = useNavigate();
-  const { getDevSubsList, devSub } = useContext(DevContext);
 
   const [mySubscription, setMySubscription] = useState(false);
 
@@ -35,37 +34,10 @@ function DevDashboard() {
       <section className="mainContent">
         <Aside />
         {mySubscription ? (
-          <>
-            <div className="jobContainer">
-              <div className="jobContainerHeader">
-                <h2>Meus Envios</h2>
-                <div className="buttonArrow">
-                  <button
-                    onClick={() => {
-                      setMySubscription(false);
-                      getDevSubsList();
-                    }}
-                  >
-                    <AiOutlineArrowLeft size={20} />
-                  </button>
-                </div>
-              </div>
-              <div className="jobList">
-                {devSub?.map((jobElem: IJob) => (
-                  <>
-                    <div key={jobElem.title} className="job">
-                      <span>Há 1 hora</span>
-                      <div>
-                        <h3>{jobElem.title}</h3>
-                        <p>{jobElem.stacks}</p>
-                        <span>Não lido</span>
-                      </div>
-                    </div>
-                  </>
-                ))}
-              </div>
-            </div>
-          </>
+          <div className="jobContainer">
+            <h1>teste</h1>
+            <button onClick={() => setMySubscription(false)}>voltar</button>
+          </div>
         ) : (
           <div className="jobContainer">
             <div className="jobContainerHeader">
