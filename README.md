@@ -7,7 +7,7 @@ Tech Recruiters hoje tem a difícil tarefa de encontrar desenvolvedores qualific
 Facilitar o contato entre desenvolvedores interessados em vagas e os recrutadores detentores das vagas em questão.
 
 ### Quais as features da aplicação que foram planejadas ?
-Endpoints da Api: https://github.com/projeto-frontend/linkedev-api
+Documentação da Api: https://github.com/projeto-frontend/linkedev-api
 <p>Desenvolvedor consegue:</p>
 Se cadastrar, fazer login, editar/atualizar perfil, visualizar vagas, reagir com interesse às vagas, filtrar e buscar vagas
 <br>
