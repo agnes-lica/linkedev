@@ -13,6 +13,7 @@ import Button from "../../components/Button";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsCashCoin, BsThreeDots, BsFillLayersFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import EditModalProfileDev from "../../components/EditModalPerfilDev";
 
 interface Iparam {
   valor: string;
@@ -21,7 +22,7 @@ interface Iparam {
 function DevDashboard() {
   const { job, getJobModal, modalJobDetail, setModalJobDetail, jobList } =
     useContext(JobsContext);
-  const { user } = useContext(UserContext);
+  const { user, editModalDev } = useContext(UserContext);
   const { logout } = useContext(GlobalContext);
   const navigate = useNavigate();
 
@@ -103,6 +104,7 @@ function DevDashboard() {
         )}
       </section>
       {modalJobDetail && <ModalJobDetails />}
+      {editModalDev && <EditModalProfileDev />}
     </Container>
   ) : (
     <>{logout()}</>

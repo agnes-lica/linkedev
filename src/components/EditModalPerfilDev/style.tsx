@@ -8,6 +8,9 @@ export const Container = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
+  top: 0px;
+  left: 0px;
+  right: 0px;
 
   padding: 0px 10px 24px 10px;
   gap: 16px;

@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { UserContext } from "../../providers/User/UserContext";
+import { IEditDev, UserContext } from "../../providers/User/UserContext";
 import * as yup from "yup";
 import { Container, Form, Header } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 
-interface IEditModallProps {
-  name: string;
-  email: string;
-  title: string;
-  stacks: string[];
-  bio: string;
-  avatar_url: string;
-}
-
 const EditModalProfileDev = () => {
-  const { editProfileDev, setEditModalDev, editModalDev, user, setUser } =
-    useContext(UserContext);
+  const { editProfileDev, setEditModalDev, user } = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext);
-  console.log("user", user);
+  // console.log("user", user);
 
   const formEditDev = yup.object().shape({
     name: yup.string().optional(),
@@ -34,21 +24,10 @@ const EditModalProfileDev = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
-  } = useForm<IEditModallProps>({
+  } = useForm<IEditDev>({
     resolver: yupResolver(formEditDev),
-    // defaultValues: {
-    //   name: user?.name,
-    //   email: user?.email,
-    //   title: user?.title,
-    //   stacks: user?.stacks,
-    //   avatar_url: user?.avatar_url,
-    //   resumo: user?.resumo,
-    // },
   });
-
-  // const dev = { name: user?.name, email: user?.email };
 
   return (
     <Container>
@@ -101,7 +80,6 @@ const EditModalProfileDev = () => {
             </div>
 
             <div className="formdev2">
-              {/* <img className="perfilDev" src="perfil.svg" alt="Perfil Dev" /> */}
               <img
                 className="perfilDev"
                 defaultValue={user?.avatar_url}
@@ -123,7 +101,7 @@ const EditModalProfileDev = () => {
               <label htmlFor="bio">Bio</label>
               <textarea
                 id="bio"
-                defaultValue={user?.resumo}
+                defaultValue={user?.bio}
                 {...register("bio")}
               />
               <p>{errors.bio?.message}</p>
