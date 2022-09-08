@@ -6,7 +6,7 @@ import { UserContext } from "../../providers/User/UserContext";
 import { Container } from "./style";
 import Header from "../../components/Header";
 import Aside from "../../components/Aside";
-import { MdLocationOn, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsCashCoin, BsFillLayersFill } from "react-icons/bs";
 import { DevContext } from "../../providers/Dev/DevContext";

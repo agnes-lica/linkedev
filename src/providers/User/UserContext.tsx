@@ -28,6 +28,9 @@ interface IUserProps {
   nav: string;
   setNav: React.Dispatch<React.SetStateAction<string>>;
   recruiterSubs: IUser[];
+  editProfileRecruiter: (data: IEditRecruiterForm) => void;
+  modalEditRecruiter:IEditRecruiterForm | null;
+  setModalEditRecruiter: (modalEditRecruiter: IEditRecruiterForm | null) => void;
 }
 
 export interface IUser {
@@ -44,19 +47,13 @@ export interface IUser {
   bio?: string;
   title?: string;
 }
-
-
-
-// export interface IEditDevForm {
-//   email: string;
-//   password?: string;
-//   level?: string;
-//   title: string;
-//   stacks: string[];
-//   bio?: string;
-//   social?: string;
-//   avatar_URL: string;
-// }
+export interface IEditRecruiterForm {
+  name?: string;
+  email?: string;
+  company?:string;
+  social?: string;
+  avatar_URL?: string;
+}
 
 export interface IHandleRegister {
   name: string;
@@ -108,6 +105,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [nav, setNav] = useState("devsList");
   const [tags, setTags] = useState<string[]>([]);
+  const [modalEditRecruiter, setModalEditRecruiter] = useState<IEditRecruiterForm | null>(null)
   const navigate = useNavigate();
 
   const handleRegister = (data: IHandleRegister) => {
@@ -261,6 +259,27 @@ const UserProvider = ({ children }: IProviderChildren) => {
       });
   };
 
+  const editProfileRecruiter = (data: IEditRecruiterForm) => {
+    !data.name && delete data.name;
+    !data.email && delete data.email;
+    !data.company && delete data.company;
+    !data.avatar_URL && delete data.avatar_URL;
+    !data.social && delete data.social;
+
+    api
+      .patch(`/users/${user?.id}`, data)
+      .then((response) => {
+        setUser(response.data);
+        setModalEditRecruiter(null);
+        toast.success("perfil atualizado com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+
+        toast.error("Erro ao atualizar perfil!");
+      });
+  };
+
 
   return (
     <UserContext.Provider
@@ -281,6 +300,9 @@ const UserProvider = ({ children }: IProviderChildren) => {
         addJob,
         tags,
         setTags,
+        editProfileRecruiter,
+        modalEditRecruiter,
+        setModalEditRecruiter
       }}
     >
       {children}

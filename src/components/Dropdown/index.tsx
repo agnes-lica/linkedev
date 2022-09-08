@@ -10,7 +10,7 @@ import { DevContext } from "../../providers/Dev/DevContext";
 function Dropdown() {
   const [open, setOpen] = useState<boolean>(false);
   const { logout } = useContext(GlobalContext);
-  const { user } = useContext(UserContext);
+  const { user, setModalEditRecruiter } = useContext(UserContext);
   const { setEditModalDev } =useContext(DevContext)
 
   useEffect(() => {
@@ -28,7 +28,11 @@ function Dropdown() {
 
       {open && (
         <div className="dropdown">
-          <button onClick={() => setEditModalDev(user)}>
+          <button onClick={() => {
+            setEditModalDev(user)
+            setModalEditRecruiter(user)
+            }
+          }>
             <BiEditAlt /> Editar Perfil
           </button>
           <button onClick={logout}>

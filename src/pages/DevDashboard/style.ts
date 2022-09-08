@@ -47,6 +47,16 @@ export const Container = styled.section`
         justify-content: center;
         align-items: center;
 
+        .filter{
+          display: flex;
+          align-items: center;
+        }
+        
+        .filter select{
+          height: 38px;
+          border-radius: 5px;
+        }
+
         nav {
           width: 100%;
           height: fit-content;

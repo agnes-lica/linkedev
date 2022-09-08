@@ -9,9 +9,10 @@ import { DevContext } from "../../providers/Dev/DevContext";
 function Aside() {
   const style = { fontSize: "22px", color: "#BF90DC" };
 
-  const { user } = useContext(UserContext);
+  const { user, setModalEditRecruiter } = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext)
   const { getModalDevProfile, setEditModalDev } =useContext(DevContext)
+
 
   return (
     <Container>
@@ -40,7 +41,11 @@ function Aside() {
             </p>
           </div>
 
-          <button onClick={() => setEditModalDev(user)}>
+          <button onClick={() => {
+            setEditModalDev(user)
+            setModalEditRecruiter(user)  
+            }          
+          }>
             <BiEditAlt size={22} /> Editar Perfil
           </button>
         </>
