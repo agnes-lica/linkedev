@@ -1,6 +1,7 @@
-import { useState, ReactNode, createContext } from "react";
+import { AxiosResponse } from "axios";
+import { useState, ReactNode, createContext, useContext } from "react";
 import api from "../../services/api";
-import { IUser } from "../User/UserContext";
+import { IJob, IUser, UserContext } from "../User/UserContext";
 
 export const DevContext = createContext({} as DevProviderData);
 
@@ -14,11 +15,16 @@ interface DevProviderData {
   modalDevProfile: boolean;
   setModalDevProfile: React.Dispatch<React.SetStateAction<boolean>>;
   getModalDevProfile: (id: string) => void;
+  getDevSubsList: () => Promise<void>;
+  devSub: IJob[];
 }
 
 function DevProvider({ children }: DevProps) {
+  const { user } = useContext(UserContext);
+
   const [dev, setDev] = useState<IUser | null>(null);
   const [modalDevProfile, setModalDevProfile] = useState<boolean>(false);
+  const [devSub, setDevSub] = useState([]);
 
   async function getDev(id: string) {
     await api.get(`/users/${id}`).then((res) => {
@@ -31,6 +37,24 @@ function DevProvider({ children }: DevProps) {
     setModalDevProfile(true);
   }
 
+  const getDevSubsList = async () => {
+    await api.get("/jobs").then((res: AxiosResponse) => {
+      let devSubs = [];
+      const devNewSubs = res.data.filter((job: IJob) => {
+        const jobCandidate = job.candidates?.find((candidate: IUser) => {
+          if (candidate.id === user?.id) {
+            return true;
+          }
+        });
+        if (jobCandidate) {
+          return true;
+        }
+      });
+      setDevSub(devNewSubs);
+    });
+    console.log(devSub);
+  };
+
   return (
     <DevContext.Provider
       value={{
@@ -39,6 +63,8 @@ function DevProvider({ children }: DevProps) {
         getModalDevProfile,
         modalDevProfile,
         setModalDevProfile,
+        getDevSubsList,
+        devSub,
       }}
     >
       {children}

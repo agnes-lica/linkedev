@@ -88,6 +88,64 @@ export const Container = styled.section`
           }
         }
       }
+
+      .buttonArrow {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          background-color: transparent;
+
+          color: var(--primary-focus-color);
+          font-weight: 600;
+        }
+      }
+
+      .job {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        background-color: #ffffff;
+        box-shadow: 0px 3px 6px 0px #c2bfbf;
+
+        height: fit-content;
+        padding: 0.5rem;
+
+        border-radius: 8px;
+        span {
+          font-size: 10px;
+          font-weight: 200;
+        }
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+
+          width: 100%;
+          h3 {
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+          p {
+            font-size: 16px;
+            font-weight: 300;
+          }
+
+          span {
+            font-size: 10px;
+            font-weight: 400;
+
+            padding: 4px;
+            background-color: #cacaca;
+            border-radius: 2px;
+          }
+        }
+      }
     }
   }
 
@@ -286,6 +344,9 @@ export const Container = styled.section`
           input {
             width: 80%;
           }
+        }
+        .job {
+          box-shadow: none;
         }
       }
     }
