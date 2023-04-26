@@ -11,7 +11,7 @@ export const Container = styled.section`
     height: 2.5rem;
   }
 
-  .buttons button{
+  .buttons button {
     padding: 12px;
     border-radius: 8px;
   }
@@ -37,7 +37,7 @@ export const Container = styled.section`
 
       padding: 2rem;
       width: 65%;
-      
+
       height: max-content;
 
       .jobContainerHeader {
@@ -47,12 +47,12 @@ export const Container = styled.section`
         justify-content: center;
         align-items: center;
 
-        .filter{
+        .filter {
           display: flex;
           align-items: center;
         }
-        
-        .filter select{
+
+        .filter select {
           height: 38px;
           border-radius: 5px;
         }
@@ -69,7 +69,7 @@ export const Container = styled.section`
           align-items: center;
 
           .search {
-            height: 2.5rem;
+            height: 100%;
             margin: 0px;
 
             display: flex;
@@ -77,7 +77,7 @@ export const Container = styled.section`
             align-items: center;
 
             input {
-              max-height: 100%;
+              /* max-height: 100%; */
               border: 1px solid #b1b5ba;
               border-radius: 5px 0 0 5px;
               padding: 11px 5px;
@@ -85,7 +85,7 @@ export const Container = styled.section`
 
             .searchButton {
               width: 66px;
-              height: 100%;
+              height: 39px;
               border: 1px solid #b1b5ba;
               border-left: 0px;
               border-radius: 0 5px 5px 0;
@@ -113,7 +113,7 @@ export const Container = styled.section`
     flex-direction: column;
     gap: 1rem;
 
-    .job{
+    .job {
       background-color: #ffffff;
       border-radius: 8px;
       background-color: #ffffff;
@@ -122,7 +122,7 @@ export const Container = styled.section`
       padding: 1rem;
     }
 
-    .card{
+    .card {
       background-color: #ffffff;
       border: solid 2px rgba(0, 0, 0, 0.15);
       border-radius: 8px;
@@ -199,7 +199,7 @@ export const Container = styled.section`
           height: fit-content;
         }
 
-        .stack{
+        .stack {
           background-color: var(--primary-3-color);
           color: var(--gray-color-0);
           padding: 3px 5px;
@@ -207,7 +207,7 @@ export const Container = styled.section`
         }
       }
     }
-    .card:hover{
+    .card:hover {
       box-shadow: var(--box-shadow);
       cursor: pointer;
     }

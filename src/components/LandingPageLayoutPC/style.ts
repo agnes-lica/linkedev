@@ -4,15 +4,15 @@ export const Container = styled.section`
   font-family: "roboto", sans-serif;
 
   width: 100vw;
-  max-height: 100vh;
+  /* max-height: 100vh; */
 
   background-color: var(--gray-color-0);
 
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
 
   display: flex;
   flex-direction: column;
-  max-width: 1464px;
+  /* max-width: 1464px; */
   margin: auto;
   /* justify-content: space-between; */
 
@@ -24,32 +24,49 @@ export const Container = styled.section`
     padding: 15px 20px;
   }
 
-  button:hover {
-    background-color: var(--primary-color);
+  .signupBtn {
+    background-color: var(--gray-color-3);
+    border: 1px solid black;
+  }
+
+  .signupBtn:hover {
+    background-color: white;
+    color: black;
+    transition: ease-in-out 0.2s;
   }
 
   .headerLanding {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
+    margin: 0px 8.5%;
+    /* margin-top: 2%; */
+
+    /* margin-left: -2px; */
 
     img {
       width: 50rem;
       max-width: 700px;
     }
-    h2 {
-      font-size: 40px;
-      font-weight: 200;
+    h3 {
+      font-size: 18px;
+      margin-top: -5px;
+      margin-left: 20px;
+    }
+    div:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
   .mainLanding {
     display: flex;
     flex-direction: row;
+    margin: 0px 8.5%;
 
     p {
-      font-size: 26px;
+      font-size: 16px;
       font-weight: 400;
       color: var(--gray-color-1);
       line-height: 1;
@@ -65,17 +82,20 @@ export const Container = styled.section`
       gap: 5%;
       align-items: center;
       justify-content: center;
+      width: 45.9%;
     }
   }
 
-  @media (max-width: 2544px) {
-    padding-top: 3rem;
-    padding: 0px 10%;
-    
+  @media (max-width: 2560px) {
+    /* padding-top: 3rem; */
+    /* padding: 0px 8.5%; */
+    /* margin: 0px 7.9%; */
+    height: 100vh;
 
     .headerLanding {
       img {
-        width: 40rem;
+        width: 350px;
+        height: 120px;
       }
     }
 
@@ -83,16 +103,21 @@ export const Container = styled.section`
       height: 100vh;
       display: flex;
       flex-direction: row;
-      align-items: flex-end;
+      /* align-items: flex-end; */
 
+      div:nth-child(1) {
+        display: flex;
+        align-items: flex-end;
+      }
+      
       img {
-        width: 55rem;
-        max-width: 700px;
+        width: 100%;
+        /* margin-left: -23px; */
       }
 
-      div:nth-child(2) {
-        height: 80%;
 
+      div:nth-child(2) {
+        /* height: 80%; */
         display: flex;
         flex-direction: column;
         gap: 6%;
@@ -102,13 +127,14 @@ export const Container = styled.section`
     }
   }
 
-  @media (max-width: 1798px) {
+  /* @media (max-width: 1798px) {
     padding-top: 10rem;
     padding: 0px 10%;
 
     .headerLanding {
       img {
-        width: 30rem;
+        width: 350px;
+        height: 120px;
       }
 
       .mainLanding {
@@ -119,7 +145,7 @@ export const Container = styled.section`
         align-items: flex-end;
 
         img {
-          width: 50rem;
+          width: 90vh;
         }
 
         div:nth-child(2) {
@@ -132,29 +158,36 @@ export const Container = styled.section`
           justify-content: center;
         }
       }
-    }
+    } */
 
-    @media (max-width: 1522px) {
+    /* @media (max-width: 1522px) {
       padding-top: 10rem;
       padding: 0px 10%;
 
       .headerLanding {
         img {
-          width: 20rem;
+          margin: 2.1px -5px;
+          width: 350px;
         }
 
-        h2 {
-          font-size: 30px;
+        div {
+          h3 {
+          font-size: 18px;
+          margin: -6px 0px 0px 15.5px;
+        }
         }
       }
 
       .mainLanding {
         img {
-          width: 40rem;
+          width: 100vh;
+          margin-top: 30px;
+          margin-left: -27px;
+
         }
 
         p {
-          font-size: 28px;
+          font-size: 20px;
           font-weight: 300;
         }
 
@@ -164,7 +197,7 @@ export const Container = styled.section`
       }
     }
 
-    @media (max-width: 1127px) {
+    /* @media (max-width: 1127px) {
       padding-top: 10rem;
       padding: 0px 10%;
 
@@ -193,5 +226,5 @@ export const Container = styled.section`
         }
       }
     }
-  }
+  } */
 `;

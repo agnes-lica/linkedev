@@ -93,7 +93,7 @@ export interface IJob {
   stacks: string[];
   type: string;
   reputation?: number;
-  candidates?: IUser[];
+  candidates: IUser[];
   userId?: string;
   date?: string;
 }
@@ -135,8 +135,7 @@ const UserProvider = ({ children }: IProviderChildren) => {
         navigate("/login", { replace: true });
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Ops! Algo deu errado");
+        toast.error("Ops! Algo deu errado", err.message);
       });
   };
 
@@ -160,64 +159,43 @@ const UserProvider = ({ children }: IProviderChildren) => {
             } else {
               navigate("/devDashboard", { replace: true });
             }
-          }, 3000);
+          }, 2500);
         }
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Email ou senha inválido");
+        toast.error("Email ou senha inválido", err.message);
       });
   };
 
   const getRecruiterSubsList = async () => {
     await api.get("/jobs").then((res: AxiosResponse) => {
-      const recSubs = res.data.filter(
-        (job: IJob) => job.userId === user?.id && job
+      const recruiterJobs: IJob[] = res.data.filter(
+        (job: IJob) => Number(job.userId) === Number(user?.id) && job
       );
 
-      const candidates = recSubs[0].candidates;
-      setRecruiterSubs(candidates);
-
+      const subsList: IUser[] = [];
+      recruiterJobs.map((subs) =>
+        subs.candidates.map((candidate) => subsList.push(candidate))
+      );
+      setRecruiterSubs(subsList);
     });
   };
 
   const getRecruiterJobsList = async () => {
     await api.get("/jobs").then((res: AxiosResponse) => {
-      // console.log(res);
       const recruiterJobs = res.data.filter(
-        (job: IJob) => job.userId === user?.id
+        (job: IJob) => Number(job.userId) === Number(user?.id) && job
       );
       setJobList(recruiterJobs);
     });
   };
 
-  useEffect(() => {
-    const getRecruiterDevsList = async () => {
-      await api
-        .get("/users")
-        .then((res: AxiosResponse) => {
-          const devs = res.data.filter((dev: IUser) => !dev.is_recruiter);
-          setDevList(devs);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    };
-
-    if (user) {
-      getRecruiterDevsList();
-    }
-  }, [user]);
-
   const searchFilter = (search: string) => {
     const filter = devList.filter(
       (dev) =>
-        dev.name?.toLowerCase().includes(search) ||
+        dev.name?.includes(search) ||
         dev.title?.toLowerCase().includes(search) ||
-        dev.level?.toLowerCase().includes(search)
+        dev.level?.includes(search)
     );
 
     setFilteredDevs(filter);
@@ -230,10 +208,8 @@ const UserProvider = ({ children }: IProviderChildren) => {
         const devs = res.data.filter((dev: IUser) => !dev.is_recruiter);
 
         setDevList(devs);
-        // console.log(newDevs);
       })
       .catch((err) => {
-        console.log(err);
       })
       .finally(() => {
         setLoading(false);
@@ -250,18 +226,16 @@ const UserProvider = ({ children }: IProviderChildren) => {
             setUser(res.data);
           })
           .catch((err) => {
-            console.error(err);
             navigate("/login");
             window.localStorage.removeItem("@linkeDev: UserToken");
-            toast.error("Você foi desconectado. Faça login novamente.");
+            toast.error("Você foi desconectado. Faça login novamente.", err.message);
           });
       }
     }
     autoLogin();
-    setNav("devsList");
+    setNav("Início");
+    getRecruiterDevsList();
   }, [token, id, navigate]);
-
-  const today = new Date();
 
   const addJob = (data: IJob) => {
     api
@@ -277,14 +251,13 @@ const UserProvider = ({ children }: IProviderChildren) => {
         reputation: 0,
         candidates: [],
         userId: id,
-        date: today.toLocaleDateString(),
+        date: new Date().toLocaleDateString(),
       })
       .then((response) => {
         toastSuccessAddTech();
       })
       .catch((error) => {
         toastErrorAddTech();
-        console.log(error);
       })
       .finally(() => {
         setLoading(false);
@@ -307,11 +280,9 @@ const UserProvider = ({ children }: IProviderChildren) => {
         toast.success("perfil atualizado com sucesso!");
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Erro ao atualizar perfil!");
+        toast.error("Erro ao atualizar perfil!", err.message);
       });
   };
-
 
   return (
     <UserContext.Provider

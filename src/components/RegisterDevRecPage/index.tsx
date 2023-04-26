@@ -33,10 +33,10 @@ const RegisterDevRecPage = () => {
 
           <Div>
             <div className="text">
-              <h2>Esse é o primeiro passo para uma grande experiência</h2>
+              <h2>Esse é o primeiro passo para uma grande experiência.</h2>
               <h4>
                 Você é um
-                <span
+                <span className="optionDev"
                   onClick={() => {
                     setValue("dev");
                     setPage(false);
@@ -45,7 +45,7 @@ const RegisterDevRecPage = () => {
                   Dev
                 </span>
                 ou
-                <span
+                <span className="optionRecruiter"
                   onClick={() => {
                     setValue("recruiter");
                     setPage(false);
@@ -61,9 +61,9 @@ const RegisterDevRecPage = () => {
             </div>
           </Div>
         </div>
-        <div className="teste">
+        {/* <div className="teste">
           <img className="vector" src="./vector.svg" alt="Imagem de background mostra uma moça selecionando candidatos" />
-        </div>
+        </div> */}
       </Container>
 
       {value === "dev" && <DevForm />}

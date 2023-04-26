@@ -5,8 +5,8 @@ interface Props {
 }
 
 export const Container = styled.div<Props>`
-  width: 100vw;
-  min-height: 100vh;
+  /* width: 100vw;
+  min-height: 100vh; */
   background-color: var(--gray-color-0);
   color: var(--gray-color-3);
   display: ${(props) => {
@@ -72,40 +72,38 @@ export const Container = styled.div<Props>`
       else return "none";
     }};
     flex-direction: column;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 
     .div {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-right: 20px;
+      /* margin-right: 20px; */
     }
     .divImgDesktop {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      margin: 0px;
+      justify-content: space-between;
     }
 
     .logoLinke2 {
       display: flex;
       width: 350px;
       height: 120px;
-      margin-left: 20px;
+      /* margin-left: 20px;
+      margin-top: 22px; */
     }
 
     h3 {
-      visibility: visible;
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 40px;
-      margin-left: 20px;
+    visibility: visible;
+    font-size: 18px;
+    margin: -12px 0px 0px 20px;
     }
 
     .imgLogin {
       display: flex;
       width: 580px;
-      margin-top: 60px;
+      /* margin: 22px 0px 0px 0px */
     }
 
     .divRegister {
@@ -120,18 +118,16 @@ export const Container = styled.div<Props>`
   @media (min-width: 1100px) {
     .div {
       display: flex;
+      margin: 0px 8.5%;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      height: 100vh;
     }
 
     .imgLogin {
       display: flex;
-      width: 640px;
-      margin-top: 10px;
-    }
-
-    .divRegister {
-      margin-right: 40px;
+      /* width: 100vh; */
+      width: 90.8%;
     }
 
     h2 {

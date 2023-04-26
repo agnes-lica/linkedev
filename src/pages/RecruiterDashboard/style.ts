@@ -5,6 +5,7 @@ export const Container = styled.section`
   flex-direction: column;
 
   .title {
+    text-align: center;
     margin: 15px;
     font-family: var(--font-family-2);
     h2 {
@@ -82,15 +83,31 @@ export const Container = styled.section`
     }
 
     .filter {
+      display: flex;
+      align-items: center;
+
       p {
         font-size: 12px;
         span {
           font-size: 16px;
         }
       }
+      select {
+        height: 38px;
+        border-radius: 5px;
+        border: 1px solid #b1b5ba;
+      }
 
       svg {
         cursor: pointer;
+      }
+
+      .filterOptions {
+        text-align: center;
+
+        p {
+          font-size: 16px;
+        }
       }
     }
   }
@@ -102,6 +119,7 @@ export const Container = styled.section`
     .btnArrowBack {
       position: relative;
       right: 0;
+      cursor: pointer;
     }
 
     ul {

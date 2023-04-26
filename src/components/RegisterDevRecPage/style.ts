@@ -5,20 +5,24 @@ interface Props {
 }
 
 export const Container = styled.div<Props>`
-  width: 100vw;
-  max-height: 100vh;
+  /* width: 100vw;
+  max-height: 100vh; */
+  height: 100vh;
   background-color: var(--gray-color-0);
   color: var(--gray-color-3);
   display: ${(props) => {
-    if (props.page) return "block";
+    if (props.page) return "flex";
     else return "none";
   }};
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 
   h3 {
     font-size: 22px;
     text-align: center;
-    padding: 10px;
-    margin-top: 40px;
+    /* padding: 10px; */
   }
 
   /* svg desktop */
@@ -40,6 +44,14 @@ export const Container = styled.div<Props>`
     background-size: 100vw;
   }
 
+  .optionDev:hover {
+    color: var(--primary-color);
+  }
+
+  .optionRecruiter:hover {
+    color: var(--primary-color);
+  }
+
   /* ===================================================== */
 
   @media (min-width: 800px) {
@@ -47,43 +59,45 @@ export const Container = styled.div<Props>`
       display: none;
     }
     .div {
-      width: 80%;
-      max-width: 1464px;
-      margin: auto;
+      /* width: 83.9%; */
+      /* max-width: 1464px; */
+      /* margin: 0px 8%; */
+      margin: 0px 8.5%;
       height: 100vh;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-end;
     }
 
     .divImgDesktop {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      width: 50vw;
-      max-width: 900px;
+      justify-content: space-between;
+      /* width: 50vw;
+      max-width: 900px; */
     }
 
     .logoLinke2 {
       display: flex;
-      width: 300px;
-      height: 100px;
-      margin-left: 20px;
+      width: 350px;
+      height: 120px;
+      /* margin-top: 4px; */
     }
 
     h3 {
-      text-align: start;
+      text-align: left;
       font-size: 18px;
-      font-weight: 600;
-      margin-left: 20px;
-    }
+      margin-left: 15px;
+      margin-bottom: 50px;
+      /* margin-bottom: 60px; */
+      padding: 0px 0px 2px 5px;
+      
+    } 
 
     .imgLogin {
       display: flex;
-      width: 46vw;
-      margin-left: 10px;
-      max-width: 800px;
+      width: 100%;
+      margin-top: -40px;
     }
   }
 `;
@@ -161,11 +175,14 @@ export const Div = styled.div`
   /* ===================================================== */
 
   @media (min-width: 800px) {
-    width: 45vw;
+    /* width: 45vw; */
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-bottom: 200px;
+    justify-content: space-between;
+    /* margin-bottom: 200px; */
+    margin: auto;
+    width: 46%;
 
     .text {
       display: flex;
@@ -173,7 +190,7 @@ export const Div = styled.div`
       align-items: flex-start;
       text-align: start;
       gap: 50px;
-      margin-bottom: 100px;
+      /* margin-bottom: 100px; */
     }
 
     h2 {

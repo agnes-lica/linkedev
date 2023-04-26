@@ -8,33 +8,41 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
+import { BsFilterRight} from 'react-icons/bs'
 import { UserContext } from "../../providers/User/UserContext";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/Global/GlobalContext";
 import DevProfile from "../../components/ModalDevProfile";
 import { DevContext } from "../../providers/Dev/DevContext";
 import EditModalRecruiter from "../../components/EditModalRecruiter";
+import { BiArrowBack } from "react-icons/bi";
 
 function RecruiterDashboard() {
-  const { loading, user, nav, setNav, modalEditRecruiter, searchFilter, filteredDevs } = useContext(UserContext);
   const { logout, handleImageError } = useContext(GlobalContext);
   const { dev, getModalDevProfile, modalDevProfile } = useContext(DevContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { getRecruiterSubsList, getRecruiterJobsList } =
-    useContext(UserContext);
+  const {
+    getRecruiterSubsList,
+    getRecruiterJobsList,
+    searchFilter,
+    user,
+    nav,
+    setNav,
+    modalEditRecruiter,
+  } = useContext(UserContext);
 
   function jobs() {
     getRecruiterJobsList();
     setNav("jobsList");
-
   }
   function subscriptions() {
     getRecruiterSubsList();
     setNav("subsList");
-
   }
+  
+  // setNav('devsList')
 
   return (
     <>
@@ -44,7 +52,8 @@ function RecruiterDashboard() {
           <div className="recruiterContainer">
             <Aside />
             <div className="recruiterMain">
-              <div className="recruiterMainHeader">
+              {nav === "Início" && (
+                <div className="recruiterMainHeader">
                 <div className="title">
                   <h2>Início</h2>
                 </div>
@@ -62,18 +71,34 @@ function RecruiterDashboard() {
                     </button>
                   </section>
                   <section className="filter">
-                    <p>
-                      Filtrando por: <span>Todos</span>
-                      <MdOutlineKeyboardArrowDown />
-                    </p>
+                    {/* <p>Filtrando por: </p> */}
+                    <BsFilterRight size={25}/>
+                    <select
+                        onChange={(e) => searchFilter(e.target.value)}
+                        className="filterOptions"
+                      >
+                        <option value="">Todos</option>
+                        <option value="Júnior">Júnior</option>
+                        <option value="Pleno">Pleno</option>
+                        <option value="Sênior">Sênior</option>
+                      </select>
                   </section>
                 </nav>
               </div>
+              )}
               <div className="recruiterMainList">
                 <ul>
+                    {nav !== "Início" && (
+                      <div className="backArrow">
+                      <BiArrowBack
+                      className="btnArrowBack"
+                      size={25}
+                      onClick={() => setNav("Início")}/>
+                    </div>
+                    )}
                   {nav === "jobsList" && <JobsList />}
                   {nav === "subsList" && <SubscriptionsList />}
-                  {nav === "devsList" && <DevsList />}
+                  {nav === "Início" && <DevsList />}
                 </ul>
               </div>
             </div>

@@ -130,9 +130,9 @@ const DevForm = () => {
               <label htmlFor="level">Nível</label>
               <select id="level" {...register("level")}>
                 <option value="item">---selecione um nível---</option>
-                <option value="junior">Nível Junior</option>
-                <option value="pleno">Nível Pleno</option>
-                <option value="senior">Nível Sênior</option>
+                <option value="Júnior">Nível Júnior</option>
+                <option value="Pleno">Nível Pleno</option>
+                <option value="Sênior">Nível Sênior</option>
               </select>
 
               <label htmlFor="stacks">Tecnologias que você domina</label>

@@ -35,7 +35,17 @@ export const Container = styled.header`
             margin: 0;
             
                 > button{
-                    font-weight: 600;
+                    font-weight: 200;
+                    background-color: white;
+                    border: 1px solid rgba(0, 0, 0, 0.15);
+                    color: rgba(0, 0, 0, 0.3);
+                    box-shadow: none;
+                }
+                button:hover {
+                    background-color: black;
+                    border: 1px solid black;
+                    color: white;
+                    transition: 0.5s ease-in-out;
                 }
             }
         

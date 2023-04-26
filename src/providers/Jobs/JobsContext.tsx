@@ -94,7 +94,6 @@ function JobsProvider({ children }: JobsProps) {
 				getJobAndRecruiter(id);
 			})
 			.catch((err) => {
-				console.error(err);
 				toast.error("Ops! Algo deu errado.");
 			});
 	}
@@ -141,7 +140,6 @@ function JobsProvider({ children }: JobsProps) {
 				toast.success("Vaga atualizada com sucesso!");
 			})
 			.catch((err) => {
-				console.log(err);
 				toast.error("Erro ao atualizar vaga!");
 			});
 	};

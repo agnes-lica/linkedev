@@ -72,48 +72,46 @@ export const Container = styled.div<Props>`
       else return "none";
     }};
     flex-direction: column;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 
     .div {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-right: 20px;
+      margin: 0px 8.5%;
     }
     .divImgDesktop {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      margin: 0px;
+      justify-content: space-between;
     }
 
     .logoLinke2 {
       display: flex;
-      width: 300px;
-      height: 80px;
-      margin-left: 20px;
+      width: 350px;
+      height: 120px;
+      /* margin-left: 20px; */
     }
 
     h3 {
-      visibility: visible;
-      color: var(--gray-color-3);
+      text-align: left;
       font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 60px;
-      margin-left: 20px;
+      margin-left: 15px;
+      margin-bottom: 50px;
+      /* margin-bottom: 60px; */
+      /* padding: 0px 0px 2px 5px; */
     }
 
     .imgLogin {
       display: flex;
-      width: 580px;
-      margin-top: 100px;
+      width: 100%;
+      margin-top: -40px;
     }
 
     .divRegister {
-      margin-right: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      margin: auto;
     }
   }
 
@@ -122,33 +120,30 @@ export const Container = styled.div<Props>`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 80%;
-      margin: 0 auto;
-      max-width: 1464px;
+      /* width: 80%; */
+      margin: 0 8.5%;
+      height: 100vh;
     }
 
     .logoLinke2 {
       width: 350px;
       height: 120px;
-      margin-left: 40px;
     }
 
     h3 {
-      visibility: visible;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      margin-left: 40px;
+    visibility: visible;
+    font-size: 18px;
+    margin: -53px 0px 0px 20px;
     }
 
     .imgLogin {
       display: flex;
-      width: 640px;
-      margin-top: 10px;
+      width: 88.6%;
     }
 
     .divRegister {
-      margin-right: 40px;
+      /* margin-right: 40px; */
+      margin: auto;
     }
 
     h2 {

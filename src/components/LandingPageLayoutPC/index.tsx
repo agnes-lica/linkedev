@@ -11,7 +11,7 @@ function LandingPageLayoutPC() {
       <section className="headerLanding">
         <div>
           <img src={Logo} alt="Logo LinkeDev" />
-          <h2>A maior plataforma de contratações tech!</h2>
+          <h3>A maior plataforma de contratações tech!</h3>
         </div>
         <div>
           <button onClick={() => navigate("/login")}>Entrar</button>
@@ -35,7 +35,7 @@ function LandingPageLayoutPC() {
             Como Recruiter você pode coversar com vários techs e achar aquele
             que mais se encaixa no perfil da sua empresa!
           </p>
-          <button onClick={() => navigate("/options")}>Cadastrar</button>
+          <button className="signupBtn" onClick={() => navigate("/options")}>Cadastrar</button>
         </div>
       </section>
     </Container>

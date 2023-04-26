@@ -7,32 +7,29 @@ import ModalCreateJob from "../ModalCreateJob";
 
 const JobsList = () => {
   function devsList() {
-    setNav("devsList");
+    setNav("Início");
   }
 
   const { nav, setNav, jobList } = useContext(UserContext);
   // console.log(jobList);
   return (
-		<>
-			<ModalCreateJob />
-			<JobsContainer>
-				<div className="backArrow">
-					<BiArrowBack className="btnArrowBack" size={25} onClick={() => devsList()} />
-				</div>
-				{jobList.map((job) => (
-					<li key={job.userId}>
-						<h1>{job.title}</h1>
-						<p>N° aplicações: {job?.candidates?.length}</p>
-						<p>{job.place}</p>
-						<p>{job.salary}</p>
-						<p>{job.level}</p>
-						<p>{job.type}</p>
-						<p>{job.stacks}</p>
-						<ModalEditJob job={job} />
-					</li>
-				))}
-			</JobsContainer>
-		</>
+    <>
+      <ModalCreateJob />
+      <JobsContainer>
+        {jobList.map((job) => (
+          <li key={job.id}>
+            <h1>{job.title}</h1>
+            <p>N° aplicações: {job?.candidates?.length}</p>
+            <p>{job.place}</p>
+            <p>{job.salary}</p>
+            <p>{job.level}</p>
+            <p>{job.type}</p>
+            <p>{job.stacks}</p>
+            <ModalEditJob job={job} />
+          </li>
+        ))}
+      </JobsContainer>
+    </>
   );
 };
 

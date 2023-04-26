@@ -7,13 +7,16 @@ import { DevItem } from "./styles";
 const DevsList = () => {
   const { devList, filteredDevs } = useContext(UserContext);
   const { handleImageError } = useContext(GlobalContext);
-  const {getModalDevProfile} = useContext(DevContext)
+  const { getModalDevProfile } = useContext(DevContext);
 
   return (
     <>
       {(filteredDevs.length > 0 ? filteredDevs : devList).map((dev) => (
-        <DevItem key={dev.id} className="card"
-        onClick={() => getModalDevProfile(dev.id)}>
+        <DevItem
+          key={dev.id}
+          className="card"
+          onClick={() => getModalDevProfile(dev.id)}
+        >
           <div className="pic">
             <img
               src={dev.avatar_URL || "../../assets/user.png"}
@@ -26,12 +29,10 @@ const DevsList = () => {
               <span>Há 12 horas</span>
               <h2>{dev.name}</h2>
               <p>{dev.title}</p>
-              <p>Modelo de trabalho</p>
+              <p>{dev.social}</p>
             </div>
             <div className="details">
-              <span>São Paulo</span>
-              <span>R$ 3.000,00</span>
-              <span>2 anos</span>
+              <span>{dev.level}</span>
               <span>{dev.stacks}</span>
             </div>
           </section>

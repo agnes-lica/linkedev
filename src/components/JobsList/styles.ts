@@ -7,6 +7,10 @@ export const JobsContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
+  .title {
+    text-align: center;
+  }
+
   .backArrow {
     display: flex;
     align-self: flex-end;

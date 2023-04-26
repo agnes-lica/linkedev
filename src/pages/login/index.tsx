@@ -47,7 +47,6 @@ const Login = () => {
               src="./LogoPC_light.svg"
               alt="LinkeDev"
             />
-            <h3>A maior plataforma de contratações tech!</h3>
             <img
               className="imgLogin"
               src="./newLogoLinke.svg"
@@ -56,6 +55,7 @@ const Login = () => {
           </div>
 
           <div className="divLogin">
+          <h3>A maior plataforma de contratações tech!</h3>
             <h2>Login</h2>
 
             <Form onSubmit={handleSubmit(handleLogin)}>
@@ -78,7 +78,7 @@ const Login = () => {
               <p>{errors.password?.message}</p>
 
               <div className="back">
-                <button className="buttonBack" onClick={() => navigate("/")}>
+                <button className="buttonBack" type="button" onClick={() => navigate("/")}>
                   voltar
                 </button>
                 <button className="buttonLogin" type="submit">

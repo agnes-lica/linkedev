@@ -5,13 +5,20 @@ interface Props {
 }
 
 export const Container = styled.div<Props>`
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   min-height: 100vh;
   background-color: var(--gray-color-0);
-  display: ${(props) => {
+  /* display: ${(props) => {
     if (props.page) return "block";
     else return "none";
-  }};
+  }}; */
+  /* display: flex; */
+
+  .div {
+    margin: auto;
+  }
 
   .buttonBack {
     display: flex;
@@ -62,7 +69,8 @@ export const Container = styled.div<Props>`
   }
 
   h3 {
-    visibility: hidden;
+    /* visibility: hidden; */
+    font-weight: 200;
   }
 
   .logoLinke2 {
@@ -75,69 +83,74 @@ export const Container = styled.div<Props>`
       else return "none";
     }};
     flex-direction: column;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 
     .div {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      margin-right: 20px;
+      /* justify-content: space-evenly; */
+      
     }
     .divImgDesktop {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
     }
 
     .logoLinke2 {
       display: flex;
       width: 350px;
       height: 120px;
-      margin-left: 20px;
+      /* margin-left: 21px; */
     }
 
     h3 {
       visibility: visible;
-      color: var(--gray-color-3);
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 300;
       margin-bottom: 60px;
-      margin-left: 20px;
+      /* margin-left: 40px; */
     }
 
     .imgLogin {
       display: flex;
-      width: 580px;
-      margin-top: 80px;
+      width: 100vh;
+      /* margin-top: 80px; */
     }
 
     .divLogin {
-      margin-right: 20px;
+      /* margin-right: 20px; */
       display: flex;
       justify-content: center;
     }
   }
 
   @media (min-width: 1100px) {
+    flex-direction: column;
+    /* justify-content: flex-end; */
     .div {
+      margin: 0px 8.5%;
+      height: 100vh;
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      /* justify-content: space-evenly; */
     }
 
     h3 {
+      text-align: center;
       margin-bottom: 10px;
-      margin-left: 40px;
+      /* margin-left: 40px; */
     }
 
     .imgLogin {
       display: flex;
-      width: 640px;
-      margin-top: 10px;
+      width: 88.6%;
+      /* margin-top: 10px; */
     }
 
     .divLogin {
-      margin-right: 40px;
+      /* margin-right: 40px; */
     }
 
     h2 {
