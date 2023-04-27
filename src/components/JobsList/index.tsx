@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../providers/User/UserContext";
 import { JobsContainer } from "./styles";
-import { BiArrowBack } from "react-icons/bi";
 import ModalEditJob from "../ModalEditJob";
 import ModalCreateJob from "../ModalCreateJob";
 
@@ -11,7 +10,6 @@ const JobsList = () => {
   }
 
   const { nav, setNav, jobList } = useContext(UserContext);
-  // console.log(jobList);
   return (
     <>
       <ModalCreateJob />

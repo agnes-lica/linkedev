@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Container } from "./style";
-import { IconType } from "react-icons/lib";
 
 interface ButtonProps {
   children: ReactNode | String;

@@ -1,9 +1,9 @@
 import React from "react";
 import Global from "./styles/Global";
-import RoutesApplication from "./routes";
+import RoutesApplication from "./routes/index";
 import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <Global />
@@ -11,5 +11,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
